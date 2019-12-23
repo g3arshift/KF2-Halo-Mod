@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{E1003F9D-1AF7-41EC-849C-D8AAD0561465}" SchemaVersion="70">
+	<AudioObjects>
+		<WorkUnit Name="Custom_Weapon_Template" ID="{E1003F9D-1AF7-41EC-849C-D8AAD0561465}" PersistMode="Standalone">
+			<ChildrenList>
+				<ActorMixer Name="WeaponName_Master" ID="{4670BF86-F7C9-4653-9300-8F4FA80F939F}" ShortID="323774699">
+					<PropertyList>
+						<Property Name="PositioningType" Type="int16" Value="1"/>
+						<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+					</PropertyList>
+					<ReferenceList>
+						<Reference Name="Attenuation">
+							<ObjectRef Name="WEP_Firearm_Fire" ID="{B333BB15-01B1-4ABD-9B76-12406427A71F}" WorkUnitID="{B3D54390-2172-4BD9-8B38-EF98524E7997}"/>
+						</Reference>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="WEP" ID="{E83C563C-95C1-488A-BFAD-81807EE998F9}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<ActorMixer Name="1P" ID="{6C4B5353-8C57-4BCE-A6E8-5D863AD4C5ED}" ShortID="986987416">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<RandomSequenceContainer Name="WeaponName_Fire_DryFire" ID="{C2870D60-74C0-4209-ABED-BAAE67471EED}" ShortID="785512323">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+								<SwitchContainer Name="WeaponName_Fire_1P" ID="{2DBD7C70-4FB7-4C96-B4C9-ACF9CB9B00E5}" ShortID="457646576">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{06F1FF00-CDEF-48C2-A137-06111A4BB47A}">
+														<PropertyList>
+															<Property Name="Max" Type="Real64" Value="30"/>
+															<Property Name="Min" Type="Real64" Value="-30"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="Indoor_Large" ID="{CBA92EAC-87D9-4D06-A5B8-FFDEF5357F46}" ShortID="203871119">
+											<PropertyList>
+												<Property Name="OverrideEffect" Type="bool" Value="True"/>
+												<Property Name="RenderEffect0" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+													<ObjectRef Name="KF2_Large_Room" ID="{4C18B70E-3BFB-4213-A03C-698765C999A0}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Indoor_Medium" ID="{8EDB65BC-2F2F-4D27-8006-32372D99DB76}" ShortID="8700929">
+											<PropertyList>
+												<Property Name="OverrideEffect" Type="bool" Value="True"/>
+												<Property Name="RenderEffect0" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+													<ObjectRef Name="KF2_Medium_Room" ID="{27DA9C40-1AAF-420D-BE24-A0555B2F1F81}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Indoor_Small" ID="{26BF8D5C-42F7-4C03-926F-7D749D5C2DFF}" ShortID="972966108">
+											<PropertyList>
+												<Property Name="OverrideEffect" Type="bool" Value="True"/>
+												<Property Name="RenderEffect0" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+													<ObjectRef Name="KF2_Small_Room" ID="{276F4EFA-6237-4C8A-9C43-32F17716F839}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Outdoor_City" ID="{F60769E7-8BD8-4D46-A7C4-51F74561FAD1}" ShortID="996302335">
+											<PropertyList>
+												<Property Name="OverrideEffect" Type="bool" Value="True"/>
+												<Property Name="RenderEffect0" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+													<ObjectRef Name="KF2_City" ID="{513AD78D-5B1C-49FB-A04F-39ED2EF85D75}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Outdoor_Forest" ID="{24C6D598-14CC-434C-A2B8-EDABD61AD99D}" ShortID="445670998">
+											<PropertyList>
+												<Property Name="OverrideEffect" Type="bool" Value="True"/>
+												<Property Name="RenderEffect0" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+													<ObjectRef Name="KF2_Forest" ID="{C3BBEB5A-BCAB-45E2-8948-32C61BB0C2CE}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Outdoor_Mountain" ID="{F5A35A76-0836-4F02-B5ED-89D23C1932C6}" ShortID="509672517">
+											<PropertyList>
+												<Property Name="OverrideEffect" Type="bool" Value="True"/>
+												<Property Name="RenderEffect0" Type="bool">
+													<ValueList>
+														<Value>True</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+													<ObjectRef Name="KF2_Mountain" ID="{36CA315D-0472-4241-801A-A39947E60F6F}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+										</RandomSequenceContainer>
+									</ChildrenList>
+									<GroupingInfo>
+										<GroupRef Name="Environment_Reverb" ID="{E9A6C318-F858-4D72-A9BF-C2FD5900CE05}"/>
+										<DefaultSwitchRef Name="Outdoor_Forest" ID="{FA37557E-97B4-468C-8A3A-F33366DDC690}"/>
+										<GroupingBehaviorList>
+											<GroupingBehavior>
+												<ItemRef Name="Indoor_Small" ID="{26BF8D5C-42F7-4C03-926F-7D749D5C2DFF}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="Outdoor_Mountain" ID="{F5A35A76-0836-4F02-B5ED-89D23C1932C6}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="Outdoor_Forest" ID="{24C6D598-14CC-434C-A2B8-EDABD61AD99D}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="Indoor_Large" ID="{CBA92EAC-87D9-4D06-A5B8-FFDEF5357F46}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="Indoor_Medium" ID="{8EDB65BC-2F2F-4D27-8006-32372D99DB76}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="Outdoor_City" ID="{F60769E7-8BD8-4D46-A7C4-51F74561FAD1}"/>
+											</GroupingBehavior>
+										</GroupingBehaviorList>
+										<GroupingList>
+											<Grouping>
+												<SwitchRef Name="Outdoor_Forest" ID="{FA37557E-97B4-468C-8A3A-F33366DDC690}"/>
+												<ItemList>
+													<ItemRef Name="Outdoor_Forest" ID="{24C6D598-14CC-434C-A2B8-EDABD61AD99D}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Outdoor_City" ID="{E302AD9C-A025-4231-BA34-3F5643BF1447}"/>
+												<ItemList>
+													<ItemRef Name="Outdoor_City" ID="{F60769E7-8BD8-4D46-A7C4-51F74561FAD1}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Indoor_Medium" ID="{CB88D79C-9EE8-4035-A039-625307FFAAB3}"/>
+												<ItemList>
+													<ItemRef Name="Indoor_Medium" ID="{8EDB65BC-2F2F-4D27-8006-32372D99DB76}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Outdoor_Mountain" ID="{DBEA38B4-CA91-4860-BAED-C34699FE1C57}"/>
+												<ItemList>
+													<ItemRef Name="Outdoor_Mountain" ID="{F5A35A76-0836-4F02-B5ED-89D23C1932C6}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Indoor_Large" ID="{42CE3DD6-5C79-46B5-ADD2-D208F45E9FE1}"/>
+												<ItemList>
+													<ItemRef Name="Indoor_Large" ID="{CBA92EAC-87D9-4D06-A5B8-FFDEF5357F46}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Indoor_Small" ID="{8C82A3E6-D89E-4594-9C54-A0E721F9DD27}"/>
+												<ItemList>
+													<ItemRef Name="Indoor_Small" ID="{26BF8D5C-42F7-4C03-926F-7D749D5C2DFF}"/>
+												</ItemList>
+											</Grouping>
+										</GroupingList>
+									</GroupingInfo>
+								</SwitchContainer>
+								<SwitchContainer Name="WeaponName_Fire_1P_Echo" ID="{1A9F2E88-C9A6-4432-A554-5B44882882E7}" ShortID="590024557">
+									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{09F6EE76-7350-4111-B575-44AB03E64885}">
+														<PropertyList>
+															<Property Name="Max" Type="Real64" Value="0.1"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{3C131FD3-31EA-4CF9-A9DB-8BD2D0EBA8D6}">
+														<PropertyList>
+															<Property Name="Max" Type="Real64" Value="328"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+										<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="WEP_Fire_Echo" ID="{0B0AFD80-1F2B-423D-B764-8D739C4ABD20}" WorkUnitID="{B3D54390-2172-4BD9-8B38-EF98524E7997}"/>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="WEP Echo" ID="{EFAD25A5-28B7-4291-B2B9-8D119E44C791}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="Indoor (Leave Empty)" ID="{5CFF7301-AEBD-4783-AFB4-66C9BBAD2025}" ShortID="761563603">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="Outdoor" ID="{08A8C02E-3C13-4C38-AD73-98C7AD6D3161}" ShortID="78454164">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{DA423964-9010-4CB6-92A9-1D97A7EEDE79}">
+																<PropertyList>
+																	<Property Name="Max" Type="Real64" Value="150"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+										</RandomSequenceContainer>
+									</ChildrenList>
+									<GroupingInfo>
+										<GroupRef Name="Environment_Reverb" ID="{E9A6C318-F858-4D72-A9BF-C2FD5900CE05}"/>
+										<DefaultSwitchRef Name="Outdoor_Forest" ID="{FA37557E-97B4-468C-8A3A-F33366DDC690}"/>
+										<GroupingBehaviorList>
+											<GroupingBehavior>
+												<ItemRef Name="Indoor (Leave Empty)" ID="{5CFF7301-AEBD-4783-AFB4-66C9BBAD2025}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="Outdoor" ID="{08A8C02E-3C13-4C38-AD73-98C7AD6D3161}"/>
+											</GroupingBehavior>
+										</GroupingBehaviorList>
+										<GroupingList>
+											<Grouping>
+												<SwitchRef Name="Outdoor_Forest" ID="{FA37557E-97B4-468C-8A3A-F33366DDC690}"/>
+												<ItemList>
+													<ItemRef Name="Outdoor" ID="{08A8C02E-3C13-4C38-AD73-98C7AD6D3161}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Outdoor_City" ID="{E302AD9C-A025-4231-BA34-3F5643BF1447}"/>
+												<ItemList>
+													<ItemRef Name="Outdoor" ID="{08A8C02E-3C13-4C38-AD73-98C7AD6D3161}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Indoor_Medium" ID="{CB88D79C-9EE8-4035-A039-625307FFAAB3}"/>
+												<ItemList>
+													<ItemRef Name="Indoor (Leave Empty)" ID="{5CFF7301-AEBD-4783-AFB4-66C9BBAD2025}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Outdoor_Mountain" ID="{DBEA38B4-CA91-4860-BAED-C34699FE1C57}"/>
+												<ItemList>
+													<ItemRef Name="Outdoor" ID="{08A8C02E-3C13-4C38-AD73-98C7AD6D3161}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Indoor_Large" ID="{42CE3DD6-5C79-46B5-ADD2-D208F45E9FE1}"/>
+												<ItemList>
+													<ItemRef Name="Indoor (Leave Empty)" ID="{5CFF7301-AEBD-4783-AFB4-66C9BBAD2025}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Indoor_Small" ID="{8C82A3E6-D89E-4594-9C54-A0E721F9DD27}"/>
+												<ItemList>
+													<ItemRef Name="Indoor (Leave Empty)" ID="{5CFF7301-AEBD-4783-AFB4-66C9BBAD2025}"/>
+												</ItemList>
+											</Grouping>
+										</GroupingList>
+									</GroupingInfo>
+								</SwitchContainer>
+								<RandomSequenceContainer Name="WeaponName_Melee" ID="{571000F1-5AE7-462C-ABA2-1243F175EEDE}" ShortID="1016671668">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</ActorMixer>
+						<ActorMixer Name="3P" ID="{81707B1D-196E-4D70-AB08-121D3C5DDE26}" ShortID="443380112">
+							<PropertyList>
+								<Property Name="OverrideOutput" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="WEP Fire 3P" ID="{8639EAB0-1583-4808-BD9A-5F21A01D4751}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<SwitchContainer Name="WeaponName_Fire_3P" ID="{4E332558-FF59-4FF7-A2B9-AF641C65C228}" ShortID="36095374">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{A2E464C2-269A-47F2-BCBD-23B6173D0791}">
+														<PropertyList>
+															<Property Name="Max" Type="Real64" Value="50"/>
+															<Property Name="Min" Type="Real64" Value="-50"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<BlendContainer Name="Indoor_Large" ID="{84B3BB81-2E39-42CD-9063-2E2E7C0F271D}" ShortID="166265034">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<RandomSequenceContainer Name="Indoor_Large" ID="{43A5B737-5310-4730-BB43-D51882DADBDB}" ShortID="946880224">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+														</Reference>
+													</ReferenceList>
+												</RandomSequenceContainer>
+											</ChildrenList>
+										</BlendContainer>
+										<BlendContainer Name="Indoor_Medium" ID="{82F98FB7-14AC-4654-B0CB-64BCC83853EB}" ShortID="522542266">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<RandomSequenceContainer Name="Indoor_Medium" ID="{60746C72-E2C7-43B6-A675-96F52EC3892E}" ShortID="790141665">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+														</Reference>
+													</ReferenceList>
+												</RandomSequenceContainer>
+											</ChildrenList>
+										</BlendContainer>
+										<BlendContainer Name="Indoor_Small" ID="{35F5B63E-F37C-49D6-8A09-305239960F57}" ShortID="647053016">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<RandomSequenceContainer Name="Indoor_Small" ID="{C656C70D-C1B9-46FF-85EA-6C0082C656F7}" ShortID="615917646">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+														</Reference>
+													</ReferenceList>
+												</RandomSequenceContainer>
+											</ChildrenList>
+										</BlendContainer>
+										<BlendContainer Name="Outdoor_City" ID="{77132686-BC13-48D6-A95D-607885483667}" ShortID="493695084">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<RandomSequenceContainer Name="Outdoor_City" ID="{5E029B64-FE1A-4017-AFB8-32D820D09384}" ShortID="87510561">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+														</Reference>
+													</ReferenceList>
+												</RandomSequenceContainer>
+											</ChildrenList>
+										</BlendContainer>
+										<BlendContainer Name="Outdoor_Forest" ID="{19484E4A-7AE7-461C-9464-89A00C35AD72}" ShortID="51564508">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<RandomSequenceContainer Name="Outdoor_Forest" ID="{B3534684-5ACB-41AF-9DC5-35D97C61BD76}" ShortID="541162654">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+														</Reference>
+													</ReferenceList>
+												</RandomSequenceContainer>
+											</ChildrenList>
+										</BlendContainer>
+										<BlendContainer Name="Outdoor_Mountain" ID="{88F6E600-48B7-4739-947B-13A459ED6D68}" ShortID="530732407">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<RandomSequenceContainer Name="Outdoor_Mountain" ID="{E8FDFA37-D0BE-4F89-BDB1-ADE5FFDD4938}" ShortID="566134302">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+														</Reference>
+													</ReferenceList>
+												</RandomSequenceContainer>
+											</ChildrenList>
+										</BlendContainer>
+									</ChildrenList>
+									<GroupingInfo>
+										<GroupRef Name="Environment_Reverb" ID="{E9A6C318-F858-4D72-A9BF-C2FD5900CE05}"/>
+										<DefaultSwitchRef Name="Outdoor_Forest" ID="{FA37557E-97B4-468C-8A3A-F33366DDC690}"/>
+										<GroupingBehaviorList>
+											<GroupingBehavior>
+												<ItemRef Name="Outdoor_Mountain" ID="{88F6E600-48B7-4739-947B-13A459ED6D68}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="Indoor_Small" ID="{35F5B63E-F37C-49D6-8A09-305239960F57}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="Outdoor_Forest" ID="{19484E4A-7AE7-461C-9464-89A00C35AD72}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="Indoor_Large" ID="{84B3BB81-2E39-42CD-9063-2E2E7C0F271D}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="Outdoor_City" ID="{77132686-BC13-48D6-A95D-607885483667}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="Indoor_Medium" ID="{82F98FB7-14AC-4654-B0CB-64BCC83853EB}"/>
+											</GroupingBehavior>
+										</GroupingBehaviorList>
+										<GroupingList>
+											<Grouping>
+												<SwitchRef Name="Outdoor_Forest" ID="{FA37557E-97B4-468C-8A3A-F33366DDC690}"/>
+												<ItemList>
+													<ItemRef Name="Outdoor_Forest" ID="{19484E4A-7AE7-461C-9464-89A00C35AD72}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Outdoor_City" ID="{E302AD9C-A025-4231-BA34-3F5643BF1447}"/>
+												<ItemList>
+													<ItemRef Name="Outdoor_City" ID="{77132686-BC13-48D6-A95D-607885483667}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Indoor_Medium" ID="{CB88D79C-9EE8-4035-A039-625307FFAAB3}"/>
+												<ItemList>
+													<ItemRef Name="Indoor_Medium" ID="{82F98FB7-14AC-4654-B0CB-64BCC83853EB}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Outdoor_Mountain" ID="{DBEA38B4-CA91-4860-BAED-C34699FE1C57}"/>
+												<ItemList>
+													<ItemRef Name="Outdoor_Mountain" ID="{88F6E600-48B7-4739-947B-13A459ED6D68}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Indoor_Large" ID="{42CE3DD6-5C79-46B5-ADD2-D208F45E9FE1}"/>
+												<ItemList>
+													<ItemRef Name="Indoor_Large" ID="{84B3BB81-2E39-42CD-9063-2E2E7C0F271D}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="Indoor_Small" ID="{8C82A3E6-D89E-4594-9C54-A0E721F9DD27}"/>
+												<ItemList>
+													<ItemRef Name="Indoor_Small" ID="{35F5B63E-F37C-49D6-8A09-305239960F57}"/>
+												</ItemList>
+											</Grouping>
+										</GroupingList>
+									</GroupingInfo>
+								</SwitchContainer>
+								<RandomSequenceContainer Name="WeaponName_Projectile_Hiss (Explosives Only)" ID="{53B47462-ECA2-47CD-8C5E-79AA64BCE5EA}" ShortID="1018652395">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{B12D714B-2F15-4B90-9BC4-D75B534463AF}">
+														<PropertyList>
+															<Property Name="Max" Type="Real64" Value="100"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+											<RTPCList>
+												<RTPC Name="" ID="{A16FAEA8-5B7F-4EDE-9AE3-38E43BD57C5F}" ShortID="948006369">
+													<ReferenceList>
+														<Reference Name="ControlInput">
+															<ObjectRef Name="DopplerPitchScalar" ID="{3467DD02-6944-4B80-97CE-1F78766699BE}" WorkUnitID="{8ECC2681-1A90-47B0-84D2-AAAF8A80305A}"/>
+														</Reference>
+													</ReferenceList>
+													<Curve Name="" ID="{6A252048-062F-4006-AE4F-E58A2F32A5E8}">
+														<PropertyList>
+															<Property Name="Flags" Type="int32" Value="65537"/>
+														</PropertyList>
+														<PointList>
+															<Point>
+																<XPos>0</XPos>
+																<YPos>-2058</YPos>
+																<Flags>5</Flags>
+																<SegmentShape>Exp3</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>1</XPos>
+																<YPos>0</YPos>
+																<Flags>0</Flags>
+																<SegmentShape>Log3</SegmentShape>
+															</Point>
+															<Point>
+																<XPos>2</XPos>
+																<YPos>1052</YPos>
+																<Flags>37</Flags>
+															</Point>
+														</PointList>
+													</Curve>
+												</RTPC>
+											</RTPCList>
+										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="WEP_Handling" ID="{9F3E4F8F-7E17-43F6-B7C2-F8F20DED71E1}" WorkUnitID="{B3D54390-2172-4BD9-8B38-EF98524E7997}"/>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="WeaponName_Explosion" ID="{FDD54728-451F-4BAD-9467-F141E0AF075F}" ShortID="96747586">
+									<PropertyList>
+										<Property Name="OverrideOutput" Type="bool" Value="True"/>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{EF1CA795-7BC6-4C3F-AB7E-CE5E19027D67}">
+														<PropertyList>
+															<Property Name="Max" Type="Real64" Value="100"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="WEP_Grenade_Explosion" ID="{33C18F69-1F70-49AE-A98C-D01E4867156A}" WorkUnitID="{B3D54390-2172-4BD9-8B38-EF98524E7997}"/>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="WEP_Exp" ID="{CC03BACD-E672-49C5-826B-950AC8409F41}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+										</Reference>
+									</ReferenceList>
+								</RandomSequenceContainer>
+							</ChildrenList>
+						</ActorMixer>
+						<ActorMixer Name="Handling" ID="{9C3828A1-1428-4E39-9EE8-851A590C02EC}" ShortID="932083951">
+							<PropertyList>
+								<Property Name="OverrideGameAuxSends" Type="bool" Value="True"/>
+								<Property Name="OverrideOutput" Type="bool" Value="True"/>
+								<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="WEP Handle" ID="{8A06D759-D602-4AEE-ABF1-9DA7B9B77621}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<ActorMixer Name="1P_Handling" ID="{8BC67F42-F1CC-4E62-9BC8-60189CCAB220}" ShortID="458247282">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+										</Reference>
+									</ReferenceList>
+								</ActorMixer>
+								<ActorMixer Name="3P_Handling" ID="{C943FE82-7EA3-4CE1-9E13-E8D93CD4B3A3}" ShortID="248063680">
+									<PropertyList>
+										<Property Name="OverridePositioning" Type="bool" Value="True"/>
+										<Property Name="PositioningType" Type="int16" Value="1"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Attenuation">
+											<ObjectRef Name="WEP_Handling" ID="{9F3E4F8F-7E17-43F6-B7C2-F8F20DED71E1}" WorkUnitID="{B3D54390-2172-4BD9-8B38-EF98524E7997}"/>
+										</Reference>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+										</Reference>
+									</ReferenceList>
+								</ActorMixer>
+							</ChildrenList>
+						</ActorMixer>
+					</ChildrenList>
+				</ActorMixer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

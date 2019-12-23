@@ -12,8 +12,8 @@ class KFProj_Rocket_M41 extends KFProj_BallisticExplosive
 defaultproperties
 {
 	Physics=PHYS_Projectile
-	Speed=6000
-	MaxSpeed=6000
+	Speed=3500
+	MaxSpeed=3500
 	TossZ=0
 	GravityScale=1.0
     MomentumTransfer=50000.0
@@ -21,14 +21,14 @@ defaultproperties
 
 	bWarnAIWhenFired=true
 
-	ProjFlightTemplate=ParticleSystem'WEP_RPG7_EMIT.FX_RPG7_Projectile'
-	ProjFlightTemplateZedTime=ParticleSystem'WEP_RPG7_EMIT.FX_RPG7_Projectile_ZED_TIME'
-	ProjDudTemplate=ParticleSystem'WEP_RPG7_EMIT.FX_RPG7_Projectile_Dud'
+	ProjFlightTemplate=ParticleSystem'M41.Emitters.FX_M41_Projectile'
+	ProjFlightTemplateZedTime=ParticleSystem'M41.Emitters.FX_M41_Projectile_ZED_TIME'
+	ProjDudTemplate=ParticleSystem'M41.Emitters.FX_M41_Projectile_Dud'
 	GrenadeBounceEffectInfo=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Projectile_Impacts'
     ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
 
-	AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Projectile_Loop'
-  	AmbientSoundStopEvent=AkEvent'WW_WEP_SA_RPG7.Stop_WEP_SA_RPG7_Projectile_Loop'
+	AmbientSoundPlayEvent=AkEvent'M41.Audio.Play_M41_Projectile_Hiss'
+  	AmbientSoundStopEvent=AkEvent'M41.Audio.Stop_M41_Projectile_Hiss'
 
   	AltExploEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion_Concussive_Force'
 
@@ -59,7 +59,7 @@ defaultproperties
 		FractureMeshRadius=200.0
 		FracturePartVel=500.0
 		ExplosionEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion'
-		ExplosionSound=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Explosion'
+		ExplosionSound=AkEvent'M41.Audio.Play_M41_Rocket_Explosion'
 
         // Dynamic Light
         ExploLight=ExplosionPointLight
