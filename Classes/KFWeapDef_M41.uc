@@ -14,7 +14,7 @@ DefaultProperties
 	WeaponClassPath="HaloMod_Weapons.KFWeap_RocketLauncher_M41"
 
 	BuyPrice=2500
-	AmmoPricePerMag=30
+	AmmoPricePerMag=60
 	ImagePath="M41.UI.M41_UI_v1"
 
 	EffectiveRange=100

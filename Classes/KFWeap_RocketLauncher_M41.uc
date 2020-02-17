@@ -43,6 +43,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 	local vector InstantTraceHitLocation, InstantTraceHitNormal;
 	local vector TraceAimDir;
 	local Actor	HitActor;
+	local Texture2D HitActorTex;
 	local TraceHitInfo HitInfo;
 	local int ALPHACOLOR;
 
@@ -61,11 +62,11 @@ simulated function DrawHUD( HUD H, Canvas C )
 				Rocket_Ypos = 855.0;
 
 				RocketText_Xpos = 974.0;
-				RocketText_Ypos = 899.0;
+				RocketText_Ypos = 895.0;
 
-				RocketText_Scaling = 1.0;
+				RocketText_Scaling = 1.1;
 				Rocket_Distance = 42;
-				Rocket_Scale = 1.0;
+				Rocket_Scale = BackgroundScale;
 
 				Xpos = 1208.0;
 				YPos = 648.0;
@@ -77,6 +78,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 				switch(C.SizeY)
 				{
 					case 1440:
+
+						Rocket_Xpos = 663.0;
+						Rocket_Ypos = 855.0;
+
+						RocketText_Xpos = 653.0;
+						RocketText_Ypos = 895.0;
+
+						RocketText_Scaling = 1.1;
+						Rocket_Distance = 42;
+						Rocket_Scale = BackgroundScale;
+
 						XPos = 881.0;
 						YPos = 638.0;
 						ReticleBackground = Scope_Backgrounds[1]; //Background with a 4:3 Aspect Ratio
@@ -85,6 +97,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 						ResolutionFound = true;
 						break;
 					case 1200:
+
+						Rocket_Xpos = 663.0;
+						Rocket_Ypos = 735.0;
+
+						RocketText_Xpos = 653.0;
+						RocketText_Ypos = 773.0;
+
+						RocketText_Scaling = 1.35;
+						Rocket_Distance = 42;
+						Rocket_Scale = BackgroundScale;
+
 						XPos = 879.5;
 						YPos = 519.7;
 						ReticleBackground = Scope_Backgrounds[3]; //Background with a 16:10 Aspect Ratio
@@ -93,6 +116,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 						ResolutionFound = true;
 						break;
 					case 1080:
+
+						Rocket_Xpos = 738.0;
+						Rocket_Ypos = 641.0;
+
+						RocketText_Xpos = 730.0;
+						RocketText_Ypos = 670.0;
+
+						RocketText_Scaling = 1.1;
+						Rocket_Distance = 31;
+						Rocket_Scale = BackgroundScale;
+
 						ReticleScale = 0.875;
 						BackgroundScale = 0.75;
 						XPos = 904.0;
@@ -102,6 +136,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 				}
 				break;
 			case 1680:
+
+				Rocket_Xpos = 581.0;
+				Rocket_Ypos = 643.0;
+
+				RocketText_Xpos = 572.0;
+				RocketText_Ypos = 676.0;
+
+				RocketText_Scaling = 1.3;
+				Rocket_Distance = 36;				
+				Rocket_Scale = BackgroundScale;
+
 				XPos = 782.0;
 				YPos = 464.0;
 				ReticleBackground = Scope_Backgrounds[3]; //Background with a 16:10 Aspect Ratio
@@ -114,6 +159,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 				switch( C.SizeY )
 				{
 					case 1200:
+
+						Rocket_Xpos = 554.0;
+						Rocket_Ypos = 711.0;
+
+						RocketText_Xpos = 546.0;
+						RocketText_Ypos = 748.0;
+
+						RocketText_Scaling = BackgroundScale;
+						Rocket_Distance = 36;				
+						Rocket_Scale = BackgroundScale;
+
 						XPos = 752.0;
 						YPos = 552.0;
 						ReticleBackground = Scope_Backgrounds[2]; //Background with a 4:3 Aspect Ratio, but with a smaller inner circle
@@ -122,6 +178,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 						ResolutionFound = true;
 						break;
 					case 1024:
+
+						Rocket_Xpos = 630.0;
+						Rocket_Ypos = 594.5;
+
+						RocketText_Xpos = 627.0;
+						RocketText_Ypos = 619.0;
+
+						RocketText_Scaling = 0.9;
+						Rocket_Distance = 26;				
+						Rocket_Scale = 0.7;
+
 						YPos = 464.0;
 						ReticleBackground = Scope_Backgrounds[5]; //A one off background for this almost 16:10 Aspect Ratio
 						ReticleScale = 0.75;
@@ -129,6 +196,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 						ResolutionFound = true;
 						break;
 					case 900:
+
+						Rocket_Xpos = 615.0;
+						Rocket_Ypos = 534.0;
+
+						RocketText_Xpos = 609.0;
+						RocketText_Ypos = 560.0;
+
+						RocketText_Scaling = 0.85;
+						Rocket_Distance = 26;				
+						Rocket_Scale = BackgroundScale;
+
 						XPos = 768.5;
 						YPos = 417.0;
 						ReticleScale = 0.75;
@@ -138,6 +216,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 				}
 				break;
 			case 1440:
+
+				Rocket_Xpos = 498.0;
+				Rocket_Ypos = 550.0;
+
+				RocketText_Xpos = 490.0;
+				RocketText_Ypos = 581.0;
+
+				RocketText_Scaling = 1.1;
+				Rocket_Distance = 31;				
+				Rocket_Scale = BackgroundScale;
+
 				XPos = 652.0;
 				YPos = 401.0;
 				ReticleBackground = Scope_Backgrounds[3]; //Background with a 16:10 Aspect Ratio
@@ -146,6 +235,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 				ResolutionFound = true;
 				break;
 			case 1400:
+
+				Rocket_Xpos = 484.0;
+				Rocket_Ypos = 622.0;
+
+				RocketText_Xpos = 478.0;
+				RocketText_Ypos = 653.0;
+
+				RocketText_Scaling = 1.0;
+				Rocket_Distance = 31;			
+				Rocket_Scale = BackgroundScale;
+
 				XPos = 652.0;
 				YPos = 477.0;
 				ReticleBackground = Scope_Backgrounds[2]; //Background with a 4:3 Aspect Ratio, but with a smaller inner circle
@@ -154,6 +254,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 				ResolutionFound = true;
 				break;
 			case 1366:
+
+				Rocket_Xpos = 525.0;
+				Rocket_Ypos = 455.0;
+
+				RocketText_Xpos = 519.0;
+				RocketText_Ypos = 477.0;
+
+				RocketText_Scaling = 0.8;
+				Rocket_Distance = 22;			
+				Rocket_Scale = BackgroundScale;
+
 				XPos = 634.0;
 				YPos = 335.0;
 				ReticleScale = 0.75;
@@ -161,6 +272,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 				ResolutionFound = true;
 				break;
 			case 1360:
+
+				Rocket_Xpos = 522.0;
+				Rocket_Ypos = 454.0;
+
+				RocketText_Xpos = 519.0;
+				RocketText_Ypos = 477.0;
+
+				RocketText_Scaling = 0.8;
+				Rocket_Distance = 22;				
+				Rocket_Scale = BackgroundScale;
+
 				XPos = 634.0;
 				YPos = 337.0;
 				ReticleScale = 0.75;
@@ -172,6 +294,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 				switch( C.SizeY )
 				{
 					case 1024:
+
+						Rocket_Xpos = 427.0;
+						Rocket_Ypos = 612.0;
+
+						RocketText_Xpos = 429.0;
+						RocketText_Ypos = 641.0;
+
+						RocketText_Scaling = 1.0;
+						Rocket_Distance = 31;			
+						Rocket_Scale = 0.8;
+
 						XPos = 592.0;
 						YPos = 464.0;
 						ReticleBackground = Scope_Backgrounds[4]; //Background with a 5:4 Aspect Ratio
@@ -180,6 +313,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 						ResolutionFound = true;
 						break;
 					case 960:
+
+						Rocket_Xpos = 443.0;
+						Rocket_Ypos = 568.0;
+
+						RocketText_Xpos = 439.0;
+						RocketText_Ypos = 597.0;
+
+						RocketText_Scaling = 0.9;
+						Rocket_Distance = 29;		
+						Rocket_Scale = BackgroundScale;
+
 						XPos = 593.0;
 						YPos = 433.0;
 						ReticleBackground = Scope_Backgrounds[2]; //Background with a 4:3 Aspect Ratio, but with a smaller inner circle
@@ -188,6 +332,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 						ResolutionFound = true;
 						break;
 					case 800:
+
+						Rocket_Xpos = 442.0;
+						Rocket_Ypos = 490.0;
+
+						RocketText_Xpos = 430.0;
+						RocketText_Ypos = 510.0;
+
+						RocketText_Scaling = 1.0;
+						Rocket_Distance = 28;			
+						Rocket_Scale = BackgroundScale;
+
 						XPos = 6589.0;
 						YPos = 348.0;
 						ReticleBackground = Scope_Backgrounds[3]; //Background with a 16:10 Aspect Ratio
@@ -196,6 +351,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 						ResolutionFound = true;
 						break;
 					case 720:
+
+						Rocket_Xpos = 492.0;
+						Rocket_Ypos = 427.0;
+
+						RocketText_Xpos = 487.0;
+						RocketText_Ypos = 447.0;
+
+						RocketText_Scaling = 0.75;
+						Rocket_Distance = 21;		
+						Rocket_Scale = BackgroundScale;
+
 						YPos = 312.0;
 						XPos = 592.0;
 						ReticleScale = 0.75;
@@ -205,6 +371,17 @@ simulated function DrawHUD( HUD H, Canvas C )
 				} 
 				break;
 			case 1024:
+
+				Rocket_Xpos = 354.0;
+				Rocket_Ypos = 455.0;
+
+				RocketText_Xpos = 355.0;
+				RocketText_Ypos = 486.0;
+
+				RocketText_Scaling = 0.7;
+				Rocket_Distance = 23;			
+				Rocket_Scale = BackgroundScale;
+
 				XPos = 466.0;
 				YPos = 336.0;
 				ReticleBackground = Scope_Backgrounds[2]; //Background with a 4:3 Aspect Ratio, but with a smaller inner circle
@@ -236,28 +413,28 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 			if( KFPawn_Monster(HitActor) != none && KFPawn_Monster(HitActor).IsAliveAndWell())
 			{
-				C.DrawTexture(ScopeReticle_Enemy, ReticleScale );
+				HitActorTex = ScopeReticle_Enemy;
 			}
 			else if( KFPawn_Human(HitActor) != none && KFPawn_Human(HitActor).IsAliveAndWell())
 			{
-				C.DrawTexture(ScopeReticle_Friendly, ReticleScale );
+				HitActorTex = ScopeReticle_Friendly;
 			}
 			else
 			{
-				C.DrawTexture(ScopeReticle_Default, ReticleScale );
+				HitActorTex = ScopeReticle_Default;
 			}
-			C.SetPos(0.0, 0.0 ); //Sets the position to the top left of the screen.
+			C.DrawTexture(HitActorTex, ReticleScale);
+			C.SetPos(0.0, 0.0); //Sets the position to the top left of the screen.
 			C.DrawTexture(ReticleBackground, BackgroundScale );
 
 			//Rocket HUD Drawing
-			if( AmmoCount[0] > 2)  //Any amount of rockets greater than 2 left
+			if( AmmoCount[0] > 2 )  //Any amount of rockets greater than 2 left
 			{
 				//Draw the number of rockets left as text.
 				C.SetDrawColor(9, 145, 243, 255);
 				C.SetPos(RocketText_Xpos, RocketText_Ypos);
 				C.Font = Font'Shared.UI.Halo_UI_Font';
 				C.DrawText(AmmoCount[0]$" rockets", false, RocketText_Scaling, RocketText_Scaling);
-				C.SetDrawColor( 255, 255, 255, 255); //Reset Draw Color
 			}
 			else if( AmmoCount[0] == 2 ) //2 Rockets left
 			{
@@ -267,7 +444,6 @@ simulated function DrawHUD( HUD H, Canvas C )
 				C.DrawTexture( Texture2D'M41.UI.M41_UI_White_Rocket', Rocket_Scale);
 				C.SetPos(Rocket_Xpos, Rocket_Ypos + Rocket_Distance);
 				C.DrawTexture( Texture2D'M41.UI.M41_UI_White_Rocket', Rocket_Scale);
-				C.SetDrawColor( 255, 255, 255, 255); //Reset Draw Color
 			}
 			else // Less than or equal to 1 Rocket left
 			{
@@ -365,8 +541,8 @@ defaultproperties
 
 	// Inventory
 	InventoryGroup=IG_Primary
-	GroupPriority=100
-	InventorySize=9 //10
+	GroupPriority=120
+	InventorySize=11
 	WeaponSelectTexture=Texture2D'M41.UI.M41_UI_v1'
 
     // FOV
@@ -392,9 +568,9 @@ defaultproperties
 	MuzzleFlashTemplateName="M41.Archetypes.Wep_M41_MuzzleFlash"
 
 	// Ammo
-	MagazineCapacity[0]=3
-	SpareAmmoCapacity[0]=15
-	InitialSpareMags[0]=4
+	MagazineCapacity[0]=2
+	SpareAmmoCapacity[0]=8
+	InitialSpareMags[0]=1
 	AmmoPickupScale[0]=1.0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -435,7 +611,7 @@ defaultproperties
 
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_M41'
-	InstantHitDamage(BASH_FIREMODE)=29
+	InstantHitDamage(BASH_FIREMODE)=35
 
 	// Fire Effects
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'M41.Audio.Play_M41_Fire_3P', FirstPersonCue=AkEvent'M41.Audio.Play_M41_Fire_1P')
@@ -470,5 +646,5 @@ defaultproperties
 	ScopeReticle_Enemy = Texture2D'M41.UI.M41_Reticle_Enemy_Highlight_Reticle' //Base texture size is 128 x 128
 	ScopeReticle_Friendly = Texture2D'M41.UI.M41_Reticle_Friendly_Highlight_Reticle' //Base texture size is 128 x 128
 
-	SineChangeRate = 40
+	SineChangeRate = 38
 }

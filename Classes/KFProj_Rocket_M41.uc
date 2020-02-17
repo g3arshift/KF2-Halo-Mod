@@ -17,7 +17,7 @@ defaultproperties
 	TossZ=0
 	GravityScale=1.0
     MomentumTransfer=50000.0
-    ArmDistSquared=150000 // 4 meters
+    ArmDistSquared=112500 // 4 meters
 
 	bWarnAIWhenFired=true
 
@@ -35,8 +35,8 @@ defaultproperties
 	// Grenade explosion light
 	Begin Object Class=PointLightComponent Name=ExplosionPointLight
 	    LightColor=(R=252,G=218,B=171,A=255)
-		Brightness=4.f
-		Radius=2000.f
+		Brightness=5.f
+		Radius=3000.f
 		FalloffExponent=10.f
 		CastShadows=False
 		CastStaticShadows=FALSE
@@ -48,9 +48,9 @@ defaultproperties
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=750
-		DamageRadius=400    //1000 //250
-		DamageFalloffExponent=2  //3
+		Damage=900
+		DamageRadius=400
+		DamageFalloffExponent=2
 		DamageDelay=0.f
 
 		// Damage Effects

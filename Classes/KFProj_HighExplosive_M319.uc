@@ -107,16 +107,12 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 		ImpactedActor = Wall;
 		GrenadeIsAtRest();
 	}
-
-	if( Role == ROLE_Authority )
+	//Makes sure that out timer isn't already active so we don't reset it when the grenade bounces.
+	if(!IsTimerActive('ExplodeTimer'))
 	{
-		//Makes sure that out timer isn't already active so we don't reset it when the grenade bounces.
-		if(!IsTimerActive('ExplodeTimer'))
-		{
-			//`log("M319 Hit wall/floor. Fuse started");
-			SetTimer(FuseTime, false, 'ExplodeTimer');
-			bNeedsArming = false;
-		}
+		//`log("M319 Hit wall/floor. Fuse started");
+		SetTimer(FuseTime, false, 'ExplodeTimer');
+		bNeedsArming = false;
 	}
 }
 
@@ -212,7 +208,8 @@ defaultproperties
     bCollideWithTeammates = false;
 
     //Settings for the grenade
-    bIsTimedExplosive=true
+    bIsTimedExplosive = true
+    bNeedsArming = true
 
     //Bounce Factors
     DampenFactor=0.21 //.1
@@ -248,7 +245,7 @@ defaultproperties
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=800 //800
+		Damage=700 //800
 		DamageRadius=650          //850
 		DamageFalloffExponent=2   //2
 		DamageDelay=0.f

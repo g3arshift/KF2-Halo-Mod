@@ -102,7 +102,7 @@ simulated event GrenadeIsAtRest()
 	local KFPerk InstigatorPerk;
 	local KFPlayerController KFPC;
 	
-	KFPC = KFPlayerController( Instigator.Controller);
+	KFPC = KFPlayerController(Instigator.Controller);
 
 	InstigatorPerk = KFPC.GetPerk();
 	//Creates the "Grenade Warning" visual effect. If frag roudns on demo is active, it actives an emitter with appropriate warning ranges.
@@ -212,7 +212,7 @@ defaultproperties
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=625 //600
+		Damage=600 //600
 		DamageRadius=650          //850
 		DamageFalloffExponent=2    //2
 		DamageDelay=0.f

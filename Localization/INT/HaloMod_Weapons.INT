@@ -1,0 +1,69 @@
+[KFWeap_Pistol_M6C]
+ItemName="M6C Pistol"
+ItemCategory="Pistol"
+ItemDescription="•The smaller and weaker brother of the M6G, this pistol has seen action against the Covenant from Reach all the way to the Delta Halo and it's now ready to serve against the Zed hordes!"
+
+[KFWeap_Pistol_M6CDual]
+ItemName="Dual M6C Pistols"
+ItemCategory="Pistol"
+ItemDescription="•The same M6C pistol as before, but now with twice the gun and twice the fun!"
+
+[KFWeap_SMG_M7S]
+ItemName="M7S SMG"
+ItemCategory="Sub Machine Gun"
+ItemDescription="•A fully blacked out and silenced M7 Caseless SMG, this silent but deadly weapon was used by The Rookie during the glassing of New Mombasa in 2552. \n•"It only takes one mistake, kid. You went a long time before you made it.""
+
+[KFWeap_Pistol_M6C_SOCOM]
+ItemName="M6C/SOCOM"
+ItemCategory="Pistol"
+ItemDescription="•Equipped with an integrated silencer, scope, and muzzle brake, the Automag is laser accurate, whisper silent, and extremely deadly. \n•"Brutes might see us coming, but the only thing they'll hear is their asses hitting the ground.""
+
+[KFWeap_Shotgun_M90]
+ItemName="M90 CAWS"
+ItemCategory="Shotgun"
+ItemDescription="•Modified to feed from the bottom and loaded with 8 gauge shells, this shotgun will pulp anything that gets close. \n•"I believe that the sound of racking the pump of a shotgun is universally recognized as 'kiss your ass goodbye.""
+
+[KFWeap_Shotgun_M45]
+ItemName="M45 Shotgun"
+ItemCategory="Shotgun"
+ItemDescription="•Though not a powerful as its bigger brother the M90, the M45 is shorter, faster, lighter, and still packs a punch. \n•"Six, time for you to leave. Get the package to the man, and get your ass off this planet. I got your back.""
+
+[KFWeap_Shotgun_M45_BrashWhisper]
+ItemName="M45 Brash Whisper"
+ItemCategory="Shotgun"
+ItemDescription="•Painted with the spine of a Sangheili, this M45U and its payload have been hand customized by Spartan Emille-A239 for maximum destruction. \n•"Yeah, I carved that myself. And I'm proud of it.""
+
+[KFWeap_GrenadeLauncher_M319]
+ItemName="M319 IGL"
+ItemCategory="Explosives"
+ItemDescription="•Primary fire detonates the grenade on impact with a zed, or starts a 2 second timer when hitting a wall. \n•Secondary Fire prevents explosion while the trigger is held down, explodes when released, and arms an EMP, but does less damage."
+
+[KFWeap_Pistol_M6D]
+ItemName="M6D Magnum"
+ItemCategory="Pistol"
+ItemDescription="•Loaded with semi-armor piercing high explosive rounds and equipped with a KFA-2 x2 smart-linked scope, the M6D is a legendary pistol known for its overhwelming stopping power. \n•"I don't keep it loaded son, you'll have to find ammo as you go.""
+
+[KFWeap_AssaultRifle_MA37]
+ItemName="MA37 Assault Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription="•Loaded with shredder rounds, equipped with a smart-link scope and an ammo display, this rifle is deadly in the right hands.\n•"The MA37 is the workhorse for us ground-pounders. Just holding it makes you feel like God’s own anti-son-of-a-bitch-machine.""
+
+[KFWeap_Rifle_BR55]
+ItemName="BR55 Battle Rifle"
+ItemCategory="Rifle"
+ItemDescription="•Equipped with a 2x scope and an ammo display, the BR55 battle rifle dishes out hot death and headshots in quick 3-round bursts.\n•"When nothing else gets the job done, the BR55 Battle Rifle will do.""
+
+[KFWeap_AssaultRifle_XBR55_SOCOM]
+ItemName="XBR55/SOCOM"
+ItemCategory="Assault Rifle"
+ItemDescription="•An earlier experimental model of the BR55 designed for ODST forces, this blacked out battle rifle does less damage than its counterpart but has an integrated silencer, lower recoil, a laser sight, and a two-round burst.\n•"We go feet first, sir!""
+
+[KFWeap_SMG_M7]
+ItemName="M7 SMG"
+ItemCategory="Sub Machine Gun"
+ItemDescription="•Lightweight, cheap, and sporting a high rate of fire the M7 is perfect for mowing down zeds.\n•"The recoil isn’t bad but the M7 itself is relatively light. Not unpleasant to shoot, but a little tricky to control—it’s all about controlling the impulse.""
+
+[KFWeap_RocketLauncher_M41]
+ItemName="M41 SPNKr"
+ItemCategory="Rocket Launcher"
+ItemDescription="•Loaded with 102mm SSM rockets, the M41 "Spanker" is the perfect delivery system for two heavy hitting back-to-back rockets.\n•"Knowing you can pull the trigger and it'll make a loud noise is comforting, but if you want results? You use a rocket launcher.""

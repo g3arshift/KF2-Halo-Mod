@@ -15,10 +15,10 @@ defaultproperties
 	bShouldSpawnPersistentBlood=true
 
 	// physics impact
-	RadialDamageImpulse=2500//10000
+	RadialDamageImpulse=3000//10000
 	GibImpulseScale=0.15
-	KDeathUpKick=1500//2000
-	KDeathVel=500
+	KDeathUpKick=5000//2000
+	KDeathVel=1500
 
 	KnockdownPower=225
 	StumblePower=400
@@ -26,7 +26,5 @@ defaultproperties
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Demolitionist'
 
-	ObliterationHealthThreshold=-500
-	ObliterationDamageThreshold=500
 	WeaponDef=class'KFWeapDef_M41'
 }

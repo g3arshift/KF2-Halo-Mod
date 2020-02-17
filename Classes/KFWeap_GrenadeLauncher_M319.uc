@@ -8,11 +8,6 @@
 
 class KFWeap_GrenadeLauncher_M319 extends KFWeap_GrenadeLauncher_Base;
 
-/*********************************************************************************************
- * State FireAndDetonate
- * The weapon is in this state while detonating a live grenade
- * Ignore it, not currently using a custom firemode. Need to test detonations first.
-*********************************************************************************************/
 var KFProj_ControlledExplosive_M319 LiveGrenade;
 var KFProj_HighExplosive_M319 LiveGrenade_H;
 var KFPlayerController KFPC;
@@ -29,6 +24,16 @@ var array<MaterialInstanceConstant> DisplayStatus_DangerClose;
 var array<MaterialInstanceConstant> DisplayDecoration;
 var array<MaterialInstanceConstant> GrenadeStatusLight;
 
+replication
+{
+	if (bNetDirty)
+	LiveGrenade_H, LiveGrenade;
+}
+
+/*********************************************************************************************
+ * State FireAndDetonate
+ * The weapon is in this state while detonating a controlled explosive grenade
+*********************************************************************************************/
 simulated state FireAndDetonate extends WeaponSingleFiring
 {
 	simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass, vector RealStartLoc, vector AimDir )
@@ -38,7 +43,11 @@ simulated state FireAndDetonate extends WeaponSingleFiring
 		bNeedsLinking = true;
 		SetTimer(0.5, false, 'LinkingTimer');
 
-		KFPC = KFPlayerController(GetALocalPlayerController());
+		if(KFPC == none)
+		{
+			KFPC = KFPlayerController(Instigator.Controller);
+		}
+
 		InstigatorPerk = KFPC.GetPerk();
 
 		if(KFPerk_Demolitionist(InstigatorPerk) != none && KFPerk_Demolitionist(InstigatorPerk).IsAoEActive())
@@ -53,12 +62,31 @@ simulated state FireAndDetonate extends WeaponSingleFiring
 	}
 }
 
+/*********************************************************************************************
+ * State WeaponSingleFireAndReload
+ * The weapon is in this state while detonating a high explosive grenade
+*********************************************************************************************/
 simulated state M319_WeaponSingleFireAndReload extends WeaponSingleFireAndReload
 {
 	simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass, vector RealStartLoc, vector AimDir )
 	{
 		LiveGrenade_H = KFProj_HighExplosive_M319(super.SpawnProjectile( KFProjClass, RealStartLoc, AimDir ));
-		LiveGrenade_H.bNeedsArming = true;
+
+		if(KFPC == none)
+		{
+			KFPC = KFPlayerController(Instigator.Controller);
+		}
+
+		InstigatorPerk = KFPC.GetPerk();
+
+		if(KFPerk_Demolitionist(InstigatorPerk) != none && KFPerk_Demolitionist(InstigatorPerk).IsAoEActive())
+		{
+			FragRoundsActive = true;
+		}
+		else
+		{
+			FragRoundsActive = false;
+		}
 		return LiveGrenade_H;
 	}
 }
@@ -70,7 +98,6 @@ simulated function PutDownWeapon()
 	if (LiveGrenade != None && !LiveGrenade.bHasExploded && !LiveGrenade.bHasDisintegrated &&  Role == ROLE_Authority)
 	{
 		LiveGrenade.TriggerExplosion(LiveGrenade.Location, vect(0,0,1), None);
-		//`log("M319 Grenade detonated after put down.");
 		LiveGrenade = None;
 	}
 }
@@ -85,7 +112,6 @@ simulated function EndFire(byte FireModeNum)
 		{
 			LiveGrenade.TriggerExplosion(LiveGrenade.Location, vect(0,0,1), None);
 			SetTimer(0.85, false, 'GrenadeExplodedTimer');
-			LiveGrenade = None;
 
 			Mesh.SetMaterial( 5, DisplayRangeDigits_Safe[0]);
 			Mesh.SetMaterial( 8, DisplayRangeDigits_Safe[0]);
@@ -94,12 +120,16 @@ simulated function EndFire(byte FireModeNum)
 			Mesh.SetMaterial( 2, DisplayBackplate[0] );
 			Mesh.SetMaterial( 10, DisplaySkull[0]);
 			Mesh.SetMaterial( 4, DisplayDecoration[0]);
-			Mesh.SetMaterial( 7, GrenadeStatusLight[0]);
 		}
 	}
 	else
 	{
 		`log("M319 End Fire Role Check Failure.");
+	}
+
+	if(LiveGrenade_H != None && LiveGrenade_H.bHasExploded && LiveGrenade_H.bHasDisintegrated && Role == ROLE_Authority)
+	{
+		LiveGrenade_H = None;
 	}
 
 	ClearPendingFire(FireModeNum);
@@ -109,7 +139,6 @@ simulated event Tick( float DeltaTime )
 {
 
 	super.Tick(DeltaTime);
-
 	if( LiveGrenade != none || LiveGrenade_H != none)
 	{
 		UpdateDisplay();
@@ -133,6 +162,10 @@ simulated event Tick( float DeltaTime )
 	{
 		Mesh.SetMaterial(7, GrenadeStatusLight[2]);
 		Mesh.SetMaterial(6, DisplayStatus_Safe[1]);
+		Mesh.SetMaterial( 5, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( 8, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( 3, DisplayRangeDigits_Safe[0]);
+		LiveGrenade = None;
 	}
 	else if(LiveGrenade == None && LiveGrenade_H == None) //!IsTimerActive('GrenadeExplodedTimer') && 
 	{
@@ -141,7 +174,7 @@ simulated event Tick( float DeltaTime )
 	}
 }
 
-simulated function UpdateDisplay()
+reliable client function UpdateDisplay()
 {
 
 	/*
@@ -160,7 +193,7 @@ simulated function UpdateDisplay()
 
 	if(KFPC == none)
 	{
-		KFPC = KFPlayerController(GetALocalPlayerController());
+		KFPC = KFPlayerController(Instigator.Controller);
 	}
 
 	if(LiveGrenade != none)
@@ -173,11 +206,11 @@ simulated function UpdateDisplay()
 	}
 	else
 	{
-		
+		`log("No Live grenade found");
 	}
 }
 
-simulated function UpdateDisplay_HighExplosive()
+reliable client function UpdateDisplay_HighExplosive()
 {
 	local float DistanceFromGrenade;
 
@@ -239,7 +272,7 @@ simulated function UpdateDisplay_HighExplosive()
 	}
 }
 
-simulated function UpdateDisplay_ControlledExplosive()
+reliable client function UpdateDisplay_ControlledExplosive()
 {
 	local float DistanceFromGrenade;
 
@@ -309,7 +342,7 @@ simulated function UpdateDisplay_ControlledExplosive()
 	}
 }
 
-simulated function UpdateRangeDisplay_Safe(float DistanceFromGrenade)
+reliable client function UpdateRangeDisplay_Safe(float DistanceFromGrenade)
 {
 	local int LeftRangeDigit;
 	local int MiddleRangeDigit;
@@ -339,7 +372,7 @@ simulated function UpdateRangeDisplay_Safe(float DistanceFromGrenade)
 	}
 }
 
-simulated function UpdateRangeDisplay_DangerZone(float DistanceFromGrenade)
+reliable client function UpdateRangeDisplay_DangerZone(float DistanceFromGrenade)
 {
 	local int LeftRangeDigit;
 	local int MiddleRangeDigit;
@@ -465,6 +498,10 @@ defaultproperties
 
 	// Weapon Upgrade stat boosts
 	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Weight, Add=1)))
+
+	FragRoundsActive = false
+	LiveGrenade = none
+	LiveGrenade_H = none
 
 	DisplaySkull[0] = MaterialInstanceConstant'Shared.Materials.Blank';
 	DisplaySkull[1] = MaterialInstanceConstant'M319.Materials.M319_Skull';
