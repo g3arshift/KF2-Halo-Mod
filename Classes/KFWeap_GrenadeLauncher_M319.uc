@@ -110,16 +110,8 @@ simulated function EndFire(byte FireModeNum)
 	{
 		if (LiveGrenade != None && !LiveGrenade.bHasExploded && !LiveGrenade.bHasDisintegrated &&  Role == ROLE_Authority && FireModeNum != 3) //The last arg prevents an explosion if we are bashing.
 		{
-			LiveGrenade.TriggerExplosion(LiveGrenade.Location, vect(0,0,1), None);
 			SetTimer(0.85, false, 'GrenadeExplodedTimer');
-
-			Mesh.SetMaterial( 5, DisplayRangeDigits_Safe[0]);
-			Mesh.SetMaterial( 8, DisplayRangeDigits_Safe[0]);
-			Mesh.SetMaterial( 3, DisplayRangeDigits_Safe[0]);
-			Mesh.SetMaterial( 9, DisplaySkull[0] );
-			Mesh.SetMaterial( 2, DisplayBackplate[0] );
-			Mesh.SetMaterial( 10, DisplaySkull[0]);
-			Mesh.SetMaterial( 4, DisplayDecoration[0]);
+			LiveGrenade.SetGrenadeExplodeTimer(0.001);
 		}
 	}
 	else
@@ -143,6 +135,17 @@ simulated event Tick( float DeltaTime )
 	{
 		UpdateDisplay();
 	}
+	else
+	{
+		Mesh.SetMaterial( 5, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( 8, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( 3, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( 9, DisplaySkull[0] );
+		Mesh.SetMaterial( 2, DisplayBackplate[0] );
+		Mesh.SetMaterial( 10, DisplaySkull[0]);
+		Mesh.SetMaterial( 4, DisplayDecoration[0]);
+		Mesh.SetMaterial( 7, GrenadeStatusLight[0]);
+	}
 
 	if( LiveGrenade_H != None && LiveGrenade_H.bHasExploded)
 	{
@@ -158,14 +161,24 @@ simulated event Tick( float DeltaTime )
 		Mesh.SetMaterial( 7, GrenadeStatusLight[0]);
 	}
 
+	if( LiveGrenade != None && LiveGrenade.bHasExploded)
+	{
+		SetTimer(0.85, false, 'GrenadeExplodedTimer');
+		LiveGrenade = None;
+		Mesh.SetMaterial( 5, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( 8, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( 3, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( 9, DisplaySkull[0] );
+		Mesh.SetMaterial( 2, DisplayBackplate[0] );
+		Mesh.SetMaterial( 10, DisplaySkull[0]);
+		Mesh.SetMaterial( 4, DisplayDecoration[0]);
+		Mesh.SetMaterial( 7, GrenadeStatusLight[0]);
+	}
+
 	if(IsTimerActive('GrenadeExplodedTimer'))
 	{
 		Mesh.SetMaterial(7, GrenadeStatusLight[2]);
 		Mesh.SetMaterial(6, DisplayStatus_Safe[1]);
-		Mesh.SetMaterial( 5, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial( 8, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial( 3, DisplayRangeDigits_Safe[0]);
-		LiveGrenade = None;
 	}
 	else if(LiveGrenade == None && LiveGrenade_H == None) //!IsTimerActive('GrenadeExplodedTimer') && 
 	{

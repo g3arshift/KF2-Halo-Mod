@@ -50,6 +50,21 @@ simulated function GetExplodeEffectLocation(out vector HitLocation, out vector H
     }
 }
 
+function ExplodeTimer()
+{
+    local Actor HitActor;
+    local vector HitLocation, HitNormal;
+
+    GetExplodeEffectLocation(HitLocation, HitNormal, HitActor);
+
+    TriggerExplosion(HitLocation, HitNormal, HitActor);
+}
+
+simulated function SetGrenadeExplodeTimer(float ControlledExplosiveFuseTime)
+{
+	SetTimer(ControlledExplosiveFuseTime, false, 'ExplodeTimer');
+}
+
 /**
  * Give a little bounce
  */

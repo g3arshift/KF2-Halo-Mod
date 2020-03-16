@@ -17,7 +17,7 @@ var array<MaterialInstanceConstant> Compass_High;
 var array<MaterialInstanceConstant> Compass_Medium;
 var array<MaterialInstanceConstant> Compass_Low;
 
-var PlayerController KFPC;
+var PlayerController PC;
 var KFGameReplicationInfo MyKFGRI;
 
 //This function is almost identical to the original in KFWeapon, but we're overriding it to enable fast reloading at or below 10 bullets.
@@ -91,9 +91,9 @@ simulated function TimeWeaponReloading()
 simulated function PlayWeaponEquip( float ModifiedEquipTime )
 {
 	Super.PlayWeaponEquip( ModifiedEquipTime );
-	if(KFPC == None )
+	if(PC == None )
 	{
-		KFPC = GetALocalPlayerController();
+		PC = GetALocalPlayerController();
 	}
 
 	UpdateAmmoDisplay(); //Make sure the display shows the proper ammo when we equip it.
@@ -180,14 +180,14 @@ function vector GetCurrentTraderLocation()
 {
     local vector TraderLoc;
 
-    if( KFPC == None )
+    if( PC == None )
     {
         return Vect(0,0,0);
     }
 
     if( MyKFGRI == None )
     {
-        MyKFGRI = KFGameReplicationInfo( KFPC.WorldInfo.GRI );
+        MyKFGRI = KFGameReplicationInfo( PC.WorldInfo.GRI );
     }
 
     if(MyKFGRI != None && (MyKFGRI.OpenedTrader != None || MyKFGRI.NextTrader != None))
@@ -339,31 +339,31 @@ simulated function UpdateCompass()
 simulated event Tick( float DeltaTime ) //This might be a costly check. I think this is making the servers crash on map switch.
 {
 
-	if( KFPC != None )
+	if( PC != None )
 	{
 		super.Tick( DeltaTime );
-		if( KFPC.Pawn != None && KFWeap_AssaultRifle_MA37(KFPC.Pawn.Weapon) != None )
+		if( PC.Pawn != None && KFWeap_AssaultRifle_MA37(PC.Pawn.Weapon) != None )
 		{
 			UpdateCompass();
 		} 	
 	}
 	else
 	{
-		KFPC = GetALocalPlayerController();
+		PC = GetALocalPlayerController();
 	}
 }
 
 /*
 simulated function KFWeapon GetActiveWeapon()
 {
-	if( KFPC == None )
+	if( PC == None )
 	{
-		KFPC = GetALocalPlayerController();
+		PC = GetALocalPlayerController();
 	}
 
-	if( KFPC != None )
+	if( PC != None )
 	{
-		return KFWeapon(KFPC.Pawn.Weapon);
+		return KFWeapon(PC.Pawn.Weapon);
 	}
 }
 */
@@ -567,16 +567,16 @@ simulated function DrawHUD( HUD H, Canvas C )
 			C.SetPos(Xpos, Ypos);
 			C.SetDrawColor( 255, 255, 255, 255);
 
-			if (KFPC == None )
+			if (PC == None )
 			{
 				`log("No PC");
-				KFPC = GetALocalPlayerController();
+				PC = GetALocalPlayerController();
 			}
 
-			TraceStart = KFPC.Pawn.Weapon.Instigator.GetWeaponStartTraceLocation();
-			TraceAimDir = Vector( KFPC.Pawn.Weapon.Instigator.GetAdjustedAimFor( KFPC.Pawn.Weapon, TraceStart ));
+			TraceStart = PC.Pawn.Weapon.Instigator.GetWeaponStartTraceLocation();
+			TraceAimDir = Vector( PC.Pawn.Weapon.Instigator.GetAdjustedAimFor( PC.Pawn.Weapon, TraceStart ));
 			TraceEnd = TraceStart + TraceAimDir * 20000; //200M
-			HitActor = KFPC.Pawn.Weapon.GetTraceOwner().Trace(InstantTraceHitLocation, InstantTraceHitNormal, TraceEnd, TraceStart, TRUE, vect(0,0,0), HitInfo, KFPC.Pawn.Weapon.TRACEFLAG_Bullet);
+			HitActor = PC.Pawn.Weapon.GetTraceOwner().Trace(InstantTraceHitLocation, InstantTraceHitNormal, TraceEnd, TraceStart, TRUE, vect(0,0,0), HitInfo, PC.Pawn.Weapon.TRACEFLAG_Bullet);
 
 			if( KFPawn_Monster(HitActor) != None && KFPawn_Monster(HitActor).IsAliveAndWell())
 			{
