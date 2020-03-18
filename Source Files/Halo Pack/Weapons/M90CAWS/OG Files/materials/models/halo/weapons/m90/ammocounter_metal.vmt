@@ -1,0 +1,33 @@
+"VertexLitGeneric"
+{
+$basetexture "models\halo\Weapons\m90\halo_shotgun_shell_d"	
+$bumpmap "models\halo\Weapons\m90\halo_shotgun_shell_n"
+
+
+$envmap 	"env_cubemap"
+$normalmapalphaenvmapmask "1"
+$envmaptint "[.7 .7 .7]"
+$envmapfresnel "1.15"
+
+$halflambert "1"
+$nocull "1"
+
+$phong "1"
+$phongexponenttexture "models\halo\Weapons\m90\phongexp255"
+$PhongWarpTexture "models\halo\Weapons\m90\phongwarp_metal"
+$phongalbedotint "1"
+$phongexponent "8"
+$phongboost "1"
+$phongtint "[.1 .1 .1]"
+$phongfresnelranges "[0.2 0.2 0]"
+
+
+$detail "models\halo\Weapons\m90\detail_gun_microbump"
+$detailscale "20"
+$detailblendfactor "2"	
+$detailblendmode "0"
+
+$rimlight "1"
+$rimlightexponent "50"
+$rimlightboost "0.05"
+}

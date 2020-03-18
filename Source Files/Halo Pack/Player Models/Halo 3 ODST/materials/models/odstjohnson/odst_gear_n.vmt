@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "Models/ODSTJohnson/odst_gear_N"
+	"$translucent" 1
+}

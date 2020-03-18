@@ -1,0 +1,13 @@
+"AddonInfo"
+{
+     addonSteamAppID         "550"
+     addontitle              "Halo CEA M90 CAWS (Pump Shotgun)"
+     addonversion            "1.0"
+     addontagline            "Halo M90 CAWS"
+     addonauthor             "Danger Wasp, [ZmBr.tm] Dusty"
+     addonauthorSteamID      "Danger Wasp, [ZmBr.tm] Dusty"
+     addonDescription        "Replaces the pump shotgun with the M90 CAWS from CEA but modified to resemble the M90 from CE, with animations ported form halo CE, and sounds from CEA"
+     
+
+
+}

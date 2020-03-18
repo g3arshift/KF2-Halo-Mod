@@ -1,0 +1,27 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models\h2_battlerifle\br_main"
+	"$bumpmap" "models\h2_battlerifle\br_bump"
+
+
+	//"$envmap"	"env_cubemap"
+	"$envmaptint"	"[0 0.05 0.1]"
+
+	"$phong" "1"
+	"$phongboost" "2"
+	"$phongexponent" "10"
+	"$phongexponenttexture" "models\h2_battlerifle\br_exp"
+	"$phongalbedotint" "1"
+	"$phongfresnelranges"	"[1 1 1]"
+
+	"$detail" "models\h2_battlerifle\paint"
+	"$detailscale" "20"
+	"$detailblendfactor" "5"
+	"$detailblendmode" "0"
+
+
+
+	"$rimlight" "1"
+	"$rimlightexponent" "50"
+	"$rimlightboost" "0.05"
+}

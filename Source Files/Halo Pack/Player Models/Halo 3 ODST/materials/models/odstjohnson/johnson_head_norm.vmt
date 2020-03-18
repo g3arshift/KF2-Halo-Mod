@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "Models/ODSTJohnson/johnson_head_norm"
+	"$translucent" 1
+}

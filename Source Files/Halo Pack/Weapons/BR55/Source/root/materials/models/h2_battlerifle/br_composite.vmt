@@ -1,0 +1,17 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models\h2_battlerifle\br_main"
+	"$bumpmap" "models\h2_battlerifle\br_bump"
+
+
+	"$phong" "1"
+	"$phongboost" "0.05"
+	"$phongexponent" "10"
+	"$phongexponenttexture" "models\h2_battlerifle\br_exp"
+	"$phongalbedotint" "1"
+	"$phongfresnelranges"	"[1 1 1]"
+
+	"$rimlight" "1"
+	"$rimlightexponent" "50"
+	"$rimlightboost" "0.05"
+}

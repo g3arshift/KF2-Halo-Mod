@@ -1,0 +1,18 @@
+VertexLitGeneric
+{
+"$basetexture" "models\halo\Weapons\m90\halo_shotgun_d"
+"$bumpmap" "models\halo\Weapons\m90\halo_shotgun_n"
+
+"$envmap" "env_cubemap"
+"$envmaptint" "[0.01 0.01 0.01]"
+"$envmapfresnel" "1"
+"$normalmapalphaenvmapmask" "1"
+
+"$phong" "1.00"
+"$phongboost" "13.25"
+"$phongexponent" "8.00"
+"$phongexponenttexture" "models\halo\Weapons\m90\phongexp255"
+"$phongfresnelranges" "[1.00 1.05 1.25]"
+"$phongalbedotint"	"1.00"
+
+}

@@ -1,0 +1,22 @@
+"VertexLitGeneric"
+{
+"$basetexture" "models\weapons\halo\m6d\ce\pistol_main_d"
+"$bumpmap" "models\weapons\halo\m6d\ce\pistol_main_n"
+"$selfillum" 1
+"$selfillummask" "models\weapons\halo\m6d\ce\pistol_main_illum"
+
+"$envmap" "env_cubemap"
+"$envmaptint" "[0.01 0.01 0.01]"
+"$envmapfresnel" "1"
+"$normalmapalphaenvmapmask" "1"
+
+"$phong" "1" 
+"$phongboost" "3"
+"$phongexponent" "13"
+"$phongexponenttexture" "models\weapons\halo\m6d\ce\phongexp255"
+"$phongalbedotint" "1"
+"$phongfresnelranges" "[1 1.25 1.75]"
+"$phongdisablehalflambert" "1"
+
+"$blendtintbybasealpha" "1"
+}

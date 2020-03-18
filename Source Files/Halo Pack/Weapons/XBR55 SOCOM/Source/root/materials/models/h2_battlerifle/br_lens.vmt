@@ -1,0 +1,23 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models\h2_battlerifle\glass_"
+                "$bumpmap" "models\h2_battlerifle\br_bump"
+
+
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[.5 .5 .5]"
+	"$envmapfresnel" "1"
+
+
+	"$halflambert" "1"
+	"$nocull" "1"
+
+	"$phong" "1"
+	"$phongboost" "1"
+	"$phongexponent" "15"
+	"$phongexponenttexture" "models\h2_battlerifle\br_exp"
+	"$phongalbedotint" "1"
+	"$phongtint" "[1 1 1]"
+	"$phongfresnelranges"	"[2 2 10]"
+}
+

@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "Models/ODSTRookie/Blood_patch"
+	"$translucent" 1
+}

@@ -1,0 +1,11 @@
+// Created by Crowbar 0.34.0.0
+version 1
+nodes
+  0 "ValveBiped.sg553" -1
+  1 "ValveBiped.weapon_bone" 0
+end
+skeleton
+  time 0
+    0 0.000000 0.000000 0.000000 1.570776 0.000020 -0.000020
+    1 0.542805 0.152250 3.206818 0.000000 0.000000 0.000000
+end

@@ -1,0 +1,12 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/ODSTBuck/buck_body"
+        "$bumpmap" "models/ODSTBuck/odst_body_n"
+	"$halflambert" 1
+
+	"$phong" "1"
+	"$phongexponent" 5
+//	"$phongexponenttexture" "models/ODSTBuck/odst_body_em"
+	"$phongboost"	"1"
+	"$phongfresnelranges"	"[0.01 0.5 1]"
+}

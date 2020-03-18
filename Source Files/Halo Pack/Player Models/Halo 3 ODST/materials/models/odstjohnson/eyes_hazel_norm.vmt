@@ -1,0 +1,5 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "Models/ODSTJohnson/eyes_hazel_norm"
+	"$translucent" 1
+}

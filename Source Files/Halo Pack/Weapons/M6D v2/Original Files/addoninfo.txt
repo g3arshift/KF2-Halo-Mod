@@ -1,0 +1,8 @@
+"AddonInfo"
+{
+    addonSteamAppID        550
+    addontitle             "H5 CE M6D Magnum (Deagle)"
+    addonversion           "1.0"
+    addonauthor            "Danger Wasp, [??B?.™] Dusty"
+    addonDescription       "Replaces the L4D2 magnum with the M6D Magnum from Halo 5 with custom sounds and animations."
+}
