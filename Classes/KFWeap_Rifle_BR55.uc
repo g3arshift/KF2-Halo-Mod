@@ -6,13 +6,12 @@
 
 class KFWeap_Rifle_BR55 extends KFWeap_RifleBase;
 
-var array<MaterialInstanceConstant> AmmoNumbers_High;
-var array<MaterialInstanceConstant> AmmoNumbers_Medium;
-var array<MaterialInstanceConstant> AmmoNumbers_Low;
 var array<Texture2D> Scope_Backgrounds;
-var PlayerController KFPC;
+var KFPlayerController KFPC;
 var KFGameReplicationInfo MyKFGRI;
 var float RefireDelayAmount;
+var Standard_Ammo_Display BR55_Display;
+var float AmmoYellow, AmmoRed;
 
 simulated state TimedBurstFiring extends WeaponBurstFiring
 {
@@ -63,7 +62,7 @@ simulated function TimeWeaponReloading()
     // get desired animation and play-rate
     AnimName = GetReloadAnimName( UseTacticalReload() );
 
-    if ( AmmoCount[0] <= 9 && AmmoCount[0] > 0)
+    if ( AmmoCount[0] <= MagazineCapacity[0] * AmmoRed && AmmoCount[0] > 0)
     {
     	//`log("You did a fast reload, good job!");
     	SpeedReloadRate = GetReloadRateScale() * 0.15; //The percentage to add to the rate the reload takes. If you set it to 0.15, it reloads 15% faster.
@@ -110,17 +109,6 @@ simulated function TimeWeaponReloading()
 	}
 }
 
-simulated function PlayWeaponEquip( float ModifiedEquipTime )
-{
-	Super.PlayWeaponEquip( ModifiedEquipTime );
-	if(KFPC == None )
-	{
-		KFPC = GetALocalPlayerController();
-	}
-
-	UpdateAmmoDisplay(); //Make sure the display shows the proper ammo when we equip it.
-}
-
 //This function allows us to play a sound, in this case, the zoom sounds for the different weapons.
 simulated function WeaponZoomSound(AkEvent ZoomSound)
 {
@@ -149,7 +137,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 	local vector InstantTraceHitLocation, InstantTraceHitNormal;
 	local vector TraceAimDir;
 	local Actor	HitActor;
-	local TraceHitInfo		HitInfo;
+	local TraceHitInfo HitInfo;
 
 	super.DrawHUD(H, C);
 
@@ -321,7 +309,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 			if (KFPC == None )
 			{
 				`log("No PC");
-				KFPC = GetALocalPlayerController();
+				KFPC = KFPlayerController(Instigator.Controller);
 			}
 
 			TraceStart = KFPC.Pawn.Weapon.Instigator.GetWeaponStartTraceLocation();
@@ -395,46 +383,27 @@ simulated function SetIronSights(bool bNewIronSights)
 	}
 }
 
-//Updates the display on the gun to show the correct ammunition, and also (later) change the color of the entire display to appropriately match the bullet display color.
-simulated function UpdateAmmoDisplay()
+simulated function PlayWeaponEquip( float ModifiedEquipTime )
 {
-	local int AmmoCountLeft_Digit;
-	local int AmmoCountRight_Digit;
-
-	if( Instigator.isFirstPerson() )
+	Super.PlayWeaponEquip( ModifiedEquipTime );
+	if(KFPC == None )
 	{
-		AmmoCountLeft_Digit = int(Left(AmmoCount[0], 1));
-		AmmoCountRight_Digit = int(Right(AmmoCount[0], 1));
-
-		if ( AmmoCount[0] >= 99 )
-		{
-			Mesh.SetMaterial( 4, AmmoNumbers_High[9]); //Left Display
-			Mesh.SetMaterial( 3, AmmoNumbers_High[9]); //Right Display
-		}
-		else if ( AmmoCount[0] >= MagazineCapacity[0] * 0.51 ) //Previously was 0.75
-		{
-			Mesh.SetMaterial( 4, AmmoNumbers_High[AmmoCountLeft_Digit]); //Left Display
-			Mesh.SetMaterial( 3, AmmoNumbers_High[AmmoCountRight_Digit]); //Right Display
-		}
-		else if ( AmmoCount[0] < MagazineCapacity[0] * 0.5 && AmmoCount[0] > 9 ) //Previously was 0.74
-		{
-			Mesh.SetMaterial( 4, AmmoNumbers_Medium[AmmoCountLeft_Digit]); //Left Display
-			Mesh.SetMaterial( 3, AmmoNumbers_Medium[AmmoCountRight_Digit]); //Right Display
-		}
-		else if ( AmmoCount[0] <= 9)
-		{
-			if( AmmoCount[0] == 10 )
-			{
-				AmmoCountLeft_Digit = 1;
-			}
-			else
-			{
-				AmmoCountLeft_Digit = 0;	
-			}
-			Mesh.SetMaterial( 4, AmmoNumbers_Low[AmmoCountLeft_Digit]); //Left Display
-			Mesh.SetMaterial( 3, AmmoNumbers_Low[AmmoCountRight_Digit]); //Right Display
-		}
+		KFPC = KFPlayerController(Instigator.Controller);
 	}
+
+	if(BR55_Display == none)
+	{
+		BR55_Display = New class'Standard_Ammo_Display';
+	}
+
+	BR55_Display.InitializeDisplay(KFPC, 4, 3, AmmoYellow, AmmoRed);
+	BR55_Display.RunDisplay(Mesh);
+}
+
+simulated function ConsumeAmmo( byte FireModeNum )
+{
+	super.ConsumeAmmo( FireModeNum );
+	BR55_UpdateDisplay();
 }
 
 simulated state Reloading
@@ -443,21 +412,20 @@ simulated state Reloading
 	{
 		Super.ReloadComplete();
 
-		UpdateAmmoDisplay();
+		BR55_UpdateDisplay();
 	}
 
 	simulated function AbortReload() //Makes sure that when a reload is cancelled for any reason before it fully completes, or right before it completes, the display updates properly.
 	{
 		Super.AbortReload();
 
-		UpdateAmmoDisplay();
+		BR55_UpdateDisplay();
 	}
 }
 
-simulated function ConsumeAmmo( byte FireModeNum )
+reliable client function BR55_UpdateDisplay()
 {
-	super.ConsumeAmmo( FireModeNum );
-	UpdateAmmoDisplay();
+	BR55_Display.RunDisplay(Mesh);
 }
 
 defaultproperties
@@ -490,7 +458,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=36
-	SpareAmmoCapacity[0]=216 //6 Mags
+	SpareAmmoCapacity[0]=252 //7 Mags
 	InitialSpareMags[0]=2
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
@@ -514,7 +482,7 @@ defaultproperties
 
 	// Inventory / Grouping
 	InventorySize=7
-	GroupPriority=101
+	GroupPriority=76
 	WeaponSelectTexture=Texture2D'BR55.UI.BR55_UI_v1'
 
 	// DEFAULT_FIREMODE
@@ -524,7 +492,7 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_BR55'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_BR55'
 	FireInterval(DEFAULT_FIREMODE)=+0.09
-	InstantHitDamage(DEFAULT_FIREMODE)=50.0 //40
+	InstantHitDamage(DEFAULT_FIREMODE)=35.0 //35
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	Spread(DEFAULT_FIREMODE)=0.01
 	FireOffset=(X=30,Y=4.5,Z=-4)
@@ -547,47 +515,17 @@ defaultproperties
 	bHasFlashlight=true
 
 	AssociatedPerkClasses(0)=class'KFPerk_Sharpshooter'
+	AssociatedPerkClasses(1)=class'KFPerk_Commando'
 
 	//Custom idle animations
 	IdleFidgetAnims=(Guncheck_v1, Guncheck_v2)
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Damage1, Scale=1.15f), (Stat=EWUS_Weight, Add=1))))
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Damage1, Scale=1.15f), (Stat=EWUS_Weight, Add=1)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.3f), (Stat=EWUS_Damage1, Scale=1.3f), (Stat=EWUS_Weight, Add=2)))
 
-	//Ammo Counter Display Materials
-	//Maybe in the future just use 1 array for each color, and change the glow parameter? Maybe? Not sure if it would color properly.
-	AmmoNumbers_High[0] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_0';
-	AmmoNumbers_High[1] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_1';
-	AmmoNumbers_High[2] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_2';
-	AmmoNumbers_High[3] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_3';
-	AmmoNumbers_High[4] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_4';
-	AmmoNumbers_High[5] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_5';
-	AmmoNumbers_High[6] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_6';
-	AmmoNumbers_High[7] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_7';
-	AmmoNumbers_High[8] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_8';
-	AmmoNumbers_High[9] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_9';
-
-	AmmoNumbers_Medium[0] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_0';
-	AmmoNumbers_Medium[1] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_1';
-	AmmoNumbers_Medium[2] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_2';
-	AmmoNumbers_Medium[3] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_3';
-	AmmoNumbers_Medium[4] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_4';
-	AmmoNumbers_Medium[5] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_5';
-	AmmoNumbers_Medium[6] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_6';
-	AmmoNumbers_Medium[7] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_7';
-	AmmoNumbers_Medium[8] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_8';
-	AmmoNumbers_Medium[9] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_9';
-
-	AmmoNumbers_Low[0] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_0';
-	AmmoNumbers_Low[1] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_1';
-	AmmoNumbers_Low[2] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_2';
-	AmmoNumbers_Low[3] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_3';
-	AmmoNumbers_Low[4] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_4';
-	AmmoNumbers_Low[5] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_5';
-	AmmoNumbers_Low[6] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_6';
-	AmmoNumbers_Low[7] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_7';
-	AmmoNumbers_Low[8] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_8';
-	AmmoNumbers_Low[9] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_9';
+	AmmoYellow = 0.67
+	AmmoRed = 0.34
 
 	//Textures for the scope background
 	Scope_Backgrounds[0] = Texture2D'BR55.UI.BR55_Reticle_Background' //Default background with a 16:9 Aspect Ratio

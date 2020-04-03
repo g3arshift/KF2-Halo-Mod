@@ -2,6 +2,16 @@
 // A class that uses a basic template of materials to update two and three digit
 // ammo counter displays.
 //=============================================================================
+// To use the class, first initialize the class with AmmoDisplayVar = New class'Standard_Ammo_Display';
+// Then call InitializeDisplay and pass it the correct variables
+//
+// And example for a two digit display is M392_Display.InitializeDisplay(KFPC, 4, 3, 0.67, 0.334);
+//
+// Next call RunDisplay and pass it a mesh component. If the Standard_Ammo_Display
+// Object was created inside a weapon class as it will be in most cases, use
+// Standard_Ammo_DisplayVariable.RunDisplay(Mesh);
+// The MeshComponent here is PASS BY REFERENCE.
+//=============================================================================
 // Gear Shift Gaming 3/15/2020
 //=============================================================================
 
@@ -13,25 +23,24 @@ var array<MaterialInstanceConstant> AmmoNumbers_Low;
 
 var bool TwoDigits, ThreeDigits;
 var int LeftDigit_MaterialSlotNum, RightDigit_MaterialSlotNum, MiddleDigit_MaterialSlotNum;
-var MeshComponent Ammo_Display_Weapon;
 var KFPlayerController KFPC;
 var int AmmoCount_LeftDigit, AmmoCount_RightDigit, AmmoCount_CenterDigit, Current_Ammo, Current_MagazineCapacity;
 var float AmmoYellow_Perc, AmmoRed_Perc;
 
-function InitializeDisplay(KFPlayerController KFPC_Ref, int LeftDigit_MatNum, int RightDigit_Num, float AmmoYellow_Val, float AmmoRed_Val, optional int MiddleDigit_Num = -1)
+function InitializeDisplay(KFPlayerController KFPC_Ref, int LeftDigit_MatNum, int RightDigit_MatNum, float AmmoYellow_Val, float AmmoRed_Val, optional int MiddleDigit_MatNum = -1)
 {
-	if(MiddleDigit_Num == -1)
+	if(MiddleDigit_MatNum == -1)
 	{
 		TwoDigits = true;
 		LeftDigit_MaterialSlotNum = LeftDigit_MatNum;
-		RightDigit_MaterialSlotNum = RightDigit_Num;
+		RightDigit_MaterialSlotNum = RightDigit_MatNum;
 	}
 	else
 	{
 		ThreeDigits = true;
 		LeftDigit_MaterialSlotNum = LeftDigit_MatNum;
-		RightDigit_MaterialSlotNum = RightDigit_Num;
-		MiddleDigit_MaterialSlotNum = MiddleDigit_Num;
+		RightDigit_MaterialSlotNum = RightDigit_MatNum;
+		MiddleDigit_MaterialSlotNum = MiddleDigit_MatNum;
 	}
 
 	AmmoYellow_Perc = AmmoYellow_Val;
@@ -139,9 +148,9 @@ function UpdateAmmoDisplay_Standard(out MeshComponent AmmoDisplay_Ref)
 		AmmoDisplay_Ref.SetMaterial( LeftDigit_MaterialSlotNum, AmmoNumbers_Low[AmmoCount_LeftDigit]); //Left Display
 		AmmoDisplay_Ref.SetMaterial( RightDigit_MaterialSlotNum, AmmoNumbers_Low[AmmoCount_RightDigit]); //Right Display
 	}
-	`log("Current Ammo Is :"$Current_Ammo);
-	`log("Left Digit Is :"$AmmoCount_LeftDigit);
-	`log("Right Digit Is :"$AmmoCount_RightDigit);
+	//`log("Current Ammo Is :"$Current_Ammo);
+	//`log("Left Digit Is :"$AmmoCount_LeftDigit);
+	//`log("Right Digit Is :"$AmmoCount_RightDigit);
 }
 
 function UpdateAmmoDisplay_Triple(out MeshComponent AmmoDisplay_Ref)

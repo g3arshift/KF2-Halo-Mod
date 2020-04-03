@@ -34,12 +34,13 @@ defaultproperties
 	KDeathVel=250
 
     KnockdownPower=5
-	StunPower=20
-	StumblePower=0
-	GunHitPower=60
+	StunPower=25 //20
+	StumblePower=5
+	GunHitPower=60 //60
 
 	WeaponDef=class'KFWeapDef_BR55'
 
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Sharpshooter'
+	ModifierPerkList(1)=class'KFPerk_Commando'
 }

@@ -646,5 +646,5 @@ defaultproperties
 	ScopeReticle_Enemy = Texture2D'M41.UI.M41_Reticle_Enemy_Highlight_Reticle' //Base texture size is 128 x 128
 	ScopeReticle_Friendly = Texture2D'M41.UI.M41_Reticle_Friendly_Highlight_Reticle' //Base texture size is 128 x 128
 
-	SineChangeRate = 38
+	SineChangeRate = 110 //38
 }

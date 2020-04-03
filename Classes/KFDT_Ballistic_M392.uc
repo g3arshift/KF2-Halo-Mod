@@ -16,8 +16,11 @@ defaultproperties
 	KDeathUpKick=-300
 	KDeathVel=100
 	
+    KnockdownPower=5
+	StunPower=20
 	StumblePower=10
-	GunHitPower=0
+	GunHitPower=90
+	MeleeHitPower=0
 
 	WeaponDef=class'KFWeapDef_M392'
 

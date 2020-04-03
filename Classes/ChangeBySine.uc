@@ -1,7 +1,8 @@
 /*===========================================================================================
 ChangeBySine.uc - A class that adds some functionality to figuring out how to fade
 between different RGBA values for canvas, including dynamic sinusoidal calculations for
-sine wave shaped changes.
+sine wave shaped changes. Though technically you can use it to get any integer value
+with a rising and falling pattern in a sinusoidal shape.
 
 email: gearshift@gearshiftgaming.com ; discord: Gear Shift#6360, noodle#0001 ; 2019
 ===========================================================================================*/

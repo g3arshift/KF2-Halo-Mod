@@ -532,7 +532,7 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_XBR55_SOCOM'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_XBR55_SOCOM'
 	FireInterval(DEFAULT_FIREMODE)=+0.057 //.06
-	InstantHitDamage(DEFAULT_FIREMODE)=50.0
+	InstantHitDamage(DEFAULT_FIREMODE)=40.0
 	PenetrationPower(DEFAULT_FIREMODE)=0.0
 	Spread(DEFAULT_FIREMODE)=0.01
 	FireOffset=(X=30,Y=4.5,Z=-4)
