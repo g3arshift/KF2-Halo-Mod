@@ -20,9 +20,9 @@ defaultproperties
 	KDeathUpKick=500
 	KDeathVel=300
 
-	KnockdownPower=150
+	KnockdownPower=200 //150
 	StumblePower=600 //400
-	EMPPower=150
+	EMPPower=225 //150
 
 
 	//Perk

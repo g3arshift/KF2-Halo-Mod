@@ -20,6 +20,15 @@ var float Xpos, Ypos, SniperRound_Xpos, SniperRound_Ypos, SniperRound_Scale, Sni
 var int SniperRound_Distance;
 var int SineChangeRate;
 
+
+simulated function PlayWeaponEquip( float ModifiedEquipTime )
+{
+	super.PlayWeaponEquip(ModifiedEquipTime);
+	if(KFPC == none)
+	{
+		KFPC = KFPlayerController(Instigator.Controller);
+	}
+}
 //This function allows us to play a sound, in this case, the zoom sounds for the different weapons.
 simulated function WeaponZoomSound(AkEvent ZoomSound)
 {
@@ -48,6 +57,7 @@ simulated function SetIronSights(bool bNewIronSights)
 			WeaponZoomSound(ZoomOut);
 			Cleartimer('ZoomTimer');
 		}
+		KFPC.SetNightVision(false);
 	}
 	else
 	{
@@ -456,6 +466,16 @@ simulated function DrawHUD( HUD H, Canvas C )
 			C.SetPos(0.0, 0.0); //Sets the position to the top left of the screen.
 			C.DrawTexture(ReticleBackground, BackgroundScale );
 
+			if(KFPawn_Human(KFPC.Pawn).bFlashlightOn)
+			{
+				KFPC.SetNightVision(true); //Maybe try using the Effect_NightVision Material. It's defined in FX_Mat_Lib.KF_PP_Master
+				KFPC.bGamePlayDOFActive = false;
+			}
+			else
+			{
+				KFPC.SetNightVision(false);
+			}
+
 			//Round HUD Drawing
 			if( AmmoCount[0] > 4 )  //Any amount of rounds greater than 2 left
 			{
@@ -653,25 +673,24 @@ defaultproperties
 	MuzzleFlashTemplateName="WEP_M99_ARCH.Wep_M99_MuzzleFlash"
 
 	// Ammo
-	MagazineCapacity[0]=5
+	MagazineCapacity[0]=4
 	SpareAmmoCapacity[0]=24
 	InitialSpareMags[0]=2
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
 	// Recoil
-	maxRecoilPitch=1200
-	minRecoilPitch=775
-	maxRecoilYaw=800
-	minRecoilYaw=-500
+	maxRecoilPitch=900 //1200
+	minRecoilPitch=500 //775
+	maxRecoilYaw=400 //800
+	minRecoilYaw=-200 //500
 	RecoilRate=0.085
-	RecoilMaxYawLimit=500
-	RecoilMinYawLimit=65035
-	RecoilMaxPitchLimit=900
+	RecoilMaxYawLimit=500 //500
+	RecoilMaxPitchLimit=600 //900
 	RecoilMinPitchLimit=65035
-	RecoilISMaxYawLimit=150
+	RecoilISMaxYawLimit=150 //150
 	RecoilISMinYawLimit=65385
-	RecoilISMaxPitchLimit=375
+	RecoilISMaxPitchLimit=275 //375
 	RecoilISMinPitchLimit=65460
 	RecoilViewRotationScale=0.8
 	FallingRecoilModifier=1.0
@@ -679,7 +698,7 @@ defaultproperties
 	IronSightMeshFOVCompensationScale=5.0
 
 	// Inventory
-	InventorySize=13
+	InventorySize=11
 	GroupPriority=150
 	WeaponSelectTexture=Texture2D'SRS99_AM.UI.SRS99_AM_UI_v1'
 
@@ -690,9 +709,9 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_SRS99_AM'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SRS99_AM'
 	FireInterval(DEFAULT_FIREMODE)=0.69 //0.66
-	PenetrationPower(DEFAULT_FIREMODE)=5.0
+	PenetrationPower(DEFAULT_FIREMODE)=999.0 //5.0
 	Spread(DEFAULT_FIREMODE)=0.0
-	InstantHitDamage(DEFAULT_FIREMODE)=850.0
+	InstantHitDamage(DEFAULT_FIREMODE)=450.0 //950
 
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring

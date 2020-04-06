@@ -10,7 +10,7 @@ DefaultProperties
 {
 	WeaponClassPath="HaloMod_Weapons.KFWeap_AssaultRifle_XBR55_SOCOM"
 
-	BuyPrice=1500
+	BuyPrice=1200
 	AmmoPricePerMag=42
 	ImagePath="XBR55_SOCOM.UI.XBR55_SOCOM_UI_v1"
 

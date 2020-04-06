@@ -1,8 +1,0 @@
-"VertexLitGeneric"
-{
-	"$baseTexture" "models\h2_battlerifle\0"
-
-"$additive" "1"
-"$selfillum" "1"
-"$selfillumtint" "[2 2 2]"
-}

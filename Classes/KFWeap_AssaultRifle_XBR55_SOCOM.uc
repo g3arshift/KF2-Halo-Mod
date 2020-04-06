@@ -22,7 +22,7 @@ simulated state TimedBurstFiring extends WeaponBurstFiring
 		super.EndState(NextStateName);
 		if(!IsTimerActive('RefireDelayTimer'))
 		{
-			RefireDelayAmount = FireInterval[CurrentFireMode] * 0.5 + (FireInterval[CurrentFireMode] * 2.5);
+			RefireDelayAmount = FireInterval[CurrentFireMode] * 0.5 + (FireInterval[CurrentFireMode] * 2.0); //+ (FireInterval[CurrentFireMode] * 2.5);
 			SetTimer(RefireDelayAmount, false, 'RefireDelayTimer');
 		}
 	}
@@ -526,7 +526,7 @@ defaultproperties
 	WeaponSelectTexture=Texture2D'XBR55_SOCOM.UI.XBR55_SOCOM_UI_v1'
 
 	// DEFAULT_FIREMODE
-	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletBurst'
+	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'HaloPack_FireModeIcons.UI_FireModeSelect_2RoundBurst'
 	FiringStatesArray(DEFAULT_FIREMODE)=TimedBurstFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_XBR55_SOCOM'

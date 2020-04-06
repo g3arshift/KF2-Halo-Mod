@@ -12,8 +12,8 @@ DefaultProperties
 {
 	WeaponClassPath="HaloMod_Weapons.KFWeap_Rifle_SRS99_AM"
 
-	BuyPrice = 5000
-	AmmoPricePerMag = 200
+	BuyPrice = 3500 //5000
+	AmmoPricePerMag = 150 //200
 	ImagePath="SRS99_AM.UI.SRS99_AM_UI_v1"
 
 	EffectiveRange = 100

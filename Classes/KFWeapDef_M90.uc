@@ -14,7 +14,7 @@ DefaultProperties
 	WeaponClassPath="HaloMod_Weapons.KFWeap_Shotgun_M90"
 
 	BuyPrice=2500
-	AmmoPricePerMag=54 //48
+	AmmoPricePerMag=90 //54
 	ImagePath="M90_CAWS.Textures.M90_CAWS_UI_v1"
 
 	EffectiveRange=15

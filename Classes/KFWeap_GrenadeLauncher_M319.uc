@@ -421,6 +421,10 @@ defaultproperties
 	InventorySize=7
 	WeaponSelectTexture=Texture2D'M319.Textures.M319_UI_v1'
 
+	//Depth of Field
+	DOF_FG_FocalRadius=60 //38
+	DOF_FG_MaxNearBlurSize=3.5
+
 	// FOV
 	MeshFOV=80
 	MeshIronSightFOV=52
@@ -441,7 +445,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	SpareAmmoCapacity[0]=20
+	SpareAmmoCapacity[0]=17 //20
 	InitialSpareMags[0]=6
 	AmmoPickupScale[0]=2.0
 	bCanBeReloaded=true
@@ -467,7 +471,7 @@ defaultproperties
 	HippedRecoilModifier=1.25
 
 	// DEFAULT_FIREMODE
-	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
+	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'HaloPack_FireModeIcons.Timed_Explosive_FireMode_Icon' //DO NOT USE GROUPS. IT WILL ONLY PATH TO THE GROUP NAME, NOT THE FULL PATH!!!
 	FiringStatesArray(DEFAULT_FIREMODE)=M319_WeaponSingleFireAndReload
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_HighExplosive_M319'

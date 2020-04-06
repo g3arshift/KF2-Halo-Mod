@@ -13,7 +13,7 @@ DefaultProperties
 {
 	WeaponClassPath="HaloMod_Weapons.KFWeap_AssaultRifle_MA37"
 
-	BuyPrice=1100
+	BuyPrice=1200
 	AmmoPricePerMag=36 //42
 	ImagePath="MA37.Textures.MA37_UI_v1"
 

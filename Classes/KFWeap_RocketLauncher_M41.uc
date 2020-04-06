@@ -537,8 +537,6 @@ simulated function SetIronSights(bool bNewIronSights)
 
 defaultproperties
 {
-	ForceReloadTime=0.4f
-
 	// Inventory
 	InventoryGroup=IG_Primary
 	GroupPriority=120
@@ -581,7 +579,7 @@ defaultproperties
 	maxRecoilYaw=500
 	minRecoilYaw=-500
 	RecoilRate=0.085
-	RecoilBlendOutRatio=0.35
+	//RecoilBlendOutRatio=0.35
 	RecoilMaxYawLimit=500
 	RecoilMinYawLimit=65035
 	RecoilMaxPitchLimit=1500

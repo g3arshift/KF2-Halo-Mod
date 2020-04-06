@@ -44,7 +44,7 @@ simulated function TimeWeaponReloading()
     if ( AmmoCount[0] <= 10 && AmmoCount[0] > 0)
     {
     	//`log("You did a fast reload, good job!");
-    	SpeedReloadRate = GetReloadRateScale() * 0.2; //The percentage to add to the rate the reload takes. If you set it to 0.15, it reloads 15% faster.
+    	SpeedReloadRate = GetReloadRateScale() * 0.25; //The percentage to add to the rate the reload takes. If you set it to 0.15, it reloads 15% faster.
     	AnimRate = GetReloadRateScale() - SpeedReloadRate;
     }
     else

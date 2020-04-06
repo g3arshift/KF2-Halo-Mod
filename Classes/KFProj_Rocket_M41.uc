@@ -48,7 +48,7 @@ defaultproperties
 
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
-		Damage=900
+		Damage=1100 //900
 		DamageRadius=400
 		DamageFalloffExponent=2
 		DamageDelay=0.f

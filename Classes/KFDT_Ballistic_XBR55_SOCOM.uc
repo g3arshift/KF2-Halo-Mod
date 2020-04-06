@@ -35,9 +35,9 @@ defaultproperties
 
     KnockdownPower=5
 	StunPower=5
-	StumblePower=35
+	StumblePower=40 //35
 	GunHitPower=30
-	LegStumblePower=25
+	LegStumblePower=30 //25
 
 	WeaponDef=class'KFWeapDef_XBR55_SOCOM'
 

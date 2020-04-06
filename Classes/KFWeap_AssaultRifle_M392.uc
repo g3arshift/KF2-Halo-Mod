@@ -433,24 +433,24 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=15
-	SpareAmmoCapacity[0]=105
+	SpareAmmoCapacity[0]=120 //105
 	InitialSpareMags[0]=1
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
 	// Recoil
-	maxRecoilPitch=225
-	minRecoilPitch=200
+	maxRecoilPitch=325 //225
+	minRecoilPitch=250 //200
 	maxRecoilYaw=200
 	minRecoilYaw=-200
 	RecoilRate=0.08
 	RecoilMaxYawLimit=500
 	RecoilMinYawLimit=65035
-	RecoilMaxPitchLimit=900
+	RecoilMaxPitchLimit=1100 //900
 	RecoilMinPitchLimit=65035
-	RecoilISMaxYawLimit=150
+	RecoilISMaxYawLimit=200 //150
 	RecoilISMinYawLimit=65385
-	RecoilISMaxPitchLimit=375
+	RecoilISMaxPitchLimit=475 //375
 	RecoilISMinPitchLimit=65460
 	IronSightMeshFOVCompensationScale=3.0
     HippedRecoilModifier=1.1
@@ -469,7 +469,8 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M392'
 	FireInterval(DEFAULT_FIREMODE)=+0.425
 	Spread(DEFAULT_FIREMODE)=0.00085
-	InstantHitDamage(DEFAULT_FIREMODE)=120.0
+	PenetrationPower(DEFAULT_FIREMODE)=0.0
+	InstantHitDamage(DEFAULT_FIREMODE)=145 //175.0 //120
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE

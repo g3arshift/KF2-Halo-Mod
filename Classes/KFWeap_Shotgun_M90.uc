@@ -7,6 +7,28 @@
 //=============================================================================
 class KFWeap_Shotgun_M90 extends KFWeap_ShotgunBase;
 
+var protected const array<vector2D> PelletSpread;
+
+ /** Same as AddSpread(), but used with MultiShotSpread */
+static function rotator AddMultiShotSpread( rotator BaseAim, float CurrentSpread, byte PelletNum )
+{
+	local vector X, Y, Z;
+	local float RandY, RandZ;
+
+	if (CurrentSpread == 0)
+	{
+		return BaseAim;
+	}
+	else
+	{
+		// Add in any spread.
+		GetAxes(BaseAim, X, Y, Z);
+		RandY = default.PelletSpread[PelletNum].Y * RandRange( 0.5f, 1.5f );
+		RandZ = default.PelletSpread[PelletNum].X * RandRange( 0.5f, 1.5f );
+		return rotator(X + RandY * CurrentSpread * Y + RandZ * CurrentSpread * Z);
+	}
+}
+
 defaultproperties
 {
 	// Inventory
@@ -34,17 +56,33 @@ defaultproperties
 	AttachmentArchetypeName="M90_CAWS.Archetype.Wep_M90_3P"
 	MuzzleFlashTemplateName="M90_CAWS.Archetype.Wep_M90_MuzzleFlash"
 
+	PelletSpread(0)=(X=0.0f,Y=0.0f)
+	PelletSpread(1)=(X=0.5f,Y=0.15f) 			//0deg 
+	PelletSpread(2)=(X=0.3214,Y=0.3830) 	//60deg
+	PelletSpread(3)=(X=-0.25,Y=0.4330)		//120deg
+	PelletSpread(4)=(X=-0.5f,Y=0.1f)			// Almost 180deg
+	PelletSpread(5)=(X=-0.25f,Y=-0.4330)	//240deg
+	PelletSpread(6)=(X=0.25,Y=-0.4330)		//300deg
+	PelletSpread(7)=(X=0.1f,Y=0.2f)
+	PelletSpread(8)=(X=0.8f,Y=0.766f)
+	PelletSpread(9)=(X=0.4428,Y=0.966)
+	PelletSpread(10)=(X=-0.3,Y=1.0660)
+	PelletSpread(11)=(X=-1.1f,Y=-0.9f)
+	PelletSpread(12)=(X=-0.6f,Y=-0.7660)
+	PelletSpread(13)=(X=0.6,Y=-0.7660)
+	PelletSpread(14)=(X=1.1f,Y=0.9f)
+
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)="ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle"
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
-	InstantHitDamage(DEFAULT_FIREMODE)=43.0 //40
+	InstantHitDamage(DEFAULT_FIREMODE)=45.0 //43
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M90'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0 //2
 	FireInterval(DEFAULT_FIREMODE)=0.9
 	FireOffset=(X=30,Y=3,Z=-3)
-	Spread(DEFAULT_FIREMODE)=0.18 //0.18
+	Spread(DEFAULT_FIREMODE)=0.1f
 	NumPellets(DEFAULT_FIREMODE)=15
 
 	// ALT_FIREMODE
@@ -68,7 +106,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=12
-	SpareAmmoCapacity[0]=48 //72
+	SpareAmmoCapacity[0]=60 //48
 	InitialSpareMags[0]=2
 	bCanBeReloaded=true
 	bReloadFromMagazine=false

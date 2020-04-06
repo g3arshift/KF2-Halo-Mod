@@ -52,6 +52,7 @@ defaultproperties
 	RecoilISMaxPitchLimit=375
 	RecoilISMinPitchLimit=65460
 	IronSightMeshFOVCompensationScale=1.5
+	HippedRecoilModifier=0.9
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'

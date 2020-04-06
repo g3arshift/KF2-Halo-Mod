@@ -1,7 +1,0 @@
-"VertexLitGeneric"
-{
-	"$basetexture" "models/ODSTBuck(Nohelmet)/buckhair"
-        "$bumpmap" "models/ODSTBuck(Nohelmet)/buckhair_n"
-	"$halflambert" 1
-
-	}
