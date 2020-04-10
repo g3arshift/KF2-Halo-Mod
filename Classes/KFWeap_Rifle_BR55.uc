@@ -492,7 +492,7 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_BR55'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_BR55'
 	FireInterval(DEFAULT_FIREMODE)=+0.09
-	InstantHitDamage(DEFAULT_FIREMODE)=35.0 //35
+	InstantHitDamage(DEFAULT_FIREMODE)=33.0 //35
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
 	Spread(DEFAULT_FIREMODE)=0.01
 	FireOffset=(X=30,Y=4.5,Z=-4)

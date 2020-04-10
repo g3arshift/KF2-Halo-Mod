@@ -439,8 +439,8 @@ defaultproperties
 	bReloadFromMagazine=true
 
 	// Recoil
-	maxRecoilPitch=325 //225
-	minRecoilPitch=250 //200
+	maxRecoilPitch=450 //325 //225
+	minRecoilPitch=275 //1250 //200
 	maxRecoilYaw=200
 	minRecoilYaw=-200
 	RecoilRate=0.08
@@ -450,7 +450,7 @@ defaultproperties
 	RecoilMinPitchLimit=65035
 	RecoilISMaxYawLimit=200 //150
 	RecoilISMinYawLimit=65385
-	RecoilISMaxPitchLimit=475 //375
+	RecoilISMaxPitchLimit=675 //475 //375
 	RecoilISMinPitchLimit=65460
 	IronSightMeshFOVCompensationScale=3.0
     HippedRecoilModifier=1.1
@@ -470,7 +470,7 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+0.425
 	Spread(DEFAULT_FIREMODE)=0.00085
 	PenetrationPower(DEFAULT_FIREMODE)=0.0
-	InstantHitDamage(DEFAULT_FIREMODE)=145 //175.0 //120
+	InstantHitDamage(DEFAULT_FIREMODE)=135 //145 //175.0 //120
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE

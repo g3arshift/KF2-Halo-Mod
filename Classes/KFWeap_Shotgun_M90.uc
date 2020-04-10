@@ -79,7 +79,7 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pellet'
 	InstantHitDamage(DEFAULT_FIREMODE)=45.0 //43
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M90'
-	PenetrationPower(DEFAULT_FIREMODE)=2.0 //2
+	PenetrationPower(DEFAULT_FIREMODE)=1.0 //2.0 //2
 	FireInterval(DEFAULT_FIREMODE)=0.9
 	FireOffset=(X=30,Y=3,Z=-3)
 	Spread(DEFAULT_FIREMODE)=0.1f
@@ -106,7 +106,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=12
-	SpareAmmoCapacity[0]=60 //48
+	SpareAmmoCapacity[0]=60 //72 //48
 	InitialSpareMags[0]=2
 	bCanBeReloaded=true
 	bReloadFromMagazine=false

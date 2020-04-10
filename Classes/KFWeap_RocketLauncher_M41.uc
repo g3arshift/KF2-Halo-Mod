@@ -540,7 +540,7 @@ defaultproperties
 	// Inventory
 	InventoryGroup=IG_Primary
 	GroupPriority=120
-	InventorySize=11
+	InventorySize=9 //11
 	WeaponSelectTexture=Texture2D'M41.UI.M41_UI_v1'
 
     // FOV

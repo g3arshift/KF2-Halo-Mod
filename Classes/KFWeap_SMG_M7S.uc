@@ -376,7 +376,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M7S'
 	FireInterval(DEFAULT_FIREMODE)=+.0666 // 900 RPM
 	Spread(DEFAULT_FIREMODE)=0.012
-	InstantHitDamage(DEFAULT_FIREMODE)=43
+	InstantHitDamage(DEFAULT_FIREMODE)=45 //43
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -386,7 +386,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_M7S'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_M7S'
 	FireInterval(ALTFIRE_FIREMODE)=+.0666
-	InstantHitDamage(ALTFIRE_FIREMODE)=43
+	InstantHitDamage(ALTFIRE_FIREMODE)=45 //43
 	Spread(ALTFIRE_FIREMODE)=0.012
 
 	// BASH_FIREMODE

@@ -61,8 +61,8 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_AssaultRifle'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M7'
 	FireInterval(DEFAULT_FIREMODE)=+.066 // 1000 RPM
-	Spread(DEFAULT_FIREMODE)=0.02
-	InstantHitDamage(DEFAULT_FIREMODE)=22
+	Spread(DEFAULT_FIREMODE)=0.08 //0.07 //0.02
+	InstantHitDamage(DEFAULT_FIREMODE)=25 //22
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE

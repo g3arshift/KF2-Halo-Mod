@@ -10,7 +10,7 @@ var array<MaterialInstanceConstant> AmmoNumbers_High;
 var array<MaterialInstanceConstant> AmmoNumbers_Medium;
 var array<MaterialInstanceConstant> AmmoNumbers_Low;
 var array<Texture2D> Scope_Backgrounds;
-var PlayerController KFPC;
+var KFPlayerController KFPC;
 var KFGameReplicationInfo MyKFGRI;
 var float RefireDelayAmount;
 
@@ -114,7 +114,7 @@ simulated function PlayWeaponEquip( float ModifiedEquipTime )
 	Super.PlayWeaponEquip( ModifiedEquipTime );
 	if(KFPC == None )
 	{
-		KFPC = GetALocalPlayerController();
+		KFPC = KFPlayerController(Instigator.Controller);
 	}
 
 	UpdateAmmoDisplay(); //Make sure the display shows the proper ammo when we equip it.
@@ -320,7 +320,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 			if (KFPC == None )
 			{
 				`log("No PC");
-				KFPC = GetALocalPlayerController();
+				KFPC = KFPlayerController(Instigator.Controller);
 			}
 
 			TraceStart = KFPC.Pawn.Weapon.Instigator.GetWeaponStartTraceLocation();
@@ -351,6 +351,16 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 			C.SetPos(0.0, 0.0 ); //Sets the position to the top left of the screen.
 			C.DrawTexture(ReticleBackground, BackgroundScale ); //Base texture size is 2560 x 1440
+
+			if(KFPawn_Human(KFPC.Pawn).bFlashlightOn)
+			{
+				KFPC.SetNightVision(true); //Maybe try using the Effect_NightVision Material. It's defined in FX_Mat_Lib.KF_PP_Master
+				KFPC.bGamePlayDOFActive = false;
+			}
+			else
+			{
+				KFPC.SetNightVision(false);
+			}
 		}
 		else
 		{
@@ -384,6 +394,7 @@ simulated function SetIronSights(bool bNewIronSights)
 		}
 		LaserSight.LaserSightMeshComp.SetSkeletalMesh(SkeletalMesh'FX_Wep_Laser_MESH.WEP_Laser_1P_SK');
 		LaserSight.LaserDotMeshComp.SetStaticMesh(StaticMesh'FX_Wep_Laser_MESH.laser_dot_SM');
+		KFPC.SetNightVision(false);
 	}
 	else
 	{
@@ -442,6 +453,12 @@ simulated function UpdateAmmoDisplay()
 
 simulated state Reloading
 {
+	simulated function BeginState(name PreviousStateName)
+	{
+		Super.BeginState(PreviousStateName);
+		KFPC.SetNightVision(false);
+	}
+
 	simulated function ReloadComplete() //Makes sure that when we finish reloading we reset the display to reflect a full magazine.
 	{
 		Super.ReloadComplete();

@@ -41,6 +41,24 @@ simulated function WeaponZoomSound(AkEvent ZoomSound)
 	}
 }
 
+simulated state Reloading
+{
+	simulated function BeginState(name PreviousStateName)
+	{
+		Super.BeginState(PreviousStateName);
+		KFPC.SetNightVision(false);
+	}
+	simulated function ReloadComplete() //Makes sure that when we finish reloading we reset the display to reflect a full magazine.
+	{
+		Super.ReloadComplete();
+	}
+
+	simulated function AbortReload() //Makes sure that when a reload is cancelled for any reason before it fully completes, or right before it completes, the display updates properly.
+	{
+		Super.AbortReload();
+	}
+}
+
 //This is where we both create the zoom effects in canvas, and play the zoom sounds.
 simulated function SetIronSights(bool bNewIronSights)
 {
@@ -698,7 +716,7 @@ defaultproperties
 	IronSightMeshFOVCompensationScale=5.0
 
 	// Inventory
-	InventorySize=11
+	InventorySize=10
 	GroupPriority=150
 	WeaponSelectTexture=Texture2D'SRS99_AM.UI.SRS99_AM_UI_v1'
 
@@ -709,9 +727,9 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_SRS99_AM'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SRS99_AM'
 	FireInterval(DEFAULT_FIREMODE)=0.69 //0.66
-	PenetrationPower(DEFAULT_FIREMODE)=999.0 //5.0
+	PenetrationPower(DEFAULT_FIREMODE)=10 //5.0
 	Spread(DEFAULT_FIREMODE)=0.0
-	InstantHitDamage(DEFAULT_FIREMODE)=450.0 //950
+	InstantHitDamage(DEFAULT_FIREMODE)=550.0 //950
 
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
