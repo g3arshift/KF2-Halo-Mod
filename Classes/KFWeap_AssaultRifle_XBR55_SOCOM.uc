@@ -14,7 +14,7 @@ var KFPlayerController KFPC;
 var KFGameReplicationInfo MyKFGRI;
 var float RefireDelayAmount;
 
-simulated state TimedBurstFiring extends WeaponBurstFiring
+simulated state WeaponBurstFiring
 {
 	//This allows us to manually control the delay between bursts.
 	simulated function EndState(Name NextStateName)
@@ -22,7 +22,7 @@ simulated state TimedBurstFiring extends WeaponBurstFiring
 		super.EndState(NextStateName);
 		if(!IsTimerActive('RefireDelayTimer'))
 		{
-			RefireDelayAmount = FireInterval[CurrentFireMode] * 0.5 + (FireInterval[CurrentFireMode] * 2.0); //+ (FireInterval[CurrentFireMode] * 2.5);
+			RefireDelayAmount = FireInterval[CurrentFireMode] * 0.6 + (FireInterval[CurrentFireMode] * 3.0); //+ (FireInterval[CurrentFireMode] * 2.5);
 			SetTimer(RefireDelayAmount, false, 'RefireDelayTimer');
 		}
 	}
@@ -521,21 +521,21 @@ defaultproperties
 
 	// Recoil
 	// Recoil
-	maxRecoilPitch=90
-	minRecoilPitch=60
-	maxRecoilYaw=65 //50
-	minRecoilYaw=-65 //50
-	RecoilRate=0.057
+	maxRecoilPitch=190 //90
+	minRecoilPitch=100 //60
+	maxRecoilYaw=100 //65 //50
+	minRecoilYaw=-100 //-65 //50
+	RecoilRate=0.065 //0.07 //0.057
 	RecoilMaxYawLimit=400
 	RecoilMinYawLimit=65135
 	RecoilMaxPitchLimit=800
 	RecoilMinPitchLimit=65035
-	RecoilISMaxYawLimit=90 //150
+	RecoilISMaxYawLimit=300 //90 //150
 	RecoilISMinYawLimit=65385
-	RecoilISMaxPitchLimit=90 //130
+	RecoilISMaxPitchLimit=210 //90 //130
 	RecoilISMinPitchLimit=65435
 	RecoilViewRotationScale=0.25
-	IronSightMeshFOVCompensationScale=3.5
+	IronSightMeshFOVCompensationScale=3.8 //3.5
 
 	// Inventory / Grouping
 	InventorySize=6
@@ -544,21 +544,27 @@ defaultproperties
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'HaloPack_FireModeIcons.UI_FireModeSelect_2RoundBurst'
-	FiringStatesArray(DEFAULT_FIREMODE)=TimedBurstFiring
+	FiringStatesArray(DEFAULT_FIREMODE)=WeaponBurstFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_XBR55_SOCOM'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_XBR55_SOCOM'
-	FireInterval(DEFAULT_FIREMODE)=+0.057 //.06
-	InstantHitDamage(DEFAULT_FIREMODE)=40.0
+	FireInterval(DEFAULT_FIREMODE)=0.05 //+0.057
+	InstantHitDamage(DEFAULT_FIREMODE)=37 //40.0
 	PenetrationPower(DEFAULT_FIREMODE)=0.0
 	Spread(DEFAULT_FIREMODE)=0.01
 	FireOffset=(X=30,Y=4.5,Z=-4)
 	BurstAmount=2
 
-	// ALT_FIREMODE
-	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
-	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+	// ALTFIRE_FIREMODE
+	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
+	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponFiring
+	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
+	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_XBR55_SOCOM'
+	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_XBR55_SOCOM'
+	FireInterval(ALTFIRE_FIREMODE)=0.1
+	PenetrationPower(ALTFIRE_FIREMODE)=0
+	InstantHitDamage(ALTFIRE_FIREMODE)=37 //40
+	Spread(ALTFIRE_FIREMODE)=0.04
 
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_XBR55_SOCOM'
@@ -575,7 +581,7 @@ defaultproperties
 	// Attachments
 	bHasIronSights=true
 	bHasFlashlight=true
-	bHasLaserSight=true;
+	bHasLaserSight=true
 
 	AssociatedPerkClasses(0)=class'KFPerk_SWAT'
 
@@ -586,7 +592,8 @@ defaultproperties
 	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Damage1, Scale=1.15f), (Stat=EWUS_Weight, Add=1))))
 
 	//Ammo Counter Display Materials
-	//Maybe in the future just use 1 array for each color, and change the glow parameter? Maybe? Not sure if it would color properly.
+	//Maybe in the future just use 1 array for each color, and change the glow parameter? Definitely better than 30 fucking MICs. This needs to be
+	// replaced anyways with the Ammo Display class, which itself needs to have all that shit changed to using glow params.
 	AmmoNumbers_High[0] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_0';
 	AmmoNumbers_High[1] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_1';
 	AmmoNumbers_High[2] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_2';

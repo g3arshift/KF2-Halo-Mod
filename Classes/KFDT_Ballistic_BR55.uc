@@ -35,8 +35,8 @@ defaultproperties
 
     KnockdownPower=5
 	StunPower=5 //25
-	StumblePower=25 //5
-	GunHitPower=60 //60
+	StumblePower=30 //25 //5
+	GunHitPower=65 //60 //60
 
 	WeaponDef=class'KFWeapDef_BR55'
 

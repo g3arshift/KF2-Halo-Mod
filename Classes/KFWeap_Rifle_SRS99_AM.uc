@@ -15,10 +15,12 @@ var Texture2D ScopeReticle_Default;
 var Texture2D ScopeReticle_Enemy;
 var Texture2D ScopeReticle_Friendly;
 
-var ChangeBySine SniperUI_Sine;
+//var ChangeBySine SniperUI_Sine;
 var float Xpos, Ypos, SniperRound_Xpos, SniperRound_Ypos, SniperRound_Scale, SniperText_Xpos, SniperText_Ypos, SniperText_Scaling, ReticleScale, BackgroundScale;
 var int SniperRound_Distance;
-var int SineChangeRate;
+//var int SineChangeRate;
+var TextureMovie Scope_RocketAmmo_Movie;
+var Texture2D Scope_RocketAmmo;
 
 
 simulated function PlayWeaponEquip( float ModifiedEquipTime )
@@ -101,9 +103,18 @@ simulated function DrawHUD( HUD H, Canvas C )
 	local Actor	HitActor;
 	local Texture2D HitActorTex;
 	local TraceHitInfo HitInfo;
-	local int ALPHACOLOR;
+	//local int ALPHACOLOR;
 
 	super.DrawHUD(H, C);
+
+	if(KFPawn_Human(KFPC.Pawn).bFlashlightOn)
+	{
+		Mesh.SetMaterial(2, MaterialInstanceConstant'SRS99_AM.Materials.SRS99_AM_Screen');
+	}
+	else
+	{
+		Mesh.SetMaterial(2, MaterialInstanceConstant'SRS99_AM.Materials.SRS99_AM_Screen_NoNVG');
+	}
 
 	if( bUsingSights )
 	{
@@ -122,7 +133,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				SniperText_Scaling = 1.1;
 				SniperRound_Distance = 25;
-				SniperRound_Scale = BackgroundScale;
+				SniperRound_Scale = 0.02; //0.02 by default for new icon
 
 				Xpos = 1268.0;
 				YPos = 708.0;
@@ -143,7 +154,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						SniperText_Scaling = 1.1;
 						SniperRound_Distance = 25;
-						SniperRound_Scale = BackgroundScale;
+						SniperRound_Scale = 0.02;
 
 						XPos = 948.0;
 						YPos = 708.0;
@@ -162,7 +173,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						SniperText_Scaling = 1.35;
 						SniperRound_Distance = 25;
-						SniperRound_Scale = BackgroundScale;
+						SniperRound_Scale = 0.02;
 
 						XPos = 948.0;
 						YPos = 588.0;
@@ -181,7 +192,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						SniperText_Scaling = 1.1;
 						SniperRound_Distance = 18;
-						SniperRound_Scale = 0.75;
+						SniperRound_Scale = 0.015;
 
 						XPos = 951.0;
 						YPos = 531.0;
@@ -202,7 +213,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				SniperText_Scaling = 1.3;
 				SniperRound_Distance = 20;				
-				SniperRound_Scale = BackgroundScale;
+				SniperRound_Scale = 0.01776;
 
 				XPos = 829.0;
 				YPos = 514.0;
@@ -223,8 +234,8 @@ simulated function DrawHUD( HUD H, Canvas C )
 						SniperText_Ypos = 668.0;
 
 						SniperText_Scaling = BackgroundScale;
-						SniperRound_Distance = 18;				
-						SniperRound_Scale = 0.8475;
+						SniperRound_Distance = 22; //18;				
+						SniperRound_Scale = 0.01695;
 
 						XPos = 790.0;
 						YPos = 590.0;
@@ -242,8 +253,8 @@ simulated function DrawHUD( HUD H, Canvas C )
 						SniperText_Ypos = 580.0;
 
 						SniperText_Scaling = 0.9;
-						SniperRound_Distance = 18;				
-						SniperRound_Scale = 0.888;
+						SniperRound_Distance = 22; //18;				
+						SniperRound_Scale = 0.01776;
 
 						XPos = 790.0;
 						YPos = 502.0;
@@ -262,7 +273,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						SniperText_Scaling = 0.85;
 						SniperRound_Distance = 15;				
-						SniperRound_Scale = 0.638;
+						SniperRound_Scale = 0.01276;
 
 						XPos = 792.0;
 						YPos = 442.0;
@@ -282,7 +293,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				SniperText_Scaling = 1.1;
 				SniperRound_Distance = 18;				
-				SniperRound_Scale = 0.7638;
+				SniperRound_Scale = 0.015276;
 
 				XPos = 711.0;
 				YPos = 440.0;
@@ -300,8 +311,8 @@ simulated function DrawHUD( HUD H, Canvas C )
 				SniperText_Ypos = 585.0;
 
 				SniperText_Scaling = 1.0;
-				SniperRound_Distance = 18;			
-				SniperRound_Scale = 0.8472;
+				SniperRound_Distance = 22; //18;			
+				SniperRound_Scale = 0.016944;
 
 				XPos = 691.0;
 				YPos = 516.0;
@@ -320,7 +331,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				SniperText_Scaling = 0.8;
 				SniperRound_Distance = 14;			
-				SniperRound_Scale = 0.5416;
+				SniperRound_Scale = 0.010832;
 
 				XPos = 676.0;
 				YPos = 377.0;
@@ -338,7 +349,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				SniperText_Scaling = 0.8;
 				SniperRound_Distance = 14;			
-				SniperRound_Scale = 0.5416;
+				SniperRound_Scale = 0.010832;
 
 				XPos = 676.0;
 				YPos = 371.0;
@@ -359,8 +370,8 @@ simulated function DrawHUD( HUD H, Canvas C )
 						SniperText_Ypos = 571.0;
 
 						SniperText_Scaling = 1.0;
-						SniperRound_Distance = 14;			
-						SniperRound_Scale = 0.72222;
+						SniperRound_Distance = 18; //14;			
+						SniperRound_Scale = 0.0144444;
 
 						XPos = 631.0;
 						YPos = 503.0;
@@ -379,7 +390,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						SniperText_Scaling = 0.9;
 						SniperRound_Distance = 18;		
-						SniperRound_Scale = BackgroundScale;
+						SniperRound_Scale = 0.016;
 
 						XPos = 632.0;
 						YPos = 472.0;
@@ -397,8 +408,8 @@ simulated function DrawHUD( HUD H, Canvas C )
 						SniperText_Ypos = 456.0;
 
 						SniperText_Scaling = 1.0;
-						SniperRound_Distance = 14;			
-						SniperRound_Scale = BackgroundScale;
+						SniperRound_Distance = 18; //14;			
+						SniperRound_Scale = 0.0132;
 
 						XPos = 632.0;
 						YPos = 392.0;
@@ -417,7 +428,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						SniperText_Scaling = 0.75;
 						SniperRound_Distance = 13;		
-						SniperRound_Scale = 0.5;
+						SniperRound_Scale = 0.01;
 
 						XPos = 634.0;
 						YPos = 354.0;
@@ -436,8 +447,8 @@ simulated function DrawHUD( HUD H, Canvas C )
 				SniperText_Ypos = 431.0;
 
 				SniperText_Scaling = 0.7;
-				SniperRound_Distance = 10;			
-				SniperRound_Scale = 0.555;
+				SniperRound_Distance = 14; //10;			
+				SniperRound_Scale = 0.0111;
 
 				XPos = 505.0;
 				YPos = 377.0;
@@ -508,18 +519,18 @@ simulated function DrawHUD( HUD H, Canvas C )
 				//Drawing for the round icons.
 				C.SetPos(SniperRound_Xpos , SniperRound_Ypos);
 				C.SetDrawColor(9, 145, 243, 255); //Set to blue
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale);
+				C.DrawTexture( Scope_RocketAmmo, SniperRound_Scale);
 				C.SetPos(SniperRound_Xpos, SniperRound_Ypos + SniperRound_Distance);
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale);
+				C.DrawTexture( Scope_RocketAmmo, SniperRound_Scale);
 				C.SetPos(SniperRound_Xpos, SniperRound_Ypos + (SniperRound_Distance * 2));
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale);
+				C.DrawTexture( Scope_RocketAmmo, SniperRound_Scale);
 				C.SetPos(SniperRound_Xpos, SniperRound_Ypos + (SniperRound_Distance * 3));
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale);
+				C.DrawTexture( Scope_RocketAmmo, SniperRound_Scale);
 			}
 			else if( AmmoCount[0] == 3 ) //3 Rounds Left
 			{
 				//Drawing for the round icons.
-
+				/* Deprecated. Alphacolor was changing based on framerate as DrawHUD gets called every frame.
 				//If timer active, change the alpha on the color to fade the image.
 				if(IsTimerActive('SniperUI_Loop')) {
 					if(GetRemainingTimeForTimer('SniperUI_Loop') <= 1.0 && GetRemainingTimeForTimer('SniperUI_Loop') > 0) {
@@ -538,101 +549,64 @@ simulated function DrawHUD( HUD H, Canvas C )
 						}
 					}
 				}
-
+				*/
 				C.SetPos(SniperRound_Xpos , SniperRound_Ypos);
-				SniperUI_Sine.ColorChangeAmount_A = ALPHACOLOR;
+				Scope_RocketAmmo_Movie.Play();
 
-				C.SetDrawColor(237, 53, 56, SniperUI_Sine.ColorChangeAmount_A);
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Red 1
+				C.SetDrawColor(237, 53, 56, 255); //Set to red
+				C.DrawTexture( Scope_RocketAmmo_Movie, SniperRound_Scale); //Red 1
 				C.SetDrawColor(9, 145, 243, 255); //Set to blue
 				C.SetPos(SniperRound_Xpos, SniperRound_Ypos + SniperRound_Distance);
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Blue 1
+				C.DrawTexture( Scope_RocketAmmo, SniperRound_Scale); //Blue 1
 				C.SetPos(SniperRound_Xpos, SniperRound_Ypos + (SniperRound_Distance * 2));
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Blue 2
+				C.DrawTexture( Scope_RocketAmmo, SniperRound_Scale); //Blue 2
 				C.SetPos(SniperRound_Xpos, SniperRound_Ypos + (SniperRound_Distance * 3));
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Blue 3
+				C.DrawTexture( Scope_RocketAmmo, SniperRound_Scale); //Blue 3
 				C.SetDrawColor( 255, 255, 255, 255); //Reset Draw Color
 			}
 			else if( AmmoCount[0] == 2 ) //2 Rounds Left
 			{
 				//Drawing for the round icons.
 
-				//If timer active, change the alpha on the color to fade the image.
-				if(IsTimerActive('SniperUI_Loop')) {
-					if(GetRemainingTimeForTimer('SniperUI_Loop') <= 1.0 && GetRemainingTimeForTimer('SniperUI_Loop') > 0) {
-						ALPHACOLOR = SniperUI_Sine.SinChange(SineChangeRate);
-					}
-				}
-				else { //This is the check to let any fade in or out complete.
-					if(SniperUI_Sine.ColorChangeAmount_A > 0) {
-						ALPHACOLOR = SniperUI_Sine.SinChange(SineChangeRate);
-					}
-					else { //Loop restart
-						SetTimer(1.8, false, 'SniperUI_Loop');
-						SniperUI_Sine.ColorChangeAmount_A = SniperUI_Sine.Default.ColorChangeAmount_A; //0
-						if(SniperUI_Sine.IsMinMaxSet) {
-							SniperUI_Sine.UITime = SniperUI_Sine.MinTime;
-						}
-					}
-				}
-
 				C.SetPos(SniperRound_Xpos , SniperRound_Ypos);
-				SniperUI_Sine.ColorChangeAmount_A = ALPHACOLOR;
+				Scope_RocketAmmo_Movie.Play();
 
-				C.SetDrawColor(237, 53, 56, SniperUI_Sine.ColorChangeAmount_A);
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Red 1
+				C.SetDrawColor(237, 53, 56, 255); //Set to red
+				C.DrawTexture( Scope_RocketAmmo_Movie, SniperRound_Scale); //Red 1
 				C.SetPos(SniperRound_Xpos, SniperRound_Ypos + SniperRound_Distance);
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Red 2
+				C.DrawTexture( Scope_RocketAmmo_Movie, SniperRound_Scale); //Red 2
 				C.SetDrawColor(9, 145, 243, 255); //Set to blue
 				C.SetPos(SniperRound_Xpos, SniperRound_Ypos + (SniperRound_Distance * 2));
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Blue 1
+				C.DrawTexture( Scope_RocketAmmo, SniperRound_Scale); //Blue 1
 				C.SetPos(SniperRound_Xpos, SniperRound_Ypos + (SniperRound_Distance * 3));
-				C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Blue 2
+				C.DrawTexture( Scope_RocketAmmo, SniperRound_Scale); //Blue 2
 				C.SetDrawColor( 255, 255, 255, 255); //Reset Draw Color
 			}
 			else // Less than or equal to 1 round left
 			{
-				//If timer active, change the alpha on the color to fade the image.
-				if(IsTimerActive('SniperUI_Loop')) {
-					if(GetRemainingTimeForTimer('SniperUI_Loop') <= 1.0 && GetRemainingTimeForTimer('SniperUI_Loop') > 0) {
-						ALPHACOLOR = SniperUI_Sine.SinChange(SineChangeRate);
-					}
-				}
-				else { //This is the check to let any fade in or out complete.
-					if(SniperUI_Sine.ColorChangeAmount_A > 0) {
-						ALPHACOLOR = SniperUI_Sine.SinChange(SineChangeRate);
-					}
-					else { //Loop restart
-						SetTimer(1.8, false, 'SniperUI_Loop');
-						SniperUI_Sine.ColorChangeAmount_A = SniperUI_Sine.Default.ColorChangeAmount_A; //0
-						if(SniperUI_Sine.IsMinMaxSet) {
-							SniperUI_Sine.UITime = SniperUI_Sine.MinTime;
-						}
-					}
-				}
-
 				C.SetPos(SniperRound_Xpos , SniperRound_Ypos);
-				SniperUI_Sine.ColorChangeAmount_A = ALPHACOLOR;
+				Scope_RocketAmmo_Movie.Play();
+
 				if( AmmoCount[0] == 1 ) {
-					C.SetDrawColor(237, 53, 56, SniperUI_Sine.ColorChangeAmount_A);
-					C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Red 1
+					C.SetDrawColor(237, 53, 56, 255); //Set to red
+					C.DrawTexture( Scope_RocketAmmo_Movie, SniperRound_Scale); //Red 1
 					C.SetPos(SniperRound_Xpos, SniperRound_Ypos + SniperRound_Distance);
-					C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Red 2
+					C.DrawTexture( Scope_RocketAmmo_Movie, SniperRound_Scale); //Red 2
 					C.SetPos(SniperRound_Xpos, SniperRound_Ypos + (SniperRound_Distance * 2));
-					C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Red 3
+					C.DrawTexture( Scope_RocketAmmo_Movie, SniperRound_Scale); //Red 3
 					C.SetDrawColor(9, 145, 243, 255); //Set to blue
 					C.SetPos(SniperRound_Xpos, SniperRound_Ypos + (SniperRound_Distance * 3));
-					C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Blue 1
+					C.DrawTexture( Scope_RocketAmmo, SniperRound_Scale); //Blue 1
 				}
 				else {
-					C.SetDrawColor(237, 53, 56, SniperUI_Sine.ColorChangeAmount_A);
-					C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Red 1
+					C.SetDrawColor(237, 53, 56, 255); //Set to red
+					C.DrawTexture( Scope_RocketAmmo_Movie, SniperRound_Scale); //Red 1
 					C.SetPos(SniperRound_Xpos, SniperRound_Ypos + SniperRound_Distance);
-					C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Red 2
+					C.DrawTexture( Scope_RocketAmmo_Movie, SniperRound_Scale); //Red 2
 					C.SetPos(SniperRound_Xpos, SniperRound_Ypos + (SniperRound_Distance * 2));
-					C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Red 3
+					C.DrawTexture( Scope_RocketAmmo_Movie, SniperRound_Scale); //Red 3
 					C.SetPos(SniperRound_Xpos, SniperRound_Ypos + (SniperRound_Distance * 3));
-					C.DrawTexture( Texture2D'SRS99_AM.UI.SRS99_AM_UI_White_Bullet', SniperRound_Scale); //Red 4
+					C.DrawTexture( Scope_RocketAmmo_Movie, SniperRound_Scale); //Red 4
 				}
 				C.SetDrawColor( 255, 255, 255, 255); //Reset Draw Color
 			}
@@ -648,6 +622,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 	else
 	{
 		C.EnableStencilTest(false); //Reverts to default state
+		/*
 		if(SniperUI_Sine == none)
 		{
 			SniperUI_Sine = New class'ChangeBySine';
@@ -657,6 +632,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 		{
 			SniperUI_Sine.UITime = SniperUI_Sine.MinTime;
 		}
+		*/
 	}
 }
 
@@ -771,5 +747,7 @@ defaultproperties
 	ScopeReticle_Enemy = Texture2D'SRS99_AM.UI.SRS99_AM_Reticle_Enemy_Highlight' //Base texture size is 128 x 128
 	ScopeReticle_Friendly = Texture2D'SRS99_AM.UI.SRS99_AM_Reticle_Friendly_Highlight' //Base texture size is 128 x 128
 
-	SineChangeRate = 110 //60 //38
+	//SineChangeRate = 110 //60 //38
+	Scope_RocketAmmo_Movie = TextureMovie'SRS99_AM.UI.SRS99_AM_New_Bullet'
+	Scope_RocketAmmo = Texture2D'SRS99_AM.UI.SRS99_AM_New_Bullet'
 }

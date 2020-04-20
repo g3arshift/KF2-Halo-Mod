@@ -217,7 +217,7 @@ defaultproperties
 	WallHitDampenFactor=0.21 //.1
 	WallHitDampenFactorParallel=0.21 //.15
 
-	FuseTime=2.5 //2.0
+	FuseTime=1.5 //2.5 //2.0
 
 
 	bWarnAIWhenFired=true

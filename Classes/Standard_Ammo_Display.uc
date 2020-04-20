@@ -49,7 +49,8 @@ function InitializeDisplay(KFPlayerController KFPC_Ref, int LeftDigit_MatNum, in
 
 	//Ammo Counter Display Materials
 	//For some reason this doesn't work when set in default properties
-	//Maybe in the future just use 1 array for each color, and change the glow parameter? Maybe? Not sure if it would color properly.
+	//Maybe in the future just use 1 array for each color, and change the glow parameter? Definitely better than 30 fucking MICs. This needs to be
+	// replaced anyways with the Ammo Display class, which itself needs to have all that shit changed to using glow params.
 	AmmoNumbers_High[0] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_0';
 	AmmoNumbers_High[1] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_1';
 	AmmoNumbers_High[2] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_2';

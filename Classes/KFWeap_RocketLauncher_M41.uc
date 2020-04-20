@@ -15,10 +15,12 @@ var Texture2D ScopeReticle_Default;
 var Texture2D ScopeReticle_Enemy;
 var Texture2D ScopeReticle_Friendly;
 
-var ChangeBySine RocketUI_Sine;
+//var ChangeBySine RocketUI_Sine;
 var float Xpos, Ypos, Rocket_Xpos, Rocket_Ypos, Rocket_Scale, RocketText_Xpos, RocketText_Ypos, RocketText_Scaling, ReticleScale, BackgroundScale;
 var int Rocket_Distance;
-var int SineChangeRate;
+//var int SineChangeRate;
+var TextureMovie Scope_RocketAmmo_Movie;
+var Texture2D Scope_RocketAmmo;
 
 //This function allows us to play a sound, in this case, the zoom sounds for the different weapons.
 simulated function WeaponZoomSound(AkEvent ZoomSound)
@@ -45,7 +47,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 	local Actor	HitActor;
 	local Texture2D HitActorTex;
 	local TraceHitInfo HitInfo;
-	local int ALPHACOLOR;
+	//local int ALPHACOLOR;
 
 	super.DrawHUD(H, C);
 
@@ -66,7 +68,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				RocketText_Scaling = 1.1;
 				Rocket_Distance = 42;
-				Rocket_Scale = BackgroundScale;
+				Rocket_Scale = 0.0517;
 
 				Xpos = 1208.0;
 				YPos = 648.0;
@@ -87,7 +89,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						RocketText_Scaling = 1.1;
 						Rocket_Distance = 42;
-						Rocket_Scale = BackgroundScale;
+						Rocket_Scale = 0.0517;
 
 						XPos = 881.0;
 						YPos = 638.0;
@@ -106,7 +108,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						RocketText_Scaling = 1.35;
 						Rocket_Distance = 42;
-						Rocket_Scale = BackgroundScale;
+						Rocket_Scale = 0.0517;
 
 						XPos = 879.5;
 						YPos = 519.7;
@@ -125,7 +127,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						RocketText_Scaling = 1.1;
 						Rocket_Distance = 31;
-						Rocket_Scale = BackgroundScale;
+						Rocket_Scale = 0.038775;
 
 						ReticleScale = 0.875;
 						BackgroundScale = 0.75;
@@ -145,7 +147,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				RocketText_Scaling = 1.3;
 				Rocket_Distance = 36;				
-				Rocket_Scale = BackgroundScale;
+				Rocket_Scale = 0.0452375;
 
 				XPos = 782.0;
 				YPos = 464.0;
@@ -168,7 +170,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						RocketText_Scaling = BackgroundScale;
 						Rocket_Distance = 36;				
-						Rocket_Scale = BackgroundScale;
+						Rocket_Scale = 0.0517;
 
 						XPos = 752.0;
 						YPos = 552.0;
@@ -187,7 +189,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						RocketText_Scaling = 0.9;
 						Rocket_Distance = 26;				
-						Rocket_Scale = 0.7;
+						Rocket_Scale = 0.03619;
 
 						YPos = 464.0;
 						ReticleBackground = Scope_Backgrounds[5]; //A one off background for this almost 16:10 Aspect Ratio
@@ -205,7 +207,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						RocketText_Scaling = 0.85;
 						Rocket_Distance = 26;				
-						Rocket_Scale = BackgroundScale;
+						Rocket_Scale = 0.0323125;
 
 						XPos = 768.5;
 						YPos = 417.0;
@@ -225,10 +227,10 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				RocketText_Scaling = 1.1;
 				Rocket_Distance = 31;				
-				Rocket_Scale = BackgroundScale;
+				Rocket_Scale = 0.038775;
 
-				XPos = 652.0;
-				YPos = 401.0;
+				XPos = 672.0;
+				YPos = 402.0;
 				ReticleBackground = Scope_Backgrounds[3]; //Background with a 16:10 Aspect Ratio
 				ReticleScale = 0.75;
 				BackgroundScale = 0.75;
@@ -244,7 +246,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				RocketText_Scaling = 1.0;
 				Rocket_Distance = 31;			
-				Rocket_Scale = BackgroundScale;
+				Rocket_Scale = 0.0452375;
 
 				XPos = 652.0;
 				YPos = 477.0;
@@ -263,7 +265,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				RocketText_Scaling = 0.8;
 				Rocket_Distance = 22;			
-				Rocket_Scale = BackgroundScale;
+				Rocket_Scale = 0.0275561;
 
 				XPos = 634.0;
 				YPos = 335.0;
@@ -281,7 +283,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				RocketText_Scaling = 0.8;
 				Rocket_Distance = 22;				
-				Rocket_Scale = BackgroundScale;
+				Rocket_Scale = 0.02758195;
 
 				XPos = 634.0;
 				YPos = 337.0;
@@ -303,7 +305,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						RocketText_Scaling = 1.0;
 						Rocket_Distance = 31;			
-						Rocket_Scale = 0.8;
+						Rocket_Scale = 0.04136;
 
 						XPos = 592.0;
 						YPos = 464.0;
@@ -322,7 +324,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						RocketText_Scaling = 0.9;
 						Rocket_Distance = 29;		
-						Rocket_Scale = BackgroundScale;
+						Rocket_Scale = 0.04136;
 
 						XPos = 593.0;
 						YPos = 433.0;
@@ -341,7 +343,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						RocketText_Scaling = 1.0;
 						Rocket_Distance = 28;			
-						Rocket_Scale = BackgroundScale;
+						Rocket_Scale = 0.034122;
 
 						XPos = 6589.0;
 						YPos = 348.0;
@@ -360,7 +362,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 						RocketText_Scaling = 0.75;
 						Rocket_Distance = 21;		
-						Rocket_Scale = BackgroundScale;
+						Rocket_Scale = 0.02585;
 
 						YPos = 312.0;
 						XPos = 592.0;
@@ -380,8 +382,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 
 				RocketText_Scaling = 0.7;
 				Rocket_Distance = 23;			
-				Rocket_Scale = BackgroundScale;
-
+				Rocket_Scale = 0.0335533;
 				XPos = 466.0;
 				YPos = 336.0;
 				ReticleBackground = Scope_Backgrounds[2]; //Background with a 4:3 Aspect Ratio, but with a smaller inner circle
@@ -441,13 +442,14 @@ simulated function DrawHUD( HUD H, Canvas C )
 				//Drawing for the rocket icons.
 				C.SetPos(Rocket_Xpos , Rocket_Ypos);
 				C.SetDrawColor(9, 145, 243, 255); //Set to blue
-				C.DrawTexture( Texture2D'M41.UI.M41_UI_White_Rocket', Rocket_Scale);
+				C.DrawTexture( Scope_RocketAmmo, Rocket_Scale);
 				C.SetPos(Rocket_Xpos, Rocket_Ypos + Rocket_Distance);
-				C.DrawTexture( Texture2D'M41.UI.M41_UI_White_Rocket', Rocket_Scale);
+				C.DrawTexture( Scope_RocketAmmo, Rocket_Scale);
 			}
 			else // Less than or equal to 1 Rocket left
 			{
 				// loop shit
+				/* Deprecated. Alphacolor was changing based on framerate as DrawHUD gets called every frame.
 				if(IsTimerActive('RocketUI_Loop')) {
 					if(GetRemainingTimeForTimer('RocketUI_Loop') <= 1.0 && GetRemainingTimeForTimer('RocketUI_Loop') > 0) {
 						ALPHACOLOR = RocketUI_Sine.SinChange(SineChangeRate);
@@ -465,21 +467,25 @@ simulated function DrawHUD( HUD H, Canvas C )
 						}
 					}
 				}
+				*/
 				C.SetPos(Rocket_Xpos , Rocket_Ypos);
-				RocketUI_Sine.ColorChangeAmount_A = ALPHACOLOR;
-				if( AmmoCount[0] == 1 ) {
-					C.SetDrawColor(237, 53, 56, RocketUI_Sine.ColorChangeAmount_A);
-					C.DrawTexture( Texture2D'M41.UI.M41_UI_White_Rocket', Rocket_Scale);
+				//RocketUI_Sine.ColorChangeAmount_A = ALPHACOLOR;
+				if( AmmoCount[0] == 1 )
+				{
+					C.SetDrawColor(237, 53, 56, 255);
+					C.DrawTexture( Scope_RocketAmmo_Movie, Rocket_Scale);
+					Scope_RocketAmmo_Movie.Play();
 					C.SetPos(Rocket_Xpos, Rocket_Ypos + Rocket_Distance);
 					C.SetDrawColor(9, 145, 243, 255); //Set to blue
-					C.DrawTexture( Texture2D'M41.UI.M41_UI_White_Rocket', Rocket_Scale);
+					C.DrawTexture( Scope_RocketAmmo, Rocket_Scale);
 				}
-				else {
-					C.SetDrawColor(237, 53, 56, RocketUI_Sine.ColorChangeAmount_A);
-					C.DrawTexture( Texture2D'M41.UI.M41_UI_White_Rocket', Rocket_Scale);
+				else 
+				{
+					C.SetDrawColor(237, 53, 56, 255);
+					C.DrawTexture( Scope_RocketAmmo_Movie, Rocket_Scale);
+					Scope_RocketAmmo_Movie.Play();
 					C.SetPos(Rocket_Xpos, Rocket_Ypos + Rocket_Distance);
-					C.SetDrawColor(237, 53, 56, RocketUI_Sine.ColorChangeAmount_A);
-					C.DrawTexture( Texture2D'M41.UI.M41_UI_White_Rocket', Rocket_Scale);
+					C.DrawTexture( Scope_RocketAmmo_Movie, Rocket_Scale);
 				}
 				C.SetDrawColor( 255, 255, 255, 255); //Reset Draw Color
 			}
@@ -495,15 +501,8 @@ simulated function DrawHUD( HUD H, Canvas C )
 	else
 	{
 		C.EnableStencilTest(false); //Reverts to default state
-		if(RocketUI_Sine == none)
-		{
-			RocketUI_Sine = New class'ChangeBySine';
-		}
-		RocketUI_Sine.ColorChangeAmount_A = RocketUI_Sine.Default.ColorChangeAmount_A; //0
-		if(RocketUI_Sine.IsMinMaxSet)
-		{
-			RocketUI_Sine.UITime = RocketUI_Sine.MinTime;
-		}
+
+		//If RocketUISine is none, instantiate the class.
 	}
 }
 
@@ -644,5 +643,8 @@ defaultproperties
 	ScopeReticle_Enemy = Texture2D'M41.UI.M41_Reticle_Enemy_Highlight_Reticle' //Base texture size is 128 x 128
 	ScopeReticle_Friendly = Texture2D'M41.UI.M41_Reticle_Friendly_Highlight_Reticle' //Base texture size is 128 x 128
 
-	SineChangeRate = 110 //38
+	Scope_RocketAmmo_Movie = TextureMovie'M41.UI.M41_New_Rocket_Movie'
+	Scope_RocketAmmo = Texture2D'M41.UI.M41_New_Rocket'
+
+	//SineChangeRate = 110 //38
 }

@@ -13,12 +13,12 @@ var float RefireDelayAmount;
 var Standard_Ammo_Display BR55_Display;
 var float AmmoYellow, AmmoRed;
 
-simulated state TimedBurstFiring extends WeaponBurstFiring
+simulated state WeaponBurstFiring
 {
-	//This allows us to manually control the delay between bursts.
 	simulated function EndState(Name NextStateName)
 	{
 		super.EndState(NextStateName);
+
 		if(!IsTimerActive('RefireDelayTimer'))
 		{
 			RefireDelayAmount = FireInterval[CurrentFireMode] * 0.2 + (FireInterval[CurrentFireMode] * 2);
@@ -38,7 +38,6 @@ simulated state TimedBurstFiring extends WeaponBurstFiring
 			CurrentFireMode = RELOAD_FIREMODE;
 		}
 	}
-
 }
 
 //This function is almost identical to the original in KFWeapon, but we're overriding it to enable fast reloading at or below 10 bullets.
@@ -487,7 +486,7 @@ defaultproperties
 
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletBurst'
-	FiringStatesArray(DEFAULT_FIREMODE)=TimedBurstFiring
+	FiringStatesArray(DEFAULT_FIREMODE)=WeaponBurstFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_BR55'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_BR55'

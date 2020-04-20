@@ -4,6 +4,8 @@ between different RGBA values for canvas, including dynamic sinusoidal calculati
 sine wave shaped changes. Though technically you can use it to get any integer value
 with a rising and falling pattern in a sinusoidal shape.
 
+Unrelated, but a neat way to calculate FPS is FPS = 110/(DeltaTime*60)/110*60;
+
 email: gearshift@gearshiftgaming.com ; discord: Gear Shift#6360, noodle#0001 ; 2019
 ===========================================================================================*/
 

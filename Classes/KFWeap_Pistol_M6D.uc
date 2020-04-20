@@ -423,6 +423,7 @@ defaultproperties
 	WeaponSelectTexture=Texture2D'M6D.Textures.M6D_UI_v1'
 	bIsBackupWeapon=false
 	AssociatedPerkClasses(0)=class'KFPerk_Sharpshooter'
+	AssociatedPerkClasses(1)=class'KFPerk_Demolitionist'
 
 	// Custom animations
 	FireSightedAnims=(Shoot_Iron, Shoot_Iron2, Shoot_Iron3)

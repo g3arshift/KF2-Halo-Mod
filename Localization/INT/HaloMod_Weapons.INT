@@ -56,7 +56,7 @@ ItemDescription="•Equipped with a 2x scope and an ammo display, the BR55 battle 
 [KFWeap_AssaultRifle_XBR55_SOCOM]
 ItemName="XBR55/SOCOM"
 ItemCategory="Assault Rifle"
-ItemDescription="•An earlier experimental model of the BR55 designed for ODST forces, this blacked out battle rifle does less damage than its counterpart but has an integrated silencer, lower recoil, a laser sight, and a two-round burst.\n•"We go feet first, sir!""
+ItemDescription="•An experimental model of the BR55 designed for ODST forces, this blacked out rifle is less effective than its counterpart but has an integrated silencer, night vision, a laser sight, and a choice between full auto and a two-round burst.\n•"We go feet first, sir!""
 
 [KFWeap_SMG_M7]
 ItemName="M7 SMG"
