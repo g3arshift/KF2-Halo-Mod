@@ -43,7 +43,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M45'
 	PenetrationPower(DEFAULT_FIREMODE)=3.0 //2
 	FireInterval(DEFAULT_FIREMODE)=0.9 //0.85
-	Spread(DEFAULT_FIREMODE)=0.08 //0.7
+	Spread(DEFAULT_FIREMODE)=0.06 //0.7
 	FireOffset=(X=30,Y=3,Z=-3)
 	NumPellets(DEFAULT_FIREMODE)=10
 
@@ -68,7 +68,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=6
-	SpareAmmoCapacity[0]=42 //36
+	SpareAmmoCapacity[0]=48 //42 //36
 	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=false
