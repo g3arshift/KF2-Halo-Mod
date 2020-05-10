@@ -5,7 +5,7 @@
 //=============================================================================
 // Gear Shift Gaming 6/16/2019
 //=============================================================================
-class KFWeap_Shotgun_M45 extends KFWeap_ShotgunBase;
+class KFWeap_Shotgun_M45 extends GSGWeap_HaloShotgun;
 
 defaultproperties
 {
@@ -24,8 +24,7 @@ defaultproperties
 
 	// Zooming/Position
 	PlayerViewOffset=(X=8.0,Y=10.0,Z=-3.5)
-	IronSightPosition=(X=4,Y=0.7,Z=-2.8)
-	//X is the back and forth positioning, Y is the side to side positioning, Z is the up and down positioning.
+	IronSightPosition=(X=4,Y=0.5,Z=-1.55) //(X=4,Y=0.5,Z=-0.7) //X is the back and forth positioning, Y is the side to side positioning, Z is the up and down positioning.
 
 	// Content
 	PackageKey="M45"

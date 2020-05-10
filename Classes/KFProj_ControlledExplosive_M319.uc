@@ -10,7 +10,76 @@ class KFProj_ControlledExplosive_M319 extends KFProj_BallisticExplosive
 	hidedropdown;
 
 var(Projectile) ParticleSystem GrenadeWarningTemplate;
-var(Projectile) ParticleSystem GrenadeWarningTemplate_FragRounds;
+
+var float ExplosiveRadius;
+var KFPerk InstigatorPerk;
+var KFPlayerController KFPC;
+
+var float NearCullDist;
+
+replication
+{
+	if (bNetDirty)
+	NearCullDist;
+}
+
+simulated function ModifyParticleCullSettings()
+{
+	//This is dynamically changing the cull distance of a particle emitter that is setup to show the safe and danger zones. It gets
+	// explosive radius from KFPerk, so any mods not using KFPerk to increase explosive distance will break this.
+	// The flow of the below array access is ParticleSystem.Emitters[EmitterNumber].LODLevels[LODLevel].Module[ModuleNumber].Variable
+	// Module is just any member of ParticleLODLevel. It can also be RequiredModule to get the RequiredModule.
+
+	// I did this shit at 4:20 in the morning on 4/23/2020. Jesus christ it took fucking hours. God damned UE3, with your ridiculous bullshit. I had to export a 
+	// fucking particle system completely to a text object, then fucking DISSECT the code to figure it out since none of this shit is visible elsewhere.
+
+	if(KFPC == none)
+	{
+		KFPC = KFPlayerController(Instigator.Controller);
+	}
+
+	if (InstigatorPerk == none)
+	{
+		InstigatorPerk = KFPC.GetPerk();
+	}
+
+	ExplosiveRadius = ExplosionTemplate.DamageRadius * InstigatorPerk.GetAoERadiusModifier();
+	//`log("IN NADE. AOE Radius Mod is: "$InstigatorPerk.GetAoERadiusModifier());
+	//`log("IN NADE. Explosive Radius is: $"$ExplosiveRadius);
+
+
+	//Danger Arrow
+	GrenadeWarningTemplate.Emitters[1].LODLevels[0].RequiredModule.NearCullDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 4;
+	GrenadeWarningTemplate.Emitters[1].LODLevels[0].RequiredModule.NearFadeDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 3;
+	GrenadeWarningTemplate.Emitters[1].LODLevels[0].RequiredModule.FarFadeDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 2;
+	GrenadeWarningTemplate.Emitters[1].LODLevels[0].RequiredModule.FarCullDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 1;
+
+	//Danger Text
+	GrenadeWarningTemplate.Emitters[3].LODLevels[0].RequiredModule.NearCullDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 4;
+	GrenadeWarningTemplate.Emitters[3].LODLevels[0].RequiredModule.NearFadeDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 3;
+	GrenadeWarningTemplate.Emitters[3].LODLevels[0].RequiredModule.FarFadeDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 2;
+	GrenadeWarningTemplate.Emitters[3].LODLevels[0].RequiredModule.FarCullDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 1;
+
+	//Danger Circle
+	GrenadeWarningTemplate.Emitters[5].LODLevels[0].RequiredModule.NearCullDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 4;
+	GrenadeWarningTemplate.Emitters[5].LODLevels[0].RequiredModule.NearFadeDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 3;
+	GrenadeWarningTemplate.Emitters[5].LODLevels[0].RequiredModule.FarFadeDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 2;
+	GrenadeWarningTemplate.Emitters[5].LODLevels[0].RequiredModule.FarCullDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) - 1;
+
+	//Safe Arrow
+	GrenadeWarningTemplate.Emitters[2].LODLevels[0].RequiredModule.NearCullDistance = ExplosiveRadius + (ExplosiveRadius * 0.04);
+	GrenadeWarningTemplate.Emitters[2].LODLevels[0].RequiredModule.NearFadeDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) + 1;
+
+	//Safe Grenade
+	GrenadeWarningTemplate.Emitters[4].LODLevels[0].RequiredModule.NearCullDistance = ExplosiveRadius + (ExplosiveRadius * 0.04);
+	GrenadeWarningTemplate.Emitters[4].LODLevels[0].RequiredModule.NearFadeDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) + 1;
+
+	//Safe Circle
+	GrenadeWarningTemplate.Emitters[6].LODLevels[0].RequiredModule.NearCullDistance = ExplosiveRadius + (ExplosiveRadius * 0.04);
+	GrenadeWarningTemplate.Emitters[6].LODLevels[0].RequiredModule.NearFadeDistance = ExplosiveRadius + (ExplosiveRadius * 0.04) + 1;
+	
+	NearCullDist = GrenadeWarningTemplate.Emitters[1].LODLevels[0].RequiredModule.NearCullDistance;
+}
 
 simulated function Destroyed()
 {
@@ -58,6 +127,21 @@ function ExplodeTimer()
     GetExplodeEffectLocation(HitLocation, HitNormal, HitActor);
 
     TriggerExplosion(HitLocation, HitNormal, HitActor);
+}
+
+simulated function int CheckProx(float M319_ExplosiveRadius)
+{
+	local KFPawn_Monster KFPM;
+	local int NumberOfZeds;
+
+	foreach self.VisibleCollidingActors( class'KFPawn_Monster', KFPM, M319_ExplosiveRadius, self.Location)
+	{
+		if(KFPM.IsAliveAndWell())
+		{
+			NumberOfZeds++;
+		}
+	}
+	return NumberOfZeds;
 }
 
 simulated function SetGrenadeExplodeTimer(float ControlledExplosiveFuseTime)
@@ -114,27 +198,13 @@ simulated function bool Bounce( vector HitNormal, Actor BouncedOff )
 /** Called once the grenade has finished moving */
 simulated event GrenadeIsAtRest()
 {
-	local KFPerk InstigatorPerk;
-	local KFPlayerController KFPC;
-	
-	KFPC = KFPlayerController(Instigator.Controller);
+	ModifyParticleCullSettings();
+	ProjEffects.SetTemplate(GrenadeWarningTemplate);
+	ProjEffects.SetVectorParameter('Rotation', vect(0,0,0));
 
-	InstigatorPerk = KFPC.GetPerk();
-	//Creates the "Grenade Warning" visual effect. If frag roudns on demo is active, it actives an emitter with appropriate warning ranges.
-	if(KFPerk_Demolitionist(InstigatorPerk) != none && KFPerk_Demolitionist(InstigatorPerk).IsAoEActive())
-	{
-		ProjEffects.SetTemplate(GrenadeWarningTemplate_FragRounds);
-		ProjEffects.ActivateSystem();
-		ProjEffects.SetVectorParameter('Rotation', vect(0,0,0));
-		//`log("FragRounds Active");
-	}
-	else
-	{
-		ProjEffects.SetTemplate(GrenadeWarningTemplate);
-		ProjEffects.ActivateSystem();
-		ProjEffects.SetVectorParameter('Rotation', vect(0,0,0));
-		//`log("FragRounds Inactive");
-	}
+	ProjEffects.ActivateSystem();
+
+	//`log("IN NADE. Grenade Cull Distance Near is: "$GrenadeWarningTemplate.Emitters[1].LODLevels[0].RequiredModule.NearCullDistance);
 
 	SetPhysics(PHYS_None);
 }
@@ -190,7 +260,6 @@ defaultproperties
     ArmDistSquared=280000 //273750 This does NOTHING since the grenade blows up once the trigger is released. Need to fix.
     LifeSpan=+1000.0f
     GrenadeWarningTemplate=ParticleSystem'M319.FX.FX_ControlledExplosive_Warning'
-    GrenadeWarningTemplate_FragRounds=ParticleSystem'M319.FX.FX_ControlledExplosive_Warning_FragRounds'
 
     //Settings for the grenade
     bIsTimedExplosive=true
@@ -200,7 +269,6 @@ defaultproperties
     DampenFactorParallel=0.21 //.18
 	WallHitDampenFactor=0.21 //.18
 	WallHitDampenFactorParallel=0.21 //.18
-
 
 	bWarnAIWhenFired=true
 

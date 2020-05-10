@@ -193,6 +193,21 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 	}
 }
 
+simulated function int CheckProx(float M319_ExplosiveRadius)
+{
+	local KFPawn_Monster KFPM;
+	local int NumberOfZeds;
+
+	foreach self.VisibleCollidingActors( class'KFPawn_Monster', KFPM, M319_ExplosiveRadius, self.Location)
+	{
+		if(KFPM.IsAliveAndWell())
+		{
+			NumberOfZeds++;
+		}
+	}
+	return NumberOfZeds;
+}
+
 defaultproperties
 {
 	Physics=PHYS_Falling

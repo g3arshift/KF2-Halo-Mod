@@ -11,7 +11,6 @@ class KFWeap_GrenadeLauncher_M319 extends KFWeap_GrenadeLauncher_Base;
 var KFProj_ControlledExplosive_M319 LiveGrenade;
 var KFProj_HighExplosive_M319 LiveGrenade_H;
 var KFPlayerController KFPC;
-var bool FragRoundsActive;
 var KFPerk InstigatorPerk;
 var bool bNeedsLinking;
 
@@ -24,11 +23,30 @@ var array<MaterialInstanceConstant> DisplayStatus_DangerClose;
 var array<MaterialInstanceConstant> DisplayDecoration;
 var array<MaterialInstanceConstant> GrenadeStatusLight;
 
+var int ZedCount_InExplosionRadius;
+var float ExplosiveRadius;
+
 replication
 {
 	if (bNetDirty)
 	LiveGrenade_H, LiveGrenade;
 }
+
+enum M319_MatSlot
+{
+	ZedCount_LeftDigit,
+	MainBody,
+	ZedCount_Skull,
+	Range_MiddleDigit,
+	StatusLight,
+	GrenadeStatus,
+	Range_LeftDigit,
+	DisplayDecoration,
+	Range_RightDigit,
+	DisplayBackground,
+	Decals,
+	ZedCount_RightDigit
+};
 
 /*********************************************************************************************
  * State FireAndDetonate
@@ -41,23 +59,16 @@ simulated state FireAndDetonate extends WeaponSingleFiring
 		LiveGrenade = KFProj_ControlledExplosive_M319(super.SpawnProjectile( KFProjClass, RealStartLoc, AimDir ));
 
 		bNeedsLinking = true;
-		SetTimer(0.5, false, 'LinkingTimer');
+		if(!IsTimerActive('LinkingTimer'))
+		{
+			SetTimer(0.5, false, 'LinkingTimer');
+		}
 
 		if(KFPC == none)
 		{
 			KFPC = KFPlayerController(Instigator.Controller);
 		}
 
-		InstigatorPerk = KFPC.GetPerk();
-
-		if(KFPerk_Demolitionist(InstigatorPerk) != none && KFPerk_Demolitionist(InstigatorPerk).IsAoEActive())
-		{
-			FragRoundsActive = true;
-		}
-		else
-		{
-			FragRoundsActive = false;
-		}
 		return LiveGrenade;
 	}
 }
@@ -77,16 +88,6 @@ simulated state M319_WeaponSingleFireAndReload extends WeaponSingleFireAndReload
 			KFPC = KFPlayerController(Instigator.Controller);
 		}
 
-		InstigatorPerk = KFPC.GetPerk();
-
-		if(KFPerk_Demolitionist(InstigatorPerk) != none && KFPerk_Demolitionist(InstigatorPerk).IsAoEActive())
-		{
-			FragRoundsActive = true;
-		}
-		else
-		{
-			FragRoundsActive = false;
-		}
 		return LiveGrenade_H;
 	}
 }
@@ -110,8 +111,9 @@ simulated function EndFire(byte FireModeNum)
 	{
 		if (LiveGrenade != None && !LiveGrenade.bHasExploded && !LiveGrenade.bHasDisintegrated &&  Role == ROLE_Authority && FireModeNum != 3) //The last arg prevents an explosion if we are bashing.
 		{
+			//`log("OUT OF FUN. Explosive radius is: "$LiveGrenade.ExplosionTemplate.DamageRadius);
 			SetTimer(0.85, false, 'GrenadeExplodedTimer');
-			LiveGrenade.SetGrenadeExplodeTimer(0.001);
+			LiveGrenade.SetGrenadeExplodeTimer(0.001);		
 		}
 	}
 	else
@@ -137,89 +139,93 @@ simulated event Tick( float DeltaTime )
 	}
 	else
 	{
-		Mesh.SetMaterial( 5, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial( 8, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial( 3, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial( 9, DisplaySkull[0] );
-		Mesh.SetMaterial( 2, DisplayBackplate[0] );
-		Mesh.SetMaterial( 10, DisplaySkull[0]);
-		Mesh.SetMaterial( 4, DisplayDecoration[0]);
-		Mesh.SetMaterial( 7, GrenadeStatusLight[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_LeftDigit, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_MiddleDigit, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_RightDigit, DisplayRangeDigits_Safe[0]);
+
+		Mesh.SetMaterial( M319_MatSlot.ZedCount_Skull, DisplaySkull[0] );
+		Mesh.SetMaterial( M319_MatSlot.ZedCount_LeftDigit, DisplaySkull[0]);
+		Mesh.SetMaterial( M319_MatSlot.ZedCount_RightDigit, DisplaySkull[0]);
+
+		Mesh.SetMaterial( M319_MatSlot.DisplayBackground, DisplayBackplate[0] );
+		Mesh.SetMaterial( M319_MatSlot.DisplayDecoration, DisplayDecoration[0]);
+		Mesh.SetMaterial( M319_MatSlot.StatusLight, GrenadeStatusLight[0]);
 	}
 
 	if( LiveGrenade_H != None && LiveGrenade_H.bHasExploded)
 	{
 		SetTimer(0.85, false, 'GrenadeExplodedTimer');
 		LiveGrenade_H = None;
-		Mesh.SetMaterial( 5, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial( 8, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial( 3, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial( 9, DisplaySkull[0] );
-		Mesh.SetMaterial( 2, DisplayBackplate[0] );
-		Mesh.SetMaterial( 10, DisplaySkull[0]);
-		Mesh.SetMaterial( 4, DisplayDecoration[0]);
-		Mesh.SetMaterial( 7, GrenadeStatusLight[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_LeftDigit, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_MiddleDigit, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_RightDigit, DisplayRangeDigits_Safe[0]);
+
+		Mesh.SetMaterial( M319_MatSlot.ZedCount_Skull, DisplaySkull[0] );
+		Mesh.SetMaterial( M319_MatSlot.ZedCount_LeftDigit, DisplaySkull[0]);
+		Mesh.SetMaterial( M319_MatSlot.ZedCount_RightDigit, DisplaySkull[0]);
+
+		Mesh.SetMaterial( M319_MatSlot.DisplayBackground, DisplayBackplate[0] );
+		Mesh.SetMaterial( M319_MatSlot.DisplayDecoration, DisplayDecoration[0]);
+		Mesh.SetMaterial( M319_MatSlot.StatusLight, GrenadeStatusLight[0]);
 	}
 
 	if( LiveGrenade != None && LiveGrenade.bHasExploded)
 	{
 		SetTimer(0.85, false, 'GrenadeExplodedTimer');
 		LiveGrenade = None;
-		Mesh.SetMaterial( 5, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial( 8, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial( 3, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial( 9, DisplaySkull[0] );
-		Mesh.SetMaterial( 2, DisplayBackplate[0] );
-		Mesh.SetMaterial( 10, DisplaySkull[0]);
-		Mesh.SetMaterial( 4, DisplayDecoration[0]);
-		Mesh.SetMaterial( 7, GrenadeStatusLight[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_LeftDigit, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_MiddleDigit, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_RightDigit, DisplayRangeDigits_Safe[0]);
+
+		Mesh.SetMaterial( M319_MatSlot.ZedCount_Skull, DisplaySkull[0] );
+		Mesh.SetMaterial( M319_MatSlot.ZedCount_LeftDigit, DisplaySkull[0]);
+		Mesh.SetMaterial( M319_MatSlot.ZedCount_RightDigit, DisplaySkull[0]);
+
+		Mesh.SetMaterial( M319_MatSlot.DisplayBackground, DisplayBackplate[0] );
+		Mesh.SetMaterial( M319_MatSlot.DisplayDecoration, DisplayDecoration[0]);
+		Mesh.SetMaterial( M319_MatSlot.StatusLight, GrenadeStatusLight[0]);
 	}
 
 	if(IsTimerActive('GrenadeExplodedTimer'))
 	{
-		Mesh.SetMaterial(7, GrenadeStatusLight[2]);
-		Mesh.SetMaterial(6, DisplayStatus_Safe[1]);
+		Mesh.SetMaterial( M319_MatSlot.StatusLight, GrenadeStatusLight[2]);
+		Mesh.SetMaterial( M319_MatSlot.GrenadeStatus, DisplayStatus_Safe[1]);
 	}
 	else if(LiveGrenade == None && LiveGrenade_H == None) //!IsTimerActive('GrenadeExplodedTimer') && 
 	{
-		Mesh.SetMaterial(7, GrenadeStatusLight[0]);
-		Mesh.SetMaterial(6, DisplayStatus_Safe[0]);
+		Mesh.SetMaterial( M319_MatSlot.StatusLight, GrenadeStatusLight[0]);
+		Mesh.SetMaterial( M319_MatSlot.GrenadeStatus, DisplayStatus_Safe[0]);
 	}
 }
 
 reliable client function UpdateDisplay()
 {
 
-	/*
-	//
-	// 2 is the display background
-	// 3 is the right digit
-	// 4 is the display details
-	// 5 is the left digit
-	// 6 is the display status
-	// 7 is the grenade status light
-	// 8 is the middle digit
-	// 9 is the skull
-	// 10 is the number of enemies in the blast zone
-	//
-	*/
-
 	if(KFPC == none)
 	{
 		KFPC = KFPlayerController(Instigator.Controller);
 	}
 
+	if(InstigatorPerk == none)
+	{
+		InstigatorPerk = KFPC.GetPerk();
+	}
+
 	if(LiveGrenade != none)
 	{
+		ExplosiveRadius = LiveGrenade.ExplosionTemplate.DamageRadius * InstigatorPerk.GetAoERadiusModifier();
+		ZedCount_InExplosionRadius = LiveGrenade.CheckProx(ExplosiveRadius);
 		UpdateDisplay_ControlledExplosive();
 	}
 	else if(LiveGrenade_H != none)
 	{
+		ExplosiveRadius = LiveGrenade_H.ExplosionTemplate.DamageRadius * InstigatorPerk.GetAoERadiusModifier();
+		ZedCount_InExplosionRadius = LiveGrenade_H.CheckProx(ExplosiveRadius);
 		UpdateDisplay_HighExplosive();
 	}
 	else
 	{
-		`log("No Live grenade found");
+		//`log("No Live grenade found");
 	}
 }
 
@@ -229,56 +235,37 @@ reliable client function UpdateDisplay_HighExplosive()
 
 	DistanceFromGrenade = Vsize(LiveGrenade_H.Location - KFPC.ViewTarget.Location);
 
-	if( !FragRoundsActive && DistanceFromGrenade <= 670.0 ) //Danger Zone, Frag rounds off
+	if( DistanceFromGrenade <= ExplosiveRadius ) //Danger Zone
 	{
-		Mesh.SetMaterial( 9, DisplaySkull[1] );
-		Mesh.SetMaterial( 2, DisplayBackplate[1] );
-		Mesh.SetMaterial( 10, DisplayRangeDigits_DangerClose[1]);
-		Mesh.SetMaterial( 4, DisplayDecoration[1]);
+		//`log("DANGER! Current Damage Radius is: "$LiveGrenade_H.ExplosionTemplate.DamageRadius);
+
+		Mesh.SetMaterial( M319_MatSlot.DisplayBackground, DisplayBackplate[1] );
+		Mesh.SetMaterial( M319_MatSlot.DisplayDecoration, DisplayDecoration[1]);
 
 		if(LiveGrenade_H.bNeedsArming) //Arming
 		{
-			Mesh.SetMaterial(6, DisplayStatus_DangerClose[2]);
+			Mesh.SetMaterial( M319_MatSlot.GrenadeStatus, DisplayStatus_DangerClose[2]);
 		}
 		else //Armed
 		{
-			Mesh.SetMaterial(6, DisplayStatus_DangerClose[5]);
+			Mesh.SetMaterial( M319_MatSlot.GrenadeStatus, DisplayStatus_DangerClose[5]);
 		}
 
-		UpdaterangeDisplay_DangerZone(DistanceFromGrenade);
-	}
-	else if( FragRoundsActive && DistanceFromGrenade <= 970.0 ) //Danger Zone, Frag Rounds on
-	{
-		Mesh.SetMaterial( 9, DisplaySkull[1] );
-		Mesh.SetMaterial( 2, DisplayBackplate[1] );
-		Mesh.SetMaterial( 10, DisplayRangeDigits_DangerClose[1]);
-		Mesh.SetMaterial( 4, DisplayDecoration[1]);
-
-		if(LiveGrenade_H.bNeedsArming) //Arming
-		{
-			Mesh.SetMaterial(6, DisplayStatus_DangerClose[2]);
-		}
-		else //Armed
-		{
-			Mesh.SetMaterial(6, DisplayStatus_DangerClose[5]);
-		}
-		
 		UpdaterangeDisplay_DangerZone(DistanceFromGrenade);
 	}
 	else //Safe
 	{
-		Mesh.SetMaterial( 9, DisplaySkull[0] );
-		Mesh.SetMaterial( 2, DisplayBackplate[0] );
-		Mesh.SetMaterial( 10, DisplaySkull[0]);
-		Mesh.SetMaterial( 4, DisplayDecoration[0]);
+
+		Mesh.SetMaterial( M319_MatSlot.DisplayBackground, DisplayBackplate[0] );
+		Mesh.SetMaterial( M319_MatSlot.DisplayDecoration, DisplayDecoration[0]);
 
 		if(LiveGrenade_H.bNeedsArming) //Arming
 		{
-			Mesh.SetMaterial(6, DisplayStatus_Safe[2]);
+			Mesh.SetMaterial( M319_MatSlot.GrenadeStatus, DisplayStatus_Safe[2]);
 		}
 		else //Armed
 		{
-			Mesh.SetMaterial(6, DisplayStatus_Safe[5]);
+			Mesh.SetMaterial( M319_MatSlot.GrenadeStatus, DisplayStatus_Safe[5]);
 		}
 		
 		UpdateRangeDisplay_Safe(DistanceFromGrenade);
@@ -288,20 +275,50 @@ reliable client function UpdateDisplay_HighExplosive()
 reliable client function UpdateDisplay_ControlledExplosive()
 {
 	local float DistanceFromGrenade;
+	local int ZedCount_LeftDigit_Value;
+	local int ZedCount_RightDigit_Value;
 
-	Mesh.SetMaterial(7, GrenadeStatusLight[1]);
+	Mesh.SetMaterial( M319_MatSlot.StatusLight, GrenadeStatusLight[1]);
+
+	if(ZedCount_InExplosionRadius >= 99)
+	{
+		ZedCount_LeftDigit_Value = 9;
+		ZedCount_RightDigit_Value = 9;
+	}
+	else if (ZedCount_InExplosionRadius >= 10)
+	{
+		ZedCount_LeftDigit_Value = int(Left(ZedCount_InExplosionRadius, 1));
+		ZedCount_RightDigit_Value = int(Right(ZedCount_InExplosionRadius, 1));
+	}
+	else
+	{
+		ZedCount_LeftDigit_Value = 0;
+		ZedCount_RightDigit_Value = ZedCount_InExplosionRadius;
+	}
 
 	DistanceFromGrenade = Vsize(LiveGrenade.Location - KFPC.ViewTarget.Location);
 
-	if( !FragRoundsActive && DistanceFromGrenade <= 670.0 ) //Danger Zone, Frag rounds off
+	if( DistanceFromGrenade <= ExplosiveRadius) //Danger Zone
 	{
-		Mesh.SetMaterial( 9, DisplaySkull[1] );
-		Mesh.SetMaterial( 2, DisplayBackplate[1] );
-		Mesh.SetMaterial( 10, DisplayRangeDigits_DangerClose[1]);
-		Mesh.SetMaterial( 4, DisplayDecoration[1]);
+		if (ZedCount_InExplosionRadius > 0)
+		{
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_Skull, DisplaySkull[1] );
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_LeftDigit, DisplayRangeDigits_DangerClose[ZedCount_LeftDigit_Value]);
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_RightDigit, DisplayRangeDigits_DangerClose[ZedCount_RightDigit_Value]);
+		}
+		else
+		{
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_Skull, DisplaySkull[0] );
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_LeftDigit, DisplaySkull[0] );
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_RightDigit, DisplaySkull[0] );
+		}
+
+		Mesh.SetMaterial( M319_MatSlot.DisplayBackground, DisplayBackplate[1] );
+		Mesh.SetMaterial( M319_MatSlot.DisplayDecoration, DisplayDecoration[1]);
+
 		if(bNeedsLinking)
 		{
-			Mesh.SetMaterial(6, DisplayStatus_DangerClose[4]);
+			Mesh.SetMaterial( M319_MatSlot.GrenadeStatus, DisplayStatus_DangerClose[4]);
 			if(!IsTimerActive('LinkingTimer'))
 			{
 				bNeedsLinking = false;
@@ -309,39 +326,30 @@ reliable client function UpdateDisplay_ControlledExplosive()
 		}
 		else
 		{
-			Mesh.SetMaterial(6, DisplayStatus_DangerClose[3]);
-		}
-		UpdaterangeDisplay_DangerZone(DistanceFromGrenade);
-	}
-	else if( FragRoundsActive && DistanceFromGrenade <= 970.0 ) //Danger Zone, Frag Rounds on
-	{
-		Mesh.SetMaterial( 9, DisplaySkull[1] );
-		Mesh.SetMaterial( 2, DisplayBackplate[1] );
-		Mesh.SetMaterial( 10, DisplayRangeDigits_DangerClose[1]);
-		Mesh.SetMaterial( 4, DisplayDecoration[1]);
-		if(bNeedsLinking)
-		{
-			Mesh.SetMaterial(6, DisplayStatus_DangerClose[4]);
-			if(!IsTimerActive('LinkingTimer'))
-			{
-				bNeedsLinking = false;
-			}
-		}
-		else
-		{
-			Mesh.SetMaterial(6, DisplayStatus_DangerClose[3]);
+			Mesh.SetMaterial( M319_MatSlot.GrenadeStatus, DisplayStatus_DangerClose[3]);
 		}
 		UpdaterangeDisplay_DangerZone(DistanceFromGrenade);
 	}
 	else //Safe
 	{
-		Mesh.SetMaterial( 9, DisplaySkull[0] );
-		Mesh.SetMaterial( 2, DisplayBackplate[0] );
-		Mesh.SetMaterial( 10, DisplaySkull[0]);
-		Mesh.SetMaterial( 4, DisplayDecoration[0]);
+		if (ZedCount_InExplosionRadius > 0)
+		{
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_Skull, DisplaySkull[2] );
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_LeftDigit, DisplayRangeDigits_Safe[ZedCount_LeftDigit_Value]);
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_RightDigit, DisplayRangeDigits_Safe[ZedCount_RightDigit_Value]);
+		}
+		else
+		{
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_Skull, DisplaySkull[0] );
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_LeftDigit, DisplaySkull[0] );
+			Mesh.SetMaterial( M319_MatSlot.ZedCount_RightDigit, DisplaySkull[0] );
+		}
+
+		Mesh.SetMaterial( M319_MatSlot.DisplayBackground, DisplayBackplate[0] );
+		Mesh.SetMaterial( M319_MatSlot.DisplayDecoration, DisplayDecoration[0]);
 		if(bNeedsLinking)
 		{
-			Mesh.SetMaterial(6, DisplayStatus_Safe[4]);
+			Mesh.SetMaterial( M319_MatSlot.GrenadeStatus, DisplayStatus_Safe[4]);
 			if(!IsTimerActive('LinkingTimer'))
 			{
 				bNeedsLinking = false;
@@ -349,7 +357,7 @@ reliable client function UpdateDisplay_ControlledExplosive()
 		}
 		else
 		{
-			Mesh.SetMaterial(6, DisplayStatus_Safe[3]);
+			Mesh.SetMaterial( M319_MatSlot.GrenadeStatus, DisplayStatus_Safe[3]);
 		}
 		UpdateRangeDisplay_Safe(DistanceFromGrenade);
 	}
@@ -367,21 +375,21 @@ reliable client function UpdateRangeDisplay_Safe(float DistanceFromGrenade)
 
 	if(DistanceFromGrenade /100 >= 100 )
 	{
-		Mesh.SetMaterial(5, DisplayRangeDigits_Safe[LeftRangeDigit]);
-		Mesh.SetMaterial(8, DisplayRangeDigits_Safe[MiddleRangeDigit]);
-		Mesh.SetMaterial(3, DisplayRangeDigits_Safe[RightRangeDigit]);
+		Mesh.SetMaterial( M319_MatSlot.Range_LeftDigit, DisplayRangeDigits_Safe[LeftRangeDigit]);
+		Mesh.SetMaterial( M319_MatSlot.Range_MiddleDigit, DisplayRangeDigits_Safe[MiddleRangeDigit]);
+		Mesh.SetMaterial( M319_MatSlot.Range_RightDigit, DisplayRangeDigits_Safe[RightRangeDigit]);
 	}
 	else if (DistanceFromGrenade /100 >= 10) 
 	{
-		Mesh.SetMaterial(5, DisplayRangeDigits_Safe[RightRangeDigit]);
-		Mesh.SetMaterial(8, DisplayRangeDigits_Safe[LeftRangeDigit]);
-		Mesh.SetMaterial(3, DisplayRangeDigits_Safe[MiddleRangeDigit]);	
+		Mesh.SetMaterial( M319_MatSlot.Range_LeftDigit, DisplayRangeDigits_Safe[RightRangeDigit]);
+		Mesh.SetMaterial( M319_MatSlot.Range_MiddleDigit, DisplayRangeDigits_Safe[LeftRangeDigit]);
+		Mesh.SetMaterial( M319_MatSlot.Range_RightDigit, DisplayRangeDigits_Safe[MiddleRangeDigit]);	
 	}
 	else
 	{
-		Mesh.SetMaterial(5, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial(8, DisplayRangeDigits_Safe[0]);
-		Mesh.SetMaterial(3, DisplayRangeDigits_Safe[LeftRangeDigit]);	
+		Mesh.SetMaterial( M319_MatSlot.Range_LeftDigit, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_MiddleDigit, DisplayRangeDigits_Safe[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_RightDigit, DisplayRangeDigits_Safe[LeftRangeDigit]);	
 	}
 }
 
@@ -397,18 +405,16 @@ reliable client function UpdateRangeDisplay_DangerZone(float DistanceFromGrenade
 
 	if (DistanceFromGrenade /100 >= 10) 
 	{
-		Mesh.SetMaterial(5, DisplayRangeDigits_DangerClose[RightRangeDigit]);
-		Mesh.SetMaterial(8, DisplayRangeDigits_DangerClose[LeftRangeDigit]);
-		Mesh.SetMaterial(3, DisplayRangeDigits_DangerClose[MiddleRangeDigit]);	
+		Mesh.SetMaterial( M319_MatSlot.Range_LeftDigit, DisplayRangeDigits_DangerClose[RightRangeDigit]);
+		Mesh.SetMaterial( M319_MatSlot.Range_MiddleDigit, DisplayRangeDigits_DangerClose[LeftRangeDigit]);
+		Mesh.SetMaterial( M319_MatSlot.Range_RightDigit, DisplayRangeDigits_DangerClose[MiddleRangeDigit]);	
 	}
 	else
 	{
-		Mesh.SetMaterial(5, DisplayRangeDigits_DangerClose[0]);
-		Mesh.SetMaterial(8, DisplayRangeDigits_DangerClose[0]);
-		Mesh.SetMaterial(3, DisplayRangeDigits_DangerClose[LeftRangeDigit]);	
+		Mesh.SetMaterial( M319_MatSlot.Range_LeftDigit, DisplayRangeDigits_DangerClose[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_MiddleDigit, DisplayRangeDigits_DangerClose[0]);
+		Mesh.SetMaterial( M319_MatSlot.Range_RightDigit, DisplayRangeDigits_DangerClose[LeftRangeDigit]);	
 	}
-
-	Mesh.SetMaterial(9, DisplaySkull[1]);
 }
 
 defaultproperties
@@ -422,8 +428,21 @@ defaultproperties
 	WeaponSelectTexture=Texture2D'M319.Textures.M319_UI_v1'
 
 	//Depth of Field
-	DOF_FG_FocalRadius=60 //38
-	DOF_FG_MaxNearBlurSize=3.5
+	DOF_bOverrideEnvironmentDOF=true
+	DOF_SharpRadius=0
+	DOF_FocalRadius=0
+	DOF_MinBlurSize=0.0
+	DOF_MaxNearBlurSize=0
+	DOF_MaxFarBlurSize=0.0
+	DOF_ExpFalloff=0
+	DOF_MaxFocalDistance=0
+
+	DOF_BlendInSpeed=0
+	DOF_BlendOutSpeed=0
+
+	DOF_FG_FocalRadius=0
+	DOF_FG_SharpRadius=0
+	DOF_FG_ExpFalloff=0
 
 	// FOV
 	MeshFOV=80
@@ -516,12 +535,13 @@ defaultproperties
 	// Weapon Upgrade stat boosts
 	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Weight, Add=1)))
 
-	FragRoundsActive = false
 	LiveGrenade = none
 	LiveGrenade_H = none
+	ZedCount_InExplosionRadius = 0;
 
 	DisplaySkull[0] = MaterialInstanceConstant'Shared.Materials.Blank';
 	DisplaySkull[1] = MaterialInstanceConstant'M319.Materials.M319_Skull';
+	DisplaySkull[2] = MaterialInstanceConstant'M319.Materials.M319_Skull_Safe';
 
 	DisplayBackplate[0] = MaterialInstanceConstant'M319.Materials.M319_Display_Safe';
 	DisplayBackplate[1] = MaterialInstanceConstant'M319.Materials.M319_Display_DangerClose';

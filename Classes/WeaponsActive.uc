@@ -12,12 +12,25 @@ simulated function PostBeginPlay()
 {
 	Super.PostBeginPlay();
 	SetTimer(1.0, true, 'UpdateTI');
+    //UpdateAudioFiles();
 }
 
 simulated function UpdateTI()
 {
 	KFGameReplicationInfo(WorldInfo.GRI).TraderItems=KFGFxObject_TraderItems'Shared.Archetypes.HaloTraderItems';	
 }
+
+/*reliable client function UpdateAudioFiles()
+{
+    local AudioFix AudioFixer;
+
+    if(AudioFixer == none)
+    {
+        AudioFixer = new class'AudioFix';
+    }
+
+    AudioFixer.start();
+}*/
 
 /* Deprecated as of 10/7/2019
 

@@ -5,7 +5,7 @@
 //=============================================================================
 // Gear Shift Gaming 6/13/2019
 //=============================================================================
-class KFWeap_Shotgun_M90 extends KFWeap_ShotgunBase;
+class KFWeap_Shotgun_M90 extends GSGWeap_HaloShotgun;
 
 var protected const array<vector2D> PelletSpread;
 
@@ -40,13 +40,9 @@ defaultproperties
 	MeshIronSightFOV=45
     PlayerIronSightFOV=70
 
-	// Depth of field
-	DOF_FG_FocalRadius=95
-	DOF_FG_MaxNearBlurSize=3.5
-
 	// Zooming/Position
 	PlayerViewOffset=(X=8.0,Y=10.0,Z=-3.5)
-	IronSightPosition=(X=4,Y=0.6,Z=-0.75)
+	IronSightPosition=(X=4,Y=0.5,Z=-0.7) //(X=4,Y=0.6,Z=-0.75) //X is the back and forth positioning, Y is the side to side positioning, Z is the up and down positioning.
 
 	// Content
 	PackageKey="M90_CAWS"
@@ -56,11 +52,11 @@ defaultproperties
 	AttachmentArchetypeName="M90_CAWS.Archetype.Wep_M90_3P"
 	MuzzleFlashTemplateName="M90_CAWS.Archetype.Wep_M90_MuzzleFlash"
 
-	PelletSpread(0)=(X=0.0f,Y=0.0f)
-	PelletSpread(1)=(X=0.5f,Y=0.15f) 			//0deg 
+	PelletSpread(0)=(X=0.0f,Y=0.0f)			//Dead center
+	PelletSpread(1)=(X=0.5f,Y=0.15f) 		//0deg 
 	PelletSpread(2)=(X=0.3214,Y=0.3830) 	//60deg
 	PelletSpread(3)=(X=-0.25,Y=0.4330)		//120deg
-	PelletSpread(4)=(X=-0.5f,Y=0.1f)			// Almost 180deg
+	PelletSpread(4)=(X=-0.5f,Y=0.1f)		//Almost 180deg
 	PelletSpread(5)=(X=-0.25f,Y=-0.4330)	//240deg
 	PelletSpread(6)=(X=0.25,Y=-0.4330)		//300deg
 	PelletSpread(7)=(X=0.1f,Y=0.2f)
@@ -97,7 +93,7 @@ defaultproperties
 	// Fire Effects
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'Shared.Audio.Play_Fire_3P_Shotgun', FirstPersonCue=AkEvent'Shared.Audio.Play_Fire_1P_Shotgun')
 
-    // using M4 dry fire sound. this is intentional.
+    // Using M4 dry fire sound. this is intentional.
 	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'WW_WEP_SA_M4.Play_WEP_SA_M4_Handling_DryFire'
 
 	// Attachments
@@ -133,16 +129,4 @@ defaultproperties
 	AssociatedPerkClasses(0)=class'KFPerk_Support'
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
-
-	// Weapon Upgrade stat boosts
-	//WeaponUpgrades[1]=(IncrementDamage=1.25f,IncrementWeight=1)
-	//WeaponUpgrades[2]=(IncrementDamage=1.5f,IncrementWeight=2)
-	//WeaponUpgrades[3]=(IncrementDamage=1.75f,IncrementWeight=3)
-	//WeaponUpgrades[4]=(IncrementDamage=2.0f,IncrementWeight=4)
-
-
-	//WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.25f), (Stat=EWUS_Weight, Add=1)))
-	//WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.5f), (Stat=EWUS_Weight, Add=2)))
-	//WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=1.75f), (Stat=EWUS_Weight, Add=3)))
-	//WeaponUpgrades[4]=(Stats=((Stat=EWUS_Damage0, Scale=2.0f), (Stat=EWUS_Weight, Add=4)))
 }
