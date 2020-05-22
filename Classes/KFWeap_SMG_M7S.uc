@@ -414,14 +414,10 @@ defaultproperties
 	bHasFlashlight=false
 	bHasLaserSight=true //true
 
+	bWarnAIWhenAiming = false;
+
 	//Custom Animations
 	IdleFidgetAnims=(Guncheck_v1, Guncheck_v2)
 
 	AssociatedPerkClasses(0)=class'KFPerk_Swat'
-
-	// Weapon Upgrade stat boosts
-	//WeaponUpgrades[1]=(IncrementDamage=1.14f,IncrementWeight=1)
-	//WeaponUpgrades[2]=(IncrementDamage=1.28f,IncrementWeight=2)
-
-	//WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.45f), (Stat=EWUS_Damage1, Scale=1.45f), (Stat=EWUS_Weight, Add=1)))
 }

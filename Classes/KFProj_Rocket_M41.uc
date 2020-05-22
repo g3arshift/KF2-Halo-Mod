@@ -12,7 +12,7 @@ class KFProj_Rocket_M41 extends KFProj_BallisticExplosive
 defaultproperties
 {
 	Physics=PHYS_Projectile
-	Speed=3500
+	Speed=4100 //3500
 	MaxSpeed=3500
 	TossZ=0
 	GravityScale=1.0
@@ -36,7 +36,7 @@ defaultproperties
 	Begin Object Class=PointLightComponent Name=ExplosionPointLight
 	    LightColor=(R=252,G=218,B=171,A=255)
 		Brightness=5.f
-		Radius=3000.f
+		Radius=4000.f
 		FalloffExponent=10.f
 		CastShadows=False
 		CastStaticShadows=FALSE
@@ -49,7 +49,7 @@ defaultproperties
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
 		Damage=1100 //900
-		DamageRadius=400
+		DamageRadius=500 //400
 		DamageFalloffExponent=2
 		DamageDelay=0.f
 

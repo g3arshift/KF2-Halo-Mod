@@ -1,7 +1,7 @@
 [KFWeap_Pistol_M6C]
 ItemName="M6C Pistol"
-ItemCategory="Pistol"
-ItemDescription="•The smaller and weaker brother of the M6G, this pistol has seen action against the Covenant from Reach all the way to the Delta Halo and it's now ready to serve against the Zed hordes!"
+ItemCategory="Pistol"t
+ItemDescription="•The smaller and weaker brother of the M6G, this pistol has seen action against the Covenant from Reach all the way to the Delta Halo, and it's now ready to serve against the Zed hordes!"
 
 [KFWeap_Pistol_M6CDual]
 ItemName="Dual M6C Pistols"
@@ -21,12 +21,12 @@ ItemDescription="•Equipped with an integrated silencer, scope, and muzzle brake,
 [KFWeap_Shotgun_M90]
 ItemName="M90 CAWS"
 ItemCategory="Shotgun"
-ItemDescription="•Modified to feed from the bottom and loaded with 8 gauge shells, this shotgun will pulp anything that gets close. \n•"I believe that the sound of racking the pump of a shotgun is universally recognized as 'kiss your ass goodbye.""
+ItemDescription="•Loaded with Soellkraft 8 gauge magnum shells and 0000 buckshot, the M90 CAWS will pulp anything that gets close. \n•"I believe that the sound of racking the pump of a shotgun is universally recognized as 'kiss your ass goodbye.""
 
 [KFWeap_Shotgun_M45]
 ItemName="M45 Shotgun"
 ItemCategory="Shotgun"
-ItemDescription="•Though not a powerful as its bigger brother the M90, the M45 is shorter, faster, lighter, and still packs a punch. \n•"Six, time for you to leave. Get the package to the man, and get your ass off this planet. I got your back.""
+ItemDescription="•Though not a powerful as its bigger brother the M90, the M45 still packs a punch while being shorter, faster, and lighter. \n•"Six, time for you to leave. Get the package to the man, and get your ass off this planet. I got your back.""
 
 [KFWeap_Shotgun_M45_BrashWhisper]
 ItemName="M45 Brash Whisper"
@@ -36,7 +36,7 @@ ItemDescription="•Painted with the spine of a Sangheili, this M45 and its payloa
 [KFWeap_GrenadeLauncher_M319]
 ItemName="M319 IGL"
 ItemCategory="Explosives"
-ItemDescription="•Primary fire detonates the grenade on impact with a zed, or starts a 2 second timer when hitting a wall. \n•Secondary Fire prevents explosion while the trigger is held down, explodes when released, and arms an EMP, but does less damage."
+ItemDescription="•Primary fire detonates the grenade on impact with a zed, or starts a 2 second timer when hitting a wall. \n•Secondary fire prevents explosion while the trigger is held down, explodes when released and arms an EMP, but does less damage."
 
 [KFWeap_Pistol_M6D]
 ItemName="M6D Magnum"
@@ -51,7 +51,7 @@ ItemDescription="•Loaded with shredder rounds, equipped with a smart-link scope 
 [KFWeap_Rifle_BR55]
 ItemName="BR55 Battle Rifle"
 ItemCategory="Rifle"
-ItemDescription="•Equipped with a 2x scope and an ammo display, the BR55 battle rifle dishes out hot death and headshots in quick 3-round bursts.\n•"When nothing else gets the job done, the BR55 Battle Rifle will do.""
+ItemDescription="•Equipped with a 2x scope and an ammo display, the BR55 Battle Rifle dishes out hot death and headshots in quick 3-round bursts.\n•"When nothing else gets the job done, the BR55 Battle Rifle will do.""
 
 [KFWeap_AssaultRifle_XBR55_SOCOM]
 ItemName="XBR55/SOCOM"

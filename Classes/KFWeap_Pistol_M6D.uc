@@ -365,7 +365,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=12
-	SpareAmmoCapacity[0]=120
+	SpareAmmoCapacity[0]=84 //96 //120
 	InitialSpareMags[0]=0
 	AmmoPickupScale[0]=1.0
 	bCanBeReloaded=true
@@ -392,7 +392,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_M6D'
 	FireInterval(DEFAULT_FIREMODE)=+0.305
-	InstantHitDamage(DEFAULT_FIREMODE)=300
+	InstantHitDamage(DEFAULT_FIREMODE)=250 //300
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M6D'
 	PenetrationPower(DEFAULT_FIREMODE)=1.0
 	Spread(DEFAULT_FIREMODE)=0.01 //0.08

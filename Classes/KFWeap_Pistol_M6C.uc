@@ -87,7 +87,7 @@ defaultproperties
 	// Inventory
 	InventorySize=0
 	GroupPriority=12
-	bCanThrow=false
+	bCanThrow=true
 	bDropOnDeath=true
 	WeaponSelectTexture=Texture2D'M6C.Textures.M6C_UI_v1'
 	bIsBackupWeapon=true

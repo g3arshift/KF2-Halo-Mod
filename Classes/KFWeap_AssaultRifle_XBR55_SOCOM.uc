@@ -514,19 +514,19 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=30
-	SpareAmmoCapacity[0]=360
+	SpareAmmoCapacity[0]=270 //360
 	InitialSpareMags[0]=4
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
 	// Recoil
 	// Recoil
-	maxRecoilPitch=190 //90
-	minRecoilPitch=100 //60
-	maxRecoilYaw=100 //65 //50
-	minRecoilYaw=-100 //-65 //50
+	maxRecoilPitch=200 //190 //90
+	minRecoilPitch=110 //100 //60
+	maxRecoilYaw=90 //100 //65 //50
+	minRecoilYaw=-85 //-100 //-65 //50
 	RecoilRate=0.065 //0.07 //0.057
-	RecoilMaxYawLimit=400
+	RecoilMaxYawLimit=325 //400
 	RecoilMinYawLimit=65135
 	RecoilMaxPitchLimit=800
 	RecoilMinPitchLimit=65035
@@ -538,7 +538,7 @@ defaultproperties
 	IronSightMeshFOVCompensationScale=3.8 //3.5
 
 	// Inventory / Grouping
-	InventorySize=6
+	InventorySize=7 //6
 	GroupPriority=101
 	WeaponSelectTexture=Texture2D'XBR55_SOCOM.UI.XBR55_SOCOM_UI_v1'
 
@@ -549,7 +549,7 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_XBR55_SOCOM'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_XBR55_SOCOM'
 	FireInterval(DEFAULT_FIREMODE)=0.05 //+0.057
-	InstantHitDamage(DEFAULT_FIREMODE)=37 //40.0
+	InstantHitDamage(DEFAULT_FIREMODE)=38.0 //37 //40.0
 	PenetrationPower(DEFAULT_FIREMODE)=0.0
 	Spread(DEFAULT_FIREMODE)=0.01
 	FireOffset=(X=30,Y=4.5,Z=-4)
@@ -582,6 +582,8 @@ defaultproperties
 	bHasIronSights=true
 	bHasFlashlight=true
 	bHasLaserSight=true
+
+	bWarnAIWhenAiming = false;
 
 	AssociatedPerkClasses(0)=class'KFPerk_SWAT'
 

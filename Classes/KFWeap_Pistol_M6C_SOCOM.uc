@@ -397,6 +397,8 @@ defaultproperties
 	bHasFlashlight=false
 	bHasLaserSight=true //true
 
+	bWarnAIWhenAiming = false;
+
 	// Inventory
 	InventorySize=3 //3
 	GroupPriority=59
