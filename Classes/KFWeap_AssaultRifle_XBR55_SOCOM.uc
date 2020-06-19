@@ -6,13 +6,15 @@
 
 class KFWeap_AssaultRifle_XBR55_SOCOM extends KFWeap_RifleBase;
 
-var array<MaterialInstanceConstant> AmmoNumbers_High;
-var array<MaterialInstanceConstant> AmmoNumbers_Medium;
-var array<MaterialInstanceConstant> AmmoNumbers_Low;
 var array<Texture2D> Scope_Backgrounds;
 var KFPlayerController KFPC;
 var KFGameReplicationInfo MyKFGRI;
 var float RefireDelayAmount;
+
+//1 is the left display
+//0 is the right display.
+var float AmmoRed, AmmoYellow;
+var Standard_Ammo_Display XBR55_Display;
 
 simulated state WeaponBurstFiring
 {
@@ -62,7 +64,7 @@ simulated function TimeWeaponReloading()
     // get desired animation and play-rate
     AnimName = GetReloadAnimName( UseTacticalReload() );
 
-    if ( AmmoCount[0] <= 9 && AmmoCount[0] > 0)
+    if ( AmmoCount[0] <= MagazineCapacity[0] * AmmoRed && AmmoCount[0] > 0)
     {
     	//`log("You did a fast reload, good job!");
     	SpeedReloadRate = GetReloadRateScale() * 0.15; //The percentage to add to the rate the reload takes. If you set it to 0.15, it reloads 15% faster.
@@ -117,7 +119,13 @@ simulated function PlayWeaponEquip( float ModifiedEquipTime )
 		KFPC = KFPlayerController(Instigator.Controller);
 	}
 
-	UpdateAmmoDisplay(); //Make sure the display shows the proper ammo when we equip it.
+	if(XBR55_Display == none)
+	{
+		XBR55_Display = New class'Standard_Ammo_Display';
+	}
+
+	XBR55_Display.InitializeDisplay(KFPC, 1, 0, AmmoYellow, AmmoRed);
+	XBR55_Display.RunDisplay(Mesh);
 }
 
 //This function allows us to play a sound, in this case, the zoom sounds for the different weapons.
@@ -130,6 +138,12 @@ simulated function WeaponZoomSound(AkEvent ZoomSound)
             Instigator.PlaySoundBase( ZoomSound, true, false, false );
 		}
 	}
+}
+
+simulated function ConsumeAmmo( byte FireModeNum )
+{
+	super.ConsumeAmmo( FireModeNum );
+	XBR55_UpdateDisplay();
 }
 
 //This function runs continuously, and when iron sights are being used it does the drawing.
@@ -409,48 +423,6 @@ simulated function SetIronSights(bool bNewIronSights)
 	}
 }
 
-//Updates the display on the gun to show the correct ammunition, and also (later) change the color of the entire display to appropriately match the bullet display color.
-simulated function UpdateAmmoDisplay()
-{
-	local int AmmoCountLeft_Digit;
-	local int AmmoCountRight_Digit;
-
-	if( Instigator.isFirstPerson() )
-	{
-		AmmoCountLeft_Digit = int(Left(AmmoCount[0], 1));
-		AmmoCountRight_Digit = int(Right(AmmoCount[0], 1));
-
-		if ( AmmoCount[0] >= 99 )
-		{
-			Mesh.SetMaterial( 1, AmmoNumbers_High[9]); //Left Display
-			Mesh.SetMaterial( 0, AmmoNumbers_High[9]); //Right Display
-		}
-		else if ( AmmoCount[0] >= MagazineCapacity[0] * 0.51 ) //Previously was 0.75
-		{
-			Mesh.SetMaterial( 1, AmmoNumbers_High[AmmoCountLeft_Digit]); //Left Display
-			Mesh.SetMaterial( 0, AmmoNumbers_High[AmmoCountRight_Digit]); //Right Display
-		}
-		else if ( AmmoCount[0] < MagazineCapacity[0] * 0.5 && AmmoCount[0] > 9 ) //Previously was 0.74
-		{
-			Mesh.SetMaterial( 1, AmmoNumbers_Medium[AmmoCountLeft_Digit]); //Left Display
-			Mesh.SetMaterial( 0, AmmoNumbers_Medium[AmmoCountRight_Digit]); //Right Display
-		}
-		else if ( AmmoCount[0] <= 9)
-		{
-			if( AmmoCount[0] == 10 )
-			{
-				AmmoCountLeft_Digit = 1;
-			}
-			else
-			{
-				AmmoCountLeft_Digit = 0;	
-			}
-			Mesh.SetMaterial( 1, AmmoNumbers_Low[AmmoCountLeft_Digit]); //Left Display
-			Mesh.SetMaterial( 0, AmmoNumbers_Low[AmmoCountRight_Digit]); //Right Display
-		}
-	}
-}
-
 simulated state Reloading
 {
 	simulated function BeginState(name PreviousStateName)
@@ -463,7 +435,7 @@ simulated state Reloading
 	{
 		Super.ReloadComplete();
 
-		UpdateAmmoDisplay();
+		XBR55_UpdateDisplay();
 		LaserSight.LaserSightMeshComp.SetSkeletalMesh(SkeletalMesh'FX_Wep_Laser_MESH.WEP_Laser_1P_SK');
 		LaserSight.LaserDotMeshComp.SetStaticMesh(StaticMesh'FX_Wep_Laser_MESH.laser_dot_SM');
 	}
@@ -472,16 +444,15 @@ simulated state Reloading
 	{
 		Super.AbortReload();
 
-		UpdateAmmoDisplay();
+		XBR55_UpdateDisplay();
 		LaserSight.LaserSightMeshComp.SetSkeletalMesh(SkeletalMesh'FX_Wep_Laser_MESH.WEP_Laser_1P_SK');
 		LaserSight.LaserDotMeshComp.SetStaticMesh(StaticMesh'FX_Wep_Laser_MESH.laser_dot_SM');
 	}
 }
 
-simulated function ConsumeAmmo( byte FireModeNum )
+reliable client function XBR55_UpdateDisplay()
 {
-	super.ConsumeAmmo( FireModeNum );
-	UpdateAmmoDisplay();
+	XBR55_Display.RunDisplay(Mesh);
 }
 
 defaultproperties
@@ -538,7 +509,7 @@ defaultproperties
 	IronSightMeshFOVCompensationScale=3.8 //3.5
 
 	// Inventory / Grouping
-	InventorySize=7 //6
+	InventorySize=6 //6
 	GroupPriority=101
 	WeaponSelectTexture=Texture2D'XBR55_SOCOM.UI.XBR55_SOCOM_UI_v1'
 
@@ -583,7 +554,7 @@ defaultproperties
 	bHasFlashlight=true
 	bHasLaserSight=true
 
-	bWarnAIWhenAiming = false;
+	bWarnAIWhenAiming = false
 
 	AssociatedPerkClasses(0)=class'KFPerk_SWAT'
 
@@ -593,43 +564,9 @@ defaultproperties
 	// Weapon Upgrade stat boosts
 	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Damage1, Scale=1.15f), (Stat=EWUS_Weight, Add=1))))
 
-	//Ammo Counter Display Materials
-	//Maybe in the future just use 1 array for each color, and change the glow parameter? Definitely better than 30 fucking MICs. This needs to be
-	// replaced anyways with the Ammo Display class, which itself needs to have all that shit changed to using glow params.
-	AmmoNumbers_High[0] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_0';
-	AmmoNumbers_High[1] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_1';
-	AmmoNumbers_High[2] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_2';
-	AmmoNumbers_High[3] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_3';
-	AmmoNumbers_High[4] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_4';
-	AmmoNumbers_High[5] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_5';
-	AmmoNumbers_High[6] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_6';
-	AmmoNumbers_High[7] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_7';
-	AmmoNumbers_High[8] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_8';
-	AmmoNumbers_High[9] = MaterialInstanceConstant'MA37.AmmoCounter_75Up.High_9';
-
-	AmmoNumbers_Medium[0] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_0';
-	AmmoNumbers_Medium[1] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_1';
-	AmmoNumbers_Medium[2] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_2';
-	AmmoNumbers_Medium[3] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_3';
-	AmmoNumbers_Medium[4] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_4';
-	AmmoNumbers_Medium[5] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_5';
-	AmmoNumbers_Medium[6] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_6';
-	AmmoNumbers_Medium[7] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_7';
-	AmmoNumbers_Medium[8] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_8';
-	AmmoNumbers_Medium[9] = MaterialInstanceConstant'MA37.AmmoCounter_31_To_74.Medium_9';
-
-	AmmoNumbers_Low[0] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_0';
-	AmmoNumbers_Low[1] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_1';
-	AmmoNumbers_Low[2] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_2';
-	AmmoNumbers_Low[3] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_3';
-	AmmoNumbers_Low[4] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_4';
-	AmmoNumbers_Low[5] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_5';
-	AmmoNumbers_Low[6] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_6';
-	AmmoNumbers_Low[7] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_7';
-	AmmoNumbers_Low[8] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_8';
-	AmmoNumbers_Low[9] = MaterialInstanceConstant'MA37.AmmoCounter_30Below.Low_9';
-
-	//Textures for the scope background
+	AmmoRed = 0.3
+	AmmoYellow = 0.5
+	//Textures for the scope background. Needs to be changed to an enum.
 	Scope_Backgrounds[0] = Texture2D'XBR55_SOCOM.UI.XBR55_Reticle_Background' //Default background with a 16:9 Aspect Ratio
 	Scope_Backgrounds[1] = Texture2D'XBR55_SOCOM.UI.XBR55_Reticle_Background_4_3_AR' //Background with a 4:3 Aspect Ratio
 	Scope_Backgrounds[2] = Texture2D'XBR55_SOCOM.UI.XBR55_Reticle_Background_4_3_AR_Small_Circle' //Background with a 4:3 Aspect Ratio, but a smaller inner circle

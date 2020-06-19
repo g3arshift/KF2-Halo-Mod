@@ -11,7 +11,7 @@ DefaultProperties
 	WeaponClassPath="HaloMod_Weapons.KFWeap_SMG_M7"
 
 	BuyPrice=650
-	AmmoPricePerMag=42
+	AmmoPricePerMag=38 //42
 	ImagePath="M7.Textures.M7T_UI_v1"
 
 	EffectiveRange=50

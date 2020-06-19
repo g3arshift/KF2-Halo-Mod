@@ -392,7 +392,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_M6D'
 	FireInterval(DEFAULT_FIREMODE)=+0.305
-	InstantHitDamage(DEFAULT_FIREMODE)=250 //300
+	InstantHitDamage(DEFAULT_FIREMODE)=235 //300
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M6D'
 	PenetrationPower(DEFAULT_FIREMODE)=1.0
 	Spread(DEFAULT_FIREMODE)=0.01 //0.08
@@ -408,7 +408,7 @@ defaultproperties
 
 	// Fire Effects
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'M6D.Audio.Play_Fire_M6D_3P', FirstPersonCue=AkEvent'M6D.Audio.Play_Fire_M6D_1P')
-	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'M6C.Audio.Play_WEP_M6C_Handling_DryFire'
+	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'M392.Audio.Play_M392_Dryfire'
 
 	// Attachments
 	bHasIronSights=true

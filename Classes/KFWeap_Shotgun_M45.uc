@@ -42,7 +42,7 @@ defaultproperties
 	InstantHitDamage(DEFAULT_FIREMODE)=35.0 //33
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_M45'
 	PenetrationPower(DEFAULT_FIREMODE)=3.0 //2
-	FireInterval(DEFAULT_FIREMODE)=0.9 //0.85
+	FireInterval(DEFAULT_FIREMODE)=0.85 //0.9 //0.85
 	Spread(DEFAULT_FIREMODE)=0.08 //0.7
 	FireOffset=(X=30,Y=3,Z=-3)
 	NumPellets(DEFAULT_FIREMODE)=10

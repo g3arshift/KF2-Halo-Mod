@@ -56,12 +56,12 @@ ItemDescription="•Equipped with a 2x scope and an ammo display, the BR55 Battle 
 [KFWeap_AssaultRifle_XBR55_SOCOM]
 ItemName="XBR55/SOCOM"
 ItemCategory="Assault Rifle"
-ItemDescription="•An experimental model of the BR55 designed for ODST forces, this blacked out rifle is less effective than its counterpart but has an integrated silencer, night vision, a laser sight, and a choice between full auto and a two-round burst.\n•"We go feet first, sir!""
+ItemDescription="•An experimental model of the BR55 designed for ODST forces, this blacked out rifle is less powerful than its counterpart but has an integrated silencer, night vision, a laser sight, and a choice between full auto and a two-round burst.\n•"We go feet first, sir!""
 
 [KFWeap_SMG_M7]
 ItemName="M7 SMG"
 ItemCategory="Sub Machine Gun"
-ItemDescription="•Lightweight, cheap, and sporting a high rate of fire the M7 is perfect for mowing down zeds.\n•"The recoil isn’t bad but the M7 itself is relatively light. Not unpleasant to shoot, but a little tricky to control—it’s all about controlling the impulse.""
+ItemDescription="•Lightweight, cheap, and sporting a high rate of fire, the M7 is perfect for mowing down zeds.\n•"The recoil isn’t bad but the M7 itself is relatively light. Not unpleasant to shoot, but a little tricky to control—it’s all about controlling the impulse.""
 
 [KFWeap_RocketLauncher_M41]
 ItemName="M41 SPNKr"
@@ -71,7 +71,7 @@ ItemDescription="•Loaded with 102mm SSM rockets, the M41 "Spanker" is the perfec
 [KFWeap_AssaultRifle_M392]
 ItemName="M392 DMR"
 ItemCategory="Rifle"
-ItemDescription="•The DMR is a precision, high power, long range weapon perfect for popping zeds in the head. It's deadly at range, but a quick trigger finger and careful aim assure that even at short distances it packs a punch. \n•"You're on your own, Noble. Carter out.""
+ItemDescription="•The DMR is a precision, high power, long range weapon perfect for popping zeds in the head. It's deadly at range, but a quick trigger finger and careful aim ensures that even at short distances it packs a punch. \n•"You're on your own, Noble. Carter out.""
 
 [KFWeap_Rifle_SRS99_AM]
 ItemName="SRS99-AM Sniper Rifle"

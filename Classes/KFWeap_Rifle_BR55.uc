@@ -526,7 +526,7 @@ defaultproperties
 	AmmoYellow = 0.67
 	AmmoRed = 0.34
 
-	//Textures for the scope background
+	//Textures for the scope background. Needs to be changed to an enum.
 	Scope_Backgrounds[0] = Texture2D'BR55.UI.BR55_Reticle_Background' //Default background with a 16:9 Aspect Ratio
 	Scope_Backgrounds[1] = Texture2D'BR55.UI.BR55_Reticle_Background_4_3_AR' //Background with a 4:3 Aspect Ratio
 	Scope_Backgrounds[2] = Texture2D'BR55.UI.BR55_Reticle_Background_4_3_AR_Small_Circle' //Background with a 4:3 Aspect Ratio, but a smaller inner circle

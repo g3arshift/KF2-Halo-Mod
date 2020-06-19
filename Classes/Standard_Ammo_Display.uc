@@ -45,7 +45,15 @@ function InitializeDisplay(KFPlayerController KFPC_Ref, int LeftDigit_MatNum, in
 
 	AmmoYellow_Perc = AmmoYellow_Val;
 	AmmoRed_Perc = AmmoRed_Val;
-	KFPC = KFPC_Ref;
+
+	if(KFPC_Ref == none)
+	{
+		`log("Ammo Display has no KFPC Reference!");
+	}
+	else
+	{
+		KFPC = KFPC_Ref;
+	}
 
 	//Ammo Counter Display Materials
 	//For some reason this doesn't work when set in default properties

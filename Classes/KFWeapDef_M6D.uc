@@ -14,7 +14,7 @@ DefaultProperties
 	WeaponClassPath="HaloMod_Weapons.KFWeap_Pistol_M6D"
 
 	BuyPrice=2500
-	AmmoPricePerMag=48
+	AmmoPricePerMag=135
 	ImagePath="M6D.Textures.M6D_UI_v1"
 
 	EffectiveRange=100

@@ -22,6 +22,9 @@ var int SniperRound_Distance;
 var TextureMovie Scope_RocketAmmo_Movie;
 var Texture2D Scope_RocketAmmo;
 
+var AkEvent NVG_On;
+var AkEvent NVG_Off;
+
 
 simulated function PlayWeaponEquip( float ModifiedEquipTime )
 {
@@ -31,14 +34,15 @@ simulated function PlayWeaponEquip( float ModifiedEquipTime )
 		KFPC = KFPlayerController(Instigator.Controller);
 	}
 }
-//This function allows us to play a sound, in this case, the zoom sounds for the different weapons.
-simulated function WeaponZoomSound(AkEvent ZoomSound)
+
+//This function allows us to play a sound.
+simulated function PlayWeaponSound(AkEvent Sound)
 {
 	if( Instigator != None && !bSuppressSounds )
 	{
-		if ( ZoomSound != None && Instigator.IsLocallyControlled() && Instigator.IsFirstPerson() )
+		if ( Sound != None && Instigator.IsLocallyControlled() && Instigator.IsFirstPerson() )
 		{
-            Instigator.PlaySoundBase( ZoomSound, true, false, false );
+            Instigator.PlaySoundBase( Sound, true, false, false );
 		}
 	}
 }
@@ -74,19 +78,21 @@ simulated function SetIronSights(bool bNewIronSights)
 		ZoomOut=AkEvent'M392.Audio.Play_DMR_Zoom_Out';
 		if(IsTimerActive('ZoomTimer'))
 		{
-			WeaponZoomSound(ZoomOut);
+			PlayWeaponSound(ZoomOut);
 			Cleartimer('ZoomTimer');
 		}
 		KFPC.SetNightVision(false);
+		Cleartimer('InitialZoom');
 	}
 	else
 	{
 		ZoomIn=AkEvent'M392.Audio.Play_DMR_Zoom_In';
 		if(!IsTimerActive('ZoomTimer'))
 		{
-			WeaponZoomSound(ZoomIn);
+			PlayWeaponSound(ZoomIn);
 			SetTimer(300.0, false, 'ZoomTimer');
 		}
+		SetTimer(0.2 ,false ,'InitialZoom');
 	}
 }
 
@@ -499,10 +505,23 @@ simulated function DrawHUD( HUD H, Canvas C )
 			{
 				KFPC.SetNightVision(true); //Maybe try using the Effect_NightVision Material. It's defined in FX_Mat_Lib.KF_PP_Master
 				KFPC.bGamePlayDOFActive = false;
+
+				if(!IsTimerActive('NVGOnTimer'))
+				{
+					SetTimer(300, false, 'NVGOnTimer');
+					PlayWeaponSound(NVG_On);
+					ClearTimer('NVGOffTimer');
+				}
 			}
 			else
 			{
 				KFPC.SetNightVision(false);
+				ClearTimer('NVGOnTimer');
+				if (!IsTimerActive('NVGOffTimer') && !IsTimerActive('InitialZoom'))
+				{
+					PlayWeaponSound(NVG_Off);
+					SetTimer(300, false, 'NVGOffTimer');
+				}
 			}
 
 			//Round HUD Drawing
@@ -691,6 +710,9 @@ defaultproperties
 	HippedRecoilModifier=3.0
 	IronSightMeshFOVCompensationScale=5.0
 
+	NVG_On = AkEvent'SRS99_AM.Audio.Play_SRS99_NVG_On'
+	NVG_Off = AkEvent'SRS99_AM.Audio.Play_SRS99_NVG_Off'
+
 	// Inventory
 	InventorySize=10
 	GroupPriority=150
@@ -699,13 +721,13 @@ defaultproperties
 	// DEFAULT_FIREMODE
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
-	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
+	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_SRS99_AM'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_SRS99_AM'
 	FireInterval(DEFAULT_FIREMODE)=0.69 //0.66
 	PenetrationPower(DEFAULT_FIREMODE)=10 //5.0
 	Spread(DEFAULT_FIREMODE)=0.0
-	InstantHitDamage(DEFAULT_FIREMODE)=475 //550.0 //950
+	InstantHitDamage(DEFAULT_FIREMODE)=500 //475 //550.0 //950
 
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring

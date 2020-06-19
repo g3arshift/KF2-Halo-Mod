@@ -2152,6 +2152,58 @@
 										</GroupingList>
 									</GroupingInfo>
 								</SwitchContainer>
+								<Sound Name="SRS99_NVG_Off" ID="{CB47CC14-82D5-4E9A-A52E-F6FC0C2008C3}" ShortID="60578316" Type="SoundFX">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SRS99_NVG_Off" ID="{8F639153-8A39-4BA1-BAAE-60523E19C5B9}" ShortID="302607594">
+											<Language>SFX</Language>
+											<AudioFile>SRS99_NVG_Off.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="SRS99_NVG_Off" ID="{8F639153-8A39-4BA1-BAAE-60523E19C5B9}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="SRS99_NVG_On" ID="{A07EABE1-F3CA-430A-8A04-2D3F3D1E52C4}" ShortID="729640860" Type="SoundFX">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>5</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{5843BE59-CB0F-45A3-A666-A88422A1C88E}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{72BA4AEC-895E-4157-8284-E2853D910951}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="SRS99_NVG_On" ID="{300C3D77-7CBC-423A-9921-37BFA11A5BF1}" ShortID="4157">
+											<Language>SFX</Language>
+											<AudioFile>SRS99_NVG_On.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="SRS99_NVG_On" ID="{300C3D77-7CBC-423A-9921-37BFA11A5BF1}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
 							</ChildrenList>
 						</ActorMixer>
 						<ActorMixer Name="3P" ID="{089679F2-12EA-4F22-85A2-A157DF66EFFD}" ShortID="783715912">

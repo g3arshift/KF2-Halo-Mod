@@ -445,7 +445,7 @@ defaultproperties
 	DOF_FG_ExpFalloff=0
 
 	// FOV
-	MeshFOV=80
+	MeshFOV=75 //80
 	MeshIronSightFOV=52
 	PlayerIronSightFOV=73
 

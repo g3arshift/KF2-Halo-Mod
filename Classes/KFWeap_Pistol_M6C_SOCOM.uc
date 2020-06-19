@@ -390,7 +390,7 @@ defaultproperties
 
 	// Fire Effects
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'M6C-SOCOM.Audio.Play_Fire_3P', FirstPersonCue=AkEvent'M6C-SOCOM.Audio.Play_Fire_1P')
-	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'M6C.Audio.Play_WEP_M6C_Handling_DryFire'
+	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'M392.Audio.Play_M392_Dryfire'
 
 	// Attachments
 	bHasIronSights=true

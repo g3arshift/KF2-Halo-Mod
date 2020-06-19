@@ -91,10 +91,10 @@ defaultproperties
 	//Fire Effects
 	//TODO: Replace fire sound effects with custom M6D sounds.
 	WeaponFireSnd(DEFAULT_FIREMODE)=(DefaultCue=AkEvent'M6C.Audio.Play_WEP_M6C_Fire_3P', FirstPersonCue=AkEvent'M6C.Audio.Play_WEP_M6C_Fire_1P')
-	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'M6C.Audio.Play_WEP_M6C_Handling_DryFire'
+	WeaponDryFireSnd(DEFAULT_FIREMODE)=AkEvent'M392.Audio.Play_M392_Dryfire'
 
 	WeaponFireSnd(ALTFIRE_FIREMODE)=(DefaultCue=AkEvent'M6C.Audio.Play_WEP_M6C_Fire_3P', FirstPersonCue=AkEvent'M6C.Audio.Play_WEP_M6C_Fire_1P')
-	WeaponDryFireSnd(ALTFIRE_FIREMODE)=AkEvent'M6C.Audio.Play_WEP_M6C_Handling_DryFire'
+	WeaponDryFireSnd(ALTFIRE_FIREMODE)=AkEvent'M392.Audio.Play_M392_Dryfire'
 
 	// Attachments
 	bHasIronSights=true

@@ -11,8 +11,8 @@ class KFProj_Bullet_SRS99_AM extends KFProj_Bullet
 
 defaultproperties
 {
-	MaxSpeed=30000.0
-	Speed=30000.0
+	MaxSpeed=35000.0 //30000.0
+	Speed=35000.0 //30000.0
 
 	DamageRadius=0
 

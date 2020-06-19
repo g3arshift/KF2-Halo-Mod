@@ -604,7 +604,7 @@ defaultproperties
 
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
-	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None
+	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_None=AkEvent'M7S.Audio.Play_dryfire'
 
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_M41'
