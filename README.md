@@ -14,21 +14,21 @@ Additionally, if you were previously subscribed to my 'M6C Pistol' you **need** 
 This is the first phase of a multi-part mod for the game. It contains 15 new weapons, with extensive effort being put into making the weapons both feel as they did in the Halo games they come from, and also to fit well into the balance of Killing Floor 2.
 
 The mod currently contains the following weapons:
->
-Halo 1 Magnum - M6D
-Halo 1 Anniversary Shotgun - M90 CAWS
-Halo 2 Anniversary Battle Rifle - BR55
-Halo 2 Anniversary SMG - M7
-Halo 3 Magnum - M6C/ M6C Dual
-Halo 3: ODST Magnum - M6C/SOCOM
-Halo 3: ODST SMG - M7S
-Halo: Reach Rocket Launcher - M41
-Halo: Reach Shotgun - M45
-Halo: Reach Grenade Launcher - M319 IGL
-Halo: Reach DMR - M392
-Halo: Reach Assault Rifle - MA37
-Halo: Reach Sniper Rifle - SRS99-AM
-Expanded Concept from Halo: Contact Harvest - XBR55/SOCOM
+
+- Halo 1 Magnum - M6D
+- Halo 1 Anniversary Shotgun - M90 CAWS
+- Halo 2 Anniversary Battle Rifle - BR55
+- Halo 2 Anniversary SMG - M7
+- Halo 3 Magnum - M6C/ M6C Dual
+- Halo 3: ODST Magnum - M6C/SOCOM
+- Halo 3: ODST SMG - M7S
+- Halo: Reach Rocket Launcher - M41
+- Halo: Reach Shotgun - M45
+- Halo: Reach Grenade Launcher - M319 IGL
+- Halo: Reach DMR - M392
+- Halo: Reach Assault Rifle - MA37
+- Halo: Reach Sniper Rifle - SRS99-AM
+- Expanded Concept from Halo: Contact Harvest - XBR55/SOCOM
 
 There are all new mechanics included in these weapons, mimicking their functionality in the games they come from, as well as some all new animations made from scratch, completely custom audio, and they are completely free and open source.
 
