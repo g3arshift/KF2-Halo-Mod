@@ -1,9 +1,11 @@
 # KF2-Halo-Mod
 ##**EXTREMELY IMPORTANT INFO, DO NOT SKIP!!!**
 In order to get the sound for this weapon you need to go to
->Documents\my games\KillingFloor2\KFGame\Cache\2135416557\BrewedPC>
+>Documents\my games\KillingFloor2\KFGame\Cache\2135416557\BrewedPC
+
 and copy the 'WwiseAudio' folder into
->Steam\steamapps\common\killingfloor2\KFGame\BrewedPC>
+>Steam\steamapps\common\killingfloor2\KFGame\BrewedPC
+
 Additionally, if you were previously subscribed to my 'M6C Pistol' you **need** to unsubscribe from it, or delete folder number 1753171331 from your cache folder.
 
 ##Halo Mod - Weapons
