@@ -75,11 +75,12 @@ then add the following lines below it
 >Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_XBR55_SOCOM
 
 
-##ISSUE TRACKING
+## ISSUE TRACKING
 Please submit any issues you may have to the bug tracking on this page.
 
 
-##CREDITS
+## CREDITS
+
 M7S Model/ Textures - Mattisafish, [Ishi](https://steamcommunity.com/id/mendicat)
 M7 Models/ Textures - [Ishi](https://steamcommunity.com/id/mendicat)
 BR55 Model/ Textures - [Tillice](https://steamcommunity.com/id/Tillice)
