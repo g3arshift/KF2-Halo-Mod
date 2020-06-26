@@ -98,8 +98,8 @@ Models/ Textures - Bungie
 Custom Animations/ Programming/ Rigging/ Texture Alterations/ UI Textures/ Everything Else - [Gear Shift](https://steamcommunity.com/id/g3arshift/)
 
 Special Thanks to:
-[Magonus](https://steamcommunity.com/id/magonus)
 
+[Magonus](https://steamcommunity.com/id/magonus)
 [Dragontear](https://steamcommunity.com/profiles/76561198057043296)
 
 [Kill Master](https://steamcommunity.com/id/KlLLMaster)
