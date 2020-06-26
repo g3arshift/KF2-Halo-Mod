@@ -82,12 +82,19 @@ Please submit any issues you may have to the bug tracking on this page.
 ## CREDITS
 
 M7S Model/ Textures - Mattisafish, [Ishi](https://steamcommunity.com/id/mendicat)
+
 M7 Models/ Textures - [Ishi](https://steamcommunity.com/id/mendicat)
+
 BR55 Model/ Textures - [Tillice](https://steamcommunity.com/id/Tillice)
+
 M90 Model/ Textures - [DangerWasp](https://steamcommunity.com/id/dangerwasp)
+
 M6D Model/ Textures - [DangerWasp](https://steamcommunity.com/id/dangerwasp)
+
 Audio - Bungie
+
 Models/ Textures - Bungie
+
 Custom Animations/ Programming/ Rigging/ Texture Alterations/ UI Textures/ Everything Else - [Gear Shift](https://steamcommunity.com/id/g3arshift/)
 Special Thanks to:
 [Magonus](https://steamcommunity.com/id/magonus)
