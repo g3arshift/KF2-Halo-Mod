@@ -56,22 +56,23 @@ to launch arguments. However, as this mod replaces the trader archetype in order
 
 To use this on a Zedternal Reborn server **DON'T** add it as a mutator, instead go into the ZedternalReborn.ini and navigate to the section containing 'Weapon_CustomWeaponDef=Class.Weapon_Definition_Example'
 then add the following lines below it
-Weapon_CustomWeaponDef=KFWeapDef_BR55
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_BR55
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M319
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M392
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M41
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M45
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M6C
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M6C_SOCOM
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M6CDual
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M6D
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M7
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M7S
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M90
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_MA37
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_SRS99_AM
-Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_XBR55_SOCOM
+
+>Weapon_CustomWeaponDef=KFWeapDef_BR55
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_BR55
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M319
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M392
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M41
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M45
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M6C
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M6C_SOCOM
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M6CDual
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M6D
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M7
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M7S
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_M90
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_MA37
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_SRS99_AM
+>Weapon_CustomWeaponDef=HaloMod_Weapons.KFWeapDef_XBR55_SOCOM
 
 
 ##ISSUE TRACKING
