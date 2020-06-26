@@ -48,6 +48,10 @@ Come join us on the official Halo Mod servers! We have a Zedternal server, two e
 
 
 ## USAGE
+
+**Initialization**
+Go to the [steam page](https://steamcommunity.com/sharedfiles/filedetails/?id=2135416557) and subscribe to the item first.
+
 **Single Player Quick Start**
 1. Click the Subscribe button above
 2. Wait for Steam to finish downloading
