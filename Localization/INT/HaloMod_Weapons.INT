@@ -68,7 +68,7 @@ ItemName="M41 SPNKr"
 ItemCategory="Rocket Launcher"
 ItemDescription="•Loaded with 102mm SSM rockets, the M41 "Spanker" is the perfect delivery system for two heavy hitting back-to-back rockets.\n•"Knowing you can pull the trigger and it'll make a loud noise is comforting, but if you want results? You use a rocket launcher.""
 
-[KFWeap_AssaultRifle_M392]
+[KFWeap_Rifle_M392]
 ItemName="M392 DMR"
 ItemCategory="Rifle"
 ItemDescription="•The DMR is a precision, high power, long range weapon perfect for popping zeds in the head. It's deadly at range, but a quick trigger finger and careful aim ensures that even at short distances it packs a punch. \n•"You're on your own, Noble. Carter out.""

@@ -17,7 +17,7 @@ simulated function PostBeginPlay()
 
 simulated function UpdateTI()
 {
-	KFGameReplicationInfo(WorldInfo.GRI).TraderItems=KFGFxObject_TraderItems'Shared.Archetypes.HaloTraderItems';	
+	KFGameReplicationInfo(WorldInfo.GRI).TraderItems=KFGFxObject_TraderItems'Shared.Archetypes.HaloTraderItems';
 }
 
 /*reliable client function UpdateAudioFiles()

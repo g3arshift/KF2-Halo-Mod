@@ -11,7 +11,7 @@ class KFWeapDef_M392 extends KFWeaponDefinition
 
 DefaultProperties
 {
-	WeaponClassPath="HaloMod_Weapons.KFWeap_AssaultRifle_M392"
+	WeaponClassPath="HaloMod_Weapons.KFWeap_Rifle_M392"
 
 	BuyPrice=1500
 	AmmoPricePerMag=50
