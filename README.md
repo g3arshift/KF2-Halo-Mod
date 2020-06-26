@@ -1,5 +1,7 @@
 # KF2-Halo-Mod
+
 ##**EXTREMELY IMPORTANT INFO, DO NOT SKIP!!!**##
+
 In order to get the sound for this weapon you need to go to
 >Documents\my games\KillingFloor2\KFGame\Cache\2135416557\BrewedPC
 
