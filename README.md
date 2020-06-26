@@ -1,6 +1,6 @@
 # KF2-Halo-Mod
 
-##EXTREMELY IMPORTANT INFO, DO NOT SKIP!!!##
+## EXTREMELY IMPORTANT INFO, DO NOT SKIP!!!
 
 In order to get the sound for this weapon you need to go to
 >Documents\my games\KillingFloor2\KFGame\Cache\2135416557\BrewedPC
@@ -10,11 +10,11 @@ and copy the 'WwiseAudio' folder into
 
 Additionally, if you were previously subscribed to my 'M6C Pistol' you **need** to unsubscribe from it, or delete folder number 1753171331 from your cache folder.
 
-##Halo Mod - Weapons
+## Halo Mod - Weapons
 This is the first phase of a multi-part mod for the game. It contains 15 new weapons, with extensive effort being put into making the weapons both feel as they did in the Halo games they come from, and also to fit well into the balance of Killing Floor 2.
 
 The mod currently contains the following weapons:
-
+>
 Halo 1 Magnum - M6D
 Halo 1 Anniversary Shotgun - M90 CAWS
 Halo 2 Anniversary Battle Rifle - BR55
@@ -35,11 +35,11 @@ There are all new mechanics included in these weapons, mimicking their functiona
 Make sure to join our [discord server here!](https://discord.gg/9AXPjaQ) Sneak peeks at content updates are regularly posted there as well as development progress on new weapons, characters, and more!
 
 
-##SERVERS
+## SERVERS
 Come join us on the official Halo Mod servers! We have two Zedternal servers, two endless servers, and two survival servers. Use one of the links below!
 
 
-#USAGE
+## USAGE
 **Single Player Quick Start**
 1. Click the Subscribe button above
 2. Wait for Steam to finish downloading
@@ -49,7 +49,9 @@ Come join us on the official Halo Mod servers! We have two Zedternal servers, tw
 >open KF-BurningParis?Game=KFGameContent.KFGameInfo_Survival?difficulty=3?Gamelength=1?Mutator=HaloMod_Weapons.WeaponsActive
 
 For server usage add
+
 >mutator=HaloMod_Weapons.WeaponsActive
+
 to launch arguments. However, as this mod replaces the trader archetype in order to use it in conjunction with other weapon mods you will either need to run the [Zedternal Reborn](https://steamcommunity.com/sharedfiles/filedetails/?id=2058869377) game mode or use the [Trader Inventory Mutator.](https://steamcommunity.com/sharedfiles/filedetails/?id=1131663339)
 
 To use this on a Zedternal Reborn server **DON'T** add it as a mutator, instead go into the ZedternalReborn.ini and navigate to the section containing 'Weapon_CustomWeaponDef=Class.Weapon_Definition_Example'
