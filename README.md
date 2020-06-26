@@ -36,7 +36,15 @@ Make sure to join our [discord server here!](https://discord.gg/9AXPjaQ) Sneak p
 
 
 ## SERVERS
-Come join us on the official Halo Mod servers! We have two Zedternal servers, two endless servers, and two survival servers. Use one of the links below!
+Come join us on the official Halo Mod servers! We have a Zedternal server, two endless servers, two survival servers, and two servers with friendly fire on. Use one of the links below!
+
+[GSG - Zedternal Reborn Hardcore](steam://rungameid/232090/connect/73.180.142.115:7783/)
+[GSG - Official Halo Server 1](steam://rungameid/232090/connect/73.180.142.115:7789/)
+[GSG - Official Halo Server 2](steam://rungameid/232090/connect/73.180.142.115:7791/)
+[GSG - Official Halo Server 3](steam://rungameid/232090/connect/73.180.142.115:7793/)
+[GSG - Official Halo Server 4](steam://rungameid/232090/connect/73.180.142.115:7795/)
+[GSG - Official Halo Server 5](steam://rungameid/232090/connect/73.180.142.115:7797/)
+[GSG - Official Halo Server 6](steam://rungameid/232090/connect/73.180.142.115:7799/)
 
 
 ## USAGE
