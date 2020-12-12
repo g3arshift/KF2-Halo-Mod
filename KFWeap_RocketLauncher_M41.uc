@@ -20,11 +20,13 @@ var CanvasIcon BulletCanvas, BulletMovieCanvas;
 var FlavorIcon BulletFlavor, BulletMovieFlavor;
 var array<int> BulletDistanceCollection;
 
+var String AmmoText;
+
 var Halo_Weapon_UI M41_UI;
 
 simulated function PlayWeaponEquip( float ModifiedEquipTime )
 {
-	super.PlayWeaponEquip(ModifiedEquipTime);p
+	super.PlayWeaponEquip(ModifiedEquipTime);
 
 	if(M41_UI == none)
 	{
@@ -78,7 +80,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 	if( bUsingSights )
 	{
 		M41_UI.RunWeaponUI(C);
-		M41_UI.DrawAmmoUI(C, 2, BulletDistanceCollection, BulletFlavor, BulletMovieFlavor, BulletMovie);
+		M41_UI.DrawAmmoUI(C, 2, BulletDistanceCollection, BulletFlavor, BulletMovieFlavor, BulletMovie, AmmoText);
 	}
 }
 
@@ -147,7 +149,7 @@ defaultproperties
 	MuzzleFlashTemplateName="M41.Archetypes.Wep_M41_MuzzleFlash"
 
 	// Ammo
-	MagazineCapacity[0]=4
+	MagazineCapacity[0]=2
 	SpareAmmoCapacity[0]=8
 	InitialSpareMags[0]=1
 	AmmoPickupScale[0]=1.0
@@ -230,6 +232,8 @@ defaultproperties
 
 	BulletCanvas = (Texture=Texture2D'M41.UI.M41_New_Rocket', U=0, V=0, UL=2320, VL=600)
 	BulletMovieCanvas = (Texture=TextureMovie'M41.UI.M41_New_Rocket_Movie', U=0, V=0, UL=2320, VL=600)
+
+	AmmoText = "Rockets"
 
 	BulletDistanceCollection[0] = 48 //24 //4_3
 	BulletDistanceCollection[1] = 40 //20 //5_4

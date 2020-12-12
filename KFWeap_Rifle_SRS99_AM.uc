@@ -23,6 +23,7 @@ var TextureMovie BulletMovie;
 var CanvasIcon BulletCanvas, BulletMovieCanvas;
 var FlavorIcon BulletFlavor, BulletMovieFlavor;
 var array<int> BulletDistanceCollection;
+var String AmmoText;
 
 var Halo_Weapon_UI SRS99_UI;
 
@@ -173,7 +174,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 	if( bUsingSights )
 	{
 		SRS99_UI.RunWeaponUI(C);
-		SRS99_UI.DrawAmmoUI(C, 4, BulletDistanceCollection, BulletFlavor, BulletMovieFlavor, BulletMovie);
+		SRS99_UI.DrawAmmoUI(C, 4, BulletDistanceCollection, BulletFlavor, BulletMovieFlavor, BulletMovie, AmmoText);
 	}
 }
 
@@ -323,6 +324,8 @@ defaultproperties
 	RangeFinderCanvas = (Texture=Texture2D'SRS99_AM.UI.SRS99_AM_Sight_HD_v2', U=30, V=7, UL=2004, VL=2116)
 	LeftElevCanvas = (Texture=Texture2D'SRS99_AM.UI.SRS99_AM_Sight_HD_v2', U=2205, V=108, UL=137, VL=2380)
 	RightElevCanvas = (Texture=Texture2D'SRS99_AM.UI.SRS99_AM_Sight_HD_v2', U=2397, V=108, UL=137, VL=2380)
+
+	AmmoText = "Rounds"
 
 	BulletDistanceCollection[0] = 24 //12 //4_3
 	BulletDistanceCollection[1] = 40 //20 //5_4

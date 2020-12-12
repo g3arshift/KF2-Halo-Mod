@@ -365,7 +365,7 @@ function UpdateReticle(Canvas PlayerUI)
 
 //TODO: Clean this absolute shitshow of code up. It suffers horrendously from code repetition and is hellishly difficult to make adjustments in as a result, but
 // it's four in the morning and I'm just not going to deal with this right now. It's uglier than sin but it works. Sidenote, fuck 21:9. You're not a real aspect ratio.
-function DrawAmmoUI(out Canvas PlayerUI, int AmmoMax, array<int> BulletDistanceCollection, FlavorIcon RegularAmmo, FlavorIcon FlashingAmmo, TextureMovie BulletMovie)
+function DrawAmmoUI(out Canvas PlayerUI, int AmmoMax, array<int> BulletDistanceCollection, FlavorIcon RegularAmmo, FlavorIcon FlashingAmmo, TextureMovie BulletMovie, String AmmoText)
 {
 	local int NumFlashing_ToDraw;
 	local int NumRegular_ToDraw;
@@ -443,7 +443,7 @@ function DrawAmmoUI(out Canvas PlayerUI, int AmmoMax, array<int> BulletDistanceC
 				PlayerUI.SetDrawColor(9, 145, 243, 255);
 				PlayerUI.SetPos(RegularAmmo.AR_4_3.X * BackgroundScale, RegularAmmo.AR_4_3.Y * BackgroundScale);
 				PlayerUI.Font = Font'Shared.UI.Halo_UI_Font';
-				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]$" rounds", false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
+				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]@AmmoText, false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
 			}
 			else
 			{
@@ -469,7 +469,7 @@ function DrawAmmoUI(out Canvas PlayerUI, int AmmoMax, array<int> BulletDistanceC
 				PlayerUI.SetDrawColor(9, 145, 243, 255);
 				PlayerUI.SetPos(RegularAmmo.AR_5_4.X * BackgroundScale, RegularAmmo.AR_5_4.Y * BackgroundScale);
 				PlayerUI.Font = Font'Shared.UI.Halo_UI_Font';
-				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]$" rounds", false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
+				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]@AmmoText, false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
 			}
 			else
 			{
@@ -495,7 +495,7 @@ function DrawAmmoUI(out Canvas PlayerUI, int AmmoMax, array<int> BulletDistanceC
 				PlayerUI.SetDrawColor(9, 145, 243, 255);
 				PlayerUI.SetPos(RegularAmmo.AR_3_2.X * BackgroundScale, RegularAmmo.AR_3_2.Y * BackgroundScale);
 				PlayerUI.Font = Font'Shared.UI.Halo_UI_Font';
-				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]$" rounds", false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
+				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]@AmmoText, false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
 			}
 			else
 			{
@@ -521,7 +521,7 @@ function DrawAmmoUI(out Canvas PlayerUI, int AmmoMax, array<int> BulletDistanceC
 				PlayerUI.SetDrawColor(9, 145, 243, 255);
 				PlayerUI.SetPos(RegularAmmo.AR_16_9.X * BackgroundScale, RegularAmmo.AR_16_9.Y * BackgroundScale);
 				PlayerUI.Font = Font'Shared.UI.Halo_UI_Font';
-				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]$" rounds", false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
+				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]@AmmoText, false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
 			}
 			else
 			{
@@ -547,7 +547,7 @@ function DrawAmmoUI(out Canvas PlayerUI, int AmmoMax, array<int> BulletDistanceC
 				PlayerUI.SetDrawColor(9, 145, 243, 255);
 				PlayerUI.SetPos(RegularAmmo.AR_16_10.X * BackgroundScale, RegularAmmo.AR_16_10.Y * BackgroundScale);
 				PlayerUI.Font = Font'Shared.UI.Halo_UI_Font';
-				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]$" rounds", false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
+				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]@AmmoText, false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
 			}
 			else
 			{
@@ -573,7 +573,7 @@ function DrawAmmoUI(out Canvas PlayerUI, int AmmoMax, array<int> BulletDistanceC
 				PlayerUI.SetDrawColor(9, 145, 243, 255);
 				PlayerUI.SetPos(RegularAmmo.AR_32_9.X * BackgroundScale, RegularAmmo.AR_32_9.Y * BackgroundScale);
 				PlayerUI.Font = Font'Shared.UI.Halo_UI_Font';
-				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]$" rounds", false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
+				PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]@AmmoText, false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
 			}
 			else
 			{
@@ -601,7 +601,7 @@ function DrawAmmoUI(out Canvas PlayerUI, int AmmoMax, array<int> BulletDistanceC
 					PlayerUI.SetDrawColor(9, 145, 243, 255);
 					PlayerUI.SetPos(RegularAmmo.AR_21_9.X * BackgroundScale, RegularAmmo.AR_21_9.Y * BackgroundScale);
 					PlayerUI.Font = Font'Shared.UI.Halo_UI_Font';
-					PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]$" rounds", false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
+					PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]@AmmoText, false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
 				}
 				else
 				{
@@ -628,7 +628,7 @@ function DrawAmmoUI(out Canvas PlayerUI, int AmmoMax, array<int> BulletDistanceC
 					PlayerUI.SetDrawColor(9, 145, 243, 255);
 					PlayerUI.SetPos(RegularAmmo.AR_16_9.X * BackgroundScale, RegularAmmo.AR_16_9.Y * BackgroundScale);
 					PlayerUI.Font = Font'Shared.UI.Halo_UI_Font';
-					PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]$" rounds", false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
+					PlayerUI.DrawText(KFWeap.AmmoCount[KFWeap.CurrentFireMode]@AmmoText, false, AmmoTextScaling_X * BackgroundScale, AmmoTextScaling_Y * BackgroundScale);
 				}
 				else
 				{
