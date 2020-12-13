@@ -168,8 +168,8 @@ defaultproperties
 	RecoilMaxPitchLimit=1500
 	RecoilMinPitchLimit=64785
 	RecoilISMaxYawLimit=50
-	RecoilISMinYawLimit=65485
 	RecoilISMaxPitchLimit=500
+	RecoilISMinYawLimit=65485
 	RecoilISMinPitchLimit=65485
 	RecoilViewRotationScale=0.8
 	FallingRecoilModifier=1.5
