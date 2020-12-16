@@ -18,9 +18,9 @@ var float AmmoRed, AmmoYellow;
 
 var array<Texture2D> UIBackgrounds;
 var CanvasIcon Reticle_Neutral, Reticle_Enemy, Reticle_Headshot, Reticle_Friendly;
-var CanvasIcon BlackCircleCanvas, VertChevronsCanvas, VertRangefinderCanvas, LeftRangefinderCanvas, RightRangefinderCanvas, ZoomBarCanvas;
+var CanvasIcon BlackCircleCanvas, VertChevronCanvas, VertRangefinderCanvas, LeftRangefinderCanvas, RightRangefinderCanvas, ZoomBarCanvas;
 var array<FlavorIcon> FlavorIcons;
-var FlavorIcon BlackCircleFlavor, VertChevronFlavor, VertRangefinderFlavor, LeftRangefinderFlavor, RightRangerinderFlavor, ZoomBarFlavor;
+var FlavorIcon BlackCircleFlavor, VertChevronFlavor, VertRangefinderFlavor, LeftRangefinderFlavor, RightRangefinderFlavor, ZoomBarFlavor;
 
 var Halo_Weapon_UI M392_UI;
 
@@ -50,12 +50,12 @@ simulated function PlayWeaponEquip( float ModifiedEquipTime )
 		RightRangefinderFlavor = New class'FlavorIcon';
 		ZoomBarFlavor = New class'FlavorIcon';
 
-		BlackCircleFlavor.MakeFlavorIcon(652, 412, 906, 650, 1067, 587, 904, 344, 1431, 711, 1344, 344, 2184, 344, 0.79150, 0.96138, 0.95881, 0.96653, 1.25868, 0.96653, 0.96653);
-		VertChevronFlavor.MakeFlavorIcon(955, 769, 1274, 1076, 1435, 1037, 1275, 800, 1913, 1309, 1715, 800, 2555, 800, 0.2, 0.26, 0.22, 0.22, 0.29, 0.22, 0.22);
-		VertRangefinderFlavor.MakeFlavorIcon(781, 769, 1063, 1076 1238, 1037, 1078, 800, 1652, 1309, 1517, 798, 2357, 798, 0.20466, 0.26165, 0.22538, 0.22538, 0.30569, 0.22538, 0.22538);
-		LeftRangefinderFlavor.MakeFlavorIcon(667, 720, 925, 1024, 1090, 960, 930, 720, 1463, 1197, 1396, 720, 2209, 720, 0.2, 0.2475, 0.24416, 0.24416, 0.31916, 0.24416, 0.24416);
-		RightRangeFinderFlavor.MakeFlavorIcon(1013, 720, 1338, 1024, 1497, 960, 1337, 720, 1994, 1197, 1778, 720, 2618, 720, 0.2, 0.2475, 0.24416, 0.24416, 0.31916, 0.24416, 0.24416);
-		ZoomBarFlavor.MakeFlavorIcon(1059, 466, 1397, 712, 1558, 650, 1404, 412, 2086, 793, 1845, 412, 2685, 412, 0.18947, 0.22339, 0.22339, 0.2239, 0.26783, 0.22339, 0.22339);
+		BlackCircleFlavor.MakeFlavorIcon(BlackCircleCanvas, 652, 412, 906, 650, 1067, 587, 904, 344, 1431, 711, 1344, 344, 2184, 344, 0.79150, 0.96138, 0.95881, 0.96653, 1.25868, 0.96653, 0.96653);
+		VertChevronFlavor.MakeFlavorIcon(VertChevronCanvas, 955, 769, 1274, 1076, 1435, 1037, 1275, 800, 1913, 1309, 1715, 800, 2555, 800, 0.2, 0.26, 0.22, 0.22, 0.29, 0.22, 0.22);
+		VertRangefinderFlavor.MakeFlavorIcon(VertRangefinderCanvas, 781, 769, 1063, 1076, 1238, 1037, 1078, 800, 1652, 1309, 1517, 798, 2357, 798, 0.20466, 0.26165, 0.22538, 0.22538, 0.30569, 0.22538, 0.22538);
+		LeftRangefinderFlavor.MakeFlavorIcon(LeftRangefinderCanvas, 667, 720, 925, 1024, 1090, 960, 930, 720, 1463, 1197, 1396, 720, 2209, 720, 0.2, 0.2475, 0.24416, 0.24416, 0.31916, 0.24416, 0.24416);
+		RightRangeFinderFlavor.MakeFlavorIcon(RightRangefinderCanvas, 1013, 720, 1338, 1024, 1497, 960, 1337, 720, 1994, 1197, 1778, 720, 2618, 720, 0.2, 0.2475, 0.24416, 0.24416, 0.31916, 0.24416, 0.24416);
+		ZoomBarFlavor.MakeFlavorIcon(ZoomBarCanvas, 1059, 466, 1397, 712, 1558, 650, 1404, 412, 2086, 793, 1845, 412, 2685, 412, 0.18947, 0.22339, 0.22339, 0.2239, 0.26783, 0.22339, 0.22339);
 
 		FlavorIcons.AddItem(BlackCircleFlavor);
 		FlavorIcons.AddItem(VertChevronFlavor);
@@ -333,12 +333,12 @@ defaultproperties
 	Reticle_Enemy = (Texture=Texture2D'Shared.UI.UI_Texture_Atlas', U=545, V=534, UL=128, VL=128)
 	Reticle_Headshot = (Texture=Texture2D'Shared.UI.UI_Texture_Atlas', U=545, V=663, UL=128, VL=128)	
 
-	BlackCircleCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
-	VertChevronsCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
-	VertRangefinderCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
-	LeftRangefinderCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
-	RightRangefinderCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
-	ZoomBarCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
+	BlackCircleCanvas = (Texture=Texture2D'Shared.UI.General_Black_Circle', U=1, V=1, UL=777, VL=777)
+	VertChevronCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements', U=478, V=387, UL=44, VL=1208)
+	VertRangefinderCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements', U=13, V=689, UL=386, VL=846)
+	LeftRangefinderCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements', U=152, V=47, UL=1200, VL=134)
+	RightRangefinderCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements', U=152, V=209, UL=1200, VL=134)
+	ZoomBarCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements', U=568, V=600, UL=855, VL=841)
 }
 
 
