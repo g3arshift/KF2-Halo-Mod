@@ -16,6 +16,56 @@ var KFPlayerController KFPC;
 var Standard_Ammo_Display M392_Display;
 var float AmmoRed, AmmoYellow;
 
+var array<Texture2D> UIBackgrounds;
+var CanvasIcon Reticle_Neutral, Reticle_Enemy, Reticle_Headshot, Reticle_Friendly;
+var CanvasIcon BlackCircleCanvas, VertChevronsCanvas, VertRangefinderCanvas, LeftRangefinderCanvas, RightRangefinderCanvas, ZoomBarCanvas;
+var array<FlavorIcon> FlavorIcons;
+var FlavorIcon BlackCircleFlavor, VertChevronFlavor, VertRangefinderFlavor, LeftRangefinderFlavor, RightRangerinderFlavor, ZoomBarFlavor;
+
+var Halo_Weapon_UI M392_UI;
+
+simulated function PlayWeaponEquip( float ModifiedEquipTime )
+{
+	Super.PlayWeaponEquip( ModifiedEquipTime );
+	if(KFPC == None )
+	{
+		KFPC = KFPlayerController(Instigator.Controller);
+	}
+
+	if(M392_Display == none)
+	{
+		M392_Display = New class'Standard_Ammo_Display';
+	}
+
+	M392_Display.InitializeDisplay(KFPC, 4, 3, AmmoYellow, AmmoRed);
+	M392_Display.RunDisplay(Mesh);
+
+	if(M392_UI == none)
+	{
+		M392_UI = New class'Halo_Weapon_UI';
+		BlackCircleFlavor = New class'FlavorIcon';
+		VertChevronFlavor = New class'FlavorIcon';
+		VertRangefinderFlavor = New class'FlavorIcon';
+		LeftRangefinderFlavor = New class'FlavorIcon';
+		RightRangefinderFlavor = New class'FlavorIcon';
+		ZoomBarFlavor = New class'FlavorIcon';
+
+		BlackCircleFlavor.MakeFlavorIcon(652, 412, 906, 650, 1067, 587, 904, 344, 1431, 711, 1344, 344, 2184, 344, 0.79150, 0.96138, 0.95881, 0.96653, 1.25868, 0.96653, 0.96653);
+		VertChevronFlavor.MakeFlavorIcon(955, 769, 1274, 1076, 1435, 1037, 1275, 800, 1913, 1309, 1715, 800, 2555, 800, 0.2, 0.26, 0.22, 0.22, 0.29, 0.22, 0.22);
+		VertRangefinderFlavor.MakeFlavorIcon(781, 769, 1063, 1076 1238, 1037, 1078, 800, 1652, 1309, 1517, 798, 2357, 798, 0.20466, 0.26165, 0.22538, 0.22538, 0.30569, 0.22538, 0.22538);
+		LeftRangefinderFlavor.MakeFlavorIcon(667, 720, 925, 1024, 1090, 960, 930, 720, 1463, 1197, 1396, 720, 2209, 720, 0.2, 0.2475, 0.24416, 0.24416, 0.31916, 0.24416, 0.24416);
+		RightRangeFinderFlavor.MakeFlavorIcon(1013, 720, 1338, 1024, 1497, 960, 1337, 720, 1994, 1197, 1778, 720, 2618, 720, 0.2, 0.2475, 0.24416, 0.24416, 0.31916, 0.24416, 0.24416);
+		ZoomBarFlavor.MakeFlavorIcon(1059, 466, 1397, 712, 1558, 650, 1404, 412, 2086, 793, 1845, 412, 2685, 412, 0.18947, 0.22339, 0.22339, 0.2239, 0.26783, 0.22339, 0.22339);
+
+		FlavorIcons.AddItem(BlackCircleFlavor);
+		FlavorIcons.AddItem(VertChevronFlavor);
+		FlavorIcons.AddItem(VertRangefinderFlavor);
+		FlavorIcons.AddItem(LeftRangefinderFlavor);
+		FlavorIcons.AddItem(RightRangefinderFlavor);
+		FlavorIcons.AddItem(ZoomBarFlavor);
+	}
+}
+
 //This function allows us to play a sound, in this case, the zoom sounds for the different weapons.
 simulated function WeaponZoomSound(AkEvent ZoomSound)
 {
@@ -130,23 +180,6 @@ function ZoomTimer()
 	//This is only here to stop logging errors.
 }
 
-simulated function PlayWeaponEquip( float ModifiedEquipTime )
-{
-	Super.PlayWeaponEquip( ModifiedEquipTime );
-	if(KFPC == None )
-	{
-		KFPC = KFPlayerController(Instigator.Controller);
-	}
-
-	if(M392_Display == none)
-	{
-		M392_Display = New class'Standard_Ammo_Display';
-	}
-
-	M392_Display.InitializeDisplay(KFPC, 4, 3, AmmoYellow, AmmoRed);
-	M392_Display.RunDisplay(Mesh);
-}
-
 simulated function ConsumeAmmo( byte FireModeNum )
 {
 	super.ConsumeAmmo( FireModeNum );
@@ -178,7 +211,15 @@ reliable client function M392_UpdateDisplay()
 //This function runs continuously, and when iron sights are being used it does the drawing.
 simulated function DrawHUD( HUD H, Canvas C )
 {
+	if(!M392_UI.isInitialized)
+	{
+		M392_UI.InitializeWeaponUI(C, KFPC, UIBackgrounds, Reticle_Neutral, Reticle_Friendly, Reticle_Enemy, Reticle_Headshot, true, FlavorIcons);
+	}
 
+	if( bUsingSights )
+	{
+		M392_UI.RunWeaponUI(C);
+	}
 }
 
 defaultproperties
@@ -277,7 +318,27 @@ defaultproperties
 
 	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Weight, Add=1)))
 
-	
+	//Textures for the scope background. Needs to be changed to an enum.
+	UIBackgrounds[0] = Texture2D'Shared.UI.Basic_Reticle_Background_4_3_v2'
+	UIBackgrounds[1] = Texture2D'Shared.UI.Basic_Reticle_Background_5_4_v2'
+	UIBackgrounds[2] = Texture2D'Shared.UI.Basic_Reticle_Background_3_2_v2'
+	UIBackgrounds[3] = Texture2D'Shared.UI.Basic_Reticle_Background_v2'
+	UIBackgrounds[4] = Texture2D'Shared.UI.Basic_Reticle_Background_16_10_v2'
+	UIBackgrounds[5] = Texture2D'Shared.UI.Basic_Reticle_Background_21_9_v2'
+	UIBackgrounds[6] = Texture2D'Shared.UI.Basic_Reticle_Background_32_9_v2'
+
+	//Reticles
+	Reticle_Neutral = (Texture=Texture2D'Shared.UI.UI_Texture_Atlas', U=545, V=276, UL=128, VL=128)
+	Reticle_Friendly = (Texture=Texture2D'Shared.UI.UI_Texture_Atlas', U=545, V=405, UL=128, VL=128)
+	Reticle_Enemy = (Texture=Texture2D'Shared.UI.UI_Texture_Atlas', U=545, V=534, UL=128, VL=128)
+	Reticle_Headshot = (Texture=Texture2D'Shared.UI.UI_Texture_Atlas', U=545, V=663, UL=128, VL=128)	
+
+	BlackCircleCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
+	VertChevronsCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
+	VertRangefinderCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
+	LeftRangefinderCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
+	RightRangefinderCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
+	ZoomBarCanvas = (Texture=Texture2D'M392.UI.M392_Scope_Elements'
 }
 
 

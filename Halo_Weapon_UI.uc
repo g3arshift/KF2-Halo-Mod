@@ -11,7 +11,7 @@
 // have no functional purpose in the UI but look nice and add feeling, such
 // as a "Zoom Level" for the scope, or rangefinder elements.
 //=============================================================================
-// The reticle code was built with a large 12 x 128 texture in mind, the first 4 
+// The reticle code was built with a large 128 x 128 texture in mind, the first 4 
 // textures from the top left of the texture atlas. You may need to increase/decrease 
 // texture size depending on how you have it built. The scope background images NEED
 // to be setup in the following order in the array in regards to aspect ratio: 4:3 AR, 
