@@ -655,7 +655,7 @@ function DrawAmmoUI(out Canvas PlayerUI, int AmmoMax, array<int> BulletDistanceC
 
 defaultproperties
 {
-	isFlavored = false;
-	isInitialized = false;
-	LastSizeX = -1;
+	isFlavored = false
+	isInitialized = false
+	LastSizeX = -1
 }
