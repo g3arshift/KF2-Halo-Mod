@@ -89,26 +89,32 @@ simulated function SetIronSights(bool bNewIronSights)
 		LaserSight.LaserDotMeshComp.SetStaticMesh(None);
 	}
 }
-
+/*
 simulated state Reloading
 {
 	simulated function ReloadComplete()
 	{
 		Super.ReloadComplete();
 
-		LaserSight.LaserSightMeshComp.SetSkeletalMesh(SkeletalMesh'FX_Wep_Laser_MESH.WEP_Laser_1P_SK');
-		LaserSight.LaserDotMeshComp.SetStaticMesh(StaticMesh'FX_Wep_Laser_MESH.laser_dot_SM');
+		if(LaserSight.LaserSightMeshComp.SkeletalMesh = None || LaserSight.LaserSightMeshComp.StaticMesh == None)
+		{
+			LaserSight.LaserSightMeshComp.SetSkeletalMesh(SkeletalMesh'FX_Wep_Laser_MESH.WEP_Laser_1P_SK');
+			LaserSight.LaserDotMeshComp.SetStaticMesh(StaticMesh'FX_Wep_Laser_MESH.laser_dot_SM');
+		}
 	}
 
 	simulated function AbortReload()
 	{
 		Super.AbortReload();
 
-		LaserSight.LaserSightMeshComp.SetSkeletalMesh(SkeletalMesh'FX_Wep_Laser_MESH.WEP_Laser_1P_SK');
-		LaserSight.LaserDotMeshComp.SetStaticMesh(StaticMesh'FX_Wep_Laser_MESH.laser_dot_SM');
+		if(LaserSight.LaserSightMeshComp.SkeletalMesh == None || LaserSight.LaserSightMeshComp.StaticMesh == None)
+		{
+			LaserSight.LaserSightMeshComp.SetSkeletalMesh(SkeletalMesh'FX_Wep_Laser_MESH.WEP_Laser_1P_SK');
+			LaserSight.LaserDotMeshComp.SetStaticMesh(StaticMesh'FX_Wep_Laser_MESH.laser_dot_SM');
+		}
 	}
 }
-
+*/
 defaultproperties
 {
     // FOV

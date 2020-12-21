@@ -16,6 +16,6 @@ defaultproperties
 
 	DamageRadius=0
 
-	ProjFlightTemplate=ParticleSystem'wep_railgun_emit.FX_Railgun_Projectile_01'
+	ProjFlightTemplate=ParticleSystem'SRS99_AM.Emitters.FX_SRS99_AM_Projectile_01'
 	ImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Heavy_bullet_impact'
 }

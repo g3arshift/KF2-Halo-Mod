@@ -38,7 +38,7 @@ simulated function PlayWeaponEquip( float ModifiedEquipTime )
 		BulletFlavor = New class'FlavorIcon';
 		BulletMovieFlavor = New class'FlavorIcon';
 
-		ZoomFlavorIcon.MakeFlavorIcon(ZoomCanvasIcon, 1155, 860, 1498, 1246, 1651, 2286, 1498, 942, 2201, 1487, 1938, 942, 2278, 942, 0.26543, 0.25308, 0.28395, 0.25308, 0.37962, 0.25308, 0.25308);
+		ZoomFlavorIcon.MakeFlavorIcon(ZoomCanvasIcon, 1155, 860, 1498, 1246, 1651, 2286, 1498, 942, 2201, 1487, 1938, 942, 2770, 942, 0.26543, 0.25308, 0.28395, 0.25308, 0.37962, 0.25308, 0.25308);
 		CircleFlavorIcon.MakeFlavorIcon(CircleCanvasIcon, 640, 400, 891, 635, 1051, 571, 891, 331, 1407, 687, 1331, 331, 2171, 331, 0.82239, 1.0, 1.0, 1.0, 1.32046, 1.0, 1.0);
 
 		//Do not add the below to the FlavorIcon array. Each position marker is the first (top-most) bullet in the display.
