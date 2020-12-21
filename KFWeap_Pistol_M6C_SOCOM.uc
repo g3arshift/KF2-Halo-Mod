@@ -14,6 +14,8 @@ var CanvasIcon Reticle_Neutral, Reticle_Enemy, Reticle_Headshot, Reticle_Friendl
 var array<FlavorIcon> FlavorIcons;
 var FlavorIcon ZoomFlavorIcon;
 
+var bool bLaserDisabled;
+
 var Halo_Weapon_UI M6C_SOCOM_UI;
 
 simulated function PlayWeaponEquip( float ModifiedEquipTime )
@@ -87,19 +89,21 @@ simulated function SetIronSights(bool bNewIronSights)
 		}
 		LaserSight.LaserSightMeshComp.SetSkeletalMesh(None);
 		LaserSight.LaserDotMeshComp.SetStaticMesh(None);
+		bLaserDisabled = true;
 	}
 }
-/*
+
 simulated state Reloading
 {
 	simulated function ReloadComplete()
 	{
 		Super.ReloadComplete();
 
-		if(LaserSight.LaserSightMeshComp.SkeletalMesh = None || LaserSight.LaserSightMeshComp.StaticMesh == None)
+		if(bLaserDisabled)
 		{
 			LaserSight.LaserSightMeshComp.SetSkeletalMesh(SkeletalMesh'FX_Wep_Laser_MESH.WEP_Laser_1P_SK');
 			LaserSight.LaserDotMeshComp.SetStaticMesh(StaticMesh'FX_Wep_Laser_MESH.laser_dot_SM');
+			bLaserDisabled = false;
 		}
 	}
 
@@ -107,14 +111,15 @@ simulated state Reloading
 	{
 		Super.AbortReload();
 
-		if(LaserSight.LaserSightMeshComp.SkeletalMesh == None || LaserSight.LaserSightMeshComp.StaticMesh == None)
+		if(bLaserDisabled)
 		{
 			LaserSight.LaserSightMeshComp.SetSkeletalMesh(SkeletalMesh'FX_Wep_Laser_MESH.WEP_Laser_1P_SK');
 			LaserSight.LaserDotMeshComp.SetStaticMesh(StaticMesh'FX_Wep_Laser_MESH.laser_dot_SM');
+			bLaserDisabled = false;
 		}
 	}
 }
-*/
+
 defaultproperties
 {
     // FOV
@@ -191,7 +196,9 @@ defaultproperties
 	bHasFlashlight=false
 	bHasLaserSight=true //true
 
-	bWarnAIWhenAiming = false;
+	bLaserDisabled = false
+
+	bWarnAIWhenAiming = false
 
 	// Inventory
 	InventorySize=3 //3
