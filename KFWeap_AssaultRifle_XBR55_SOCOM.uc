@@ -206,7 +206,7 @@ simulated function DrawHUD( HUD H, Canvas C )
 	{
 		XBR55_UI.RunWeaponUI(C);
 
-		if(KFPawn_Human(KFPC.Pawn).bFlashlightOn)
+		if(KFPawn_Human(KFPC.Pawn).bFlashlightOn && bUsingSights)
 		{
 			KFPC.SetNightVision(true); //Maybe try using the Effect_NightVision Material. It's defined in FX_Mat_Lib.KF_PP_Master
 			KFPC.bGamePlayDOFActive = false;
