@@ -1,0 +1,79 @@
+[KFWeap_Pistol_M6C]
+ItemName="M6C Pistolet"
+ItemCategory="Arme de poing"
+ItemDescription="•Le petit frère du M6G, ce pistolet a vue l'action contre les Covenants, de Reach jusqu'à Halo Delta, et il est maintenant prêt à servir contre les hordes de Zeds!"
+
+[KFWeap_Pistol_M6CDual]
+ItemName="Dual M6C Pistols"
+ItemCategory="Arme de poing"
+ItemDescription="•Le même pistolet M6C, mais maintenant avec le double de la puissance de feu et du fun!"
+
+[KFWeap_SMG_M7S]
+ItemName="M7S SMG"
+ItemCategory="Pistolet mitrailleur"
+ItemDescription="•Une mitraillette M7 entièrement peinte en noir et à munitions sans douilles, cette arme silencieuse mais mortelle était utilisé par Le Bleu durant la vitrification de la Nouvelle Mombasa en 2552. \n•"Cela ne nécéssite qu'une erreur, gamin. Tu es allé loin avant de la faire.""
+
+[KFWeap_Pistol_M6C_SOCOM]
+ItemName="M6C/SOCOM"
+ItemCategory="Arme de poing"
+ItemDescription="•Équipé d'un silencieux, d'une lunette de visée, et d'un compensateur de recul, l'Automag est aussi précis qu'un laser, silencieux qu'un souffle, et extrémement mortel. \n•"Les Brutes peuvent nous voir venir, mais la seule chose qu'ils entendront c'est leurs culs frappant le sol.""
+
+[KFWeap_Shotgun_M90]
+ItemName="M90 CAWS"
+ItemCategory="Fusil à pompe"
+ItemDescription="•Chargé avec des cartouches Soellkraft calibre 8 et des chevrotines 0000, le M90 CAWS réduira en pulpe tout ce qui s'approchera trop près. \n•"Je crois que le bruit d'amorçage d'un fusil à pompe est universellement reconnu à 'Dit adieu à ton cul.""
+
+[KFWeap_Shotgun_M45]
+ItemName="M45 Shotgun"
+ItemCategory="Fusil à pompe"
+ItemDescription="•Pas aussi puissant que son grand frère le M90, le M45 a toujours un sacré punch, tout en étant plus court, rapide et léger. \n•"Six, il est temps pour vous de partir. Apportez le paquet à cette homme et cassez-vous de cette planète. Je couvre vos arrières.""
+
+[KFWeap_Shotgun_M45_BrashWhisper]
+ItemName="M45 Brash Whisper"
+ItemCategory="Fusil à pompe"
+ItemDescription="•Peint avec la colonne vertébrale d'un Sangheili, ce M45 et son chargeur ont été customisés par les mains du Spartan Emille-A239 pour un maximum de destruction. \n•"Ouai, j'ai taillé ça moi-même. Et j'en suis fier.""
+
+[KFWeap_GrenadeLauncher_M319]
+ItemName="M319 IGL"
+ItemCategory="Explosifs"
+ItemDescription="•Le premier mode détone la grenade au contact d'un zed, ou se déclenche 2 secondes après avoir touché un mur.  \n•Le deuxième mode empêche l'explosion tant que la gâchette est appuyée, une fois relâchée l'explosion se produit et libère une IEM, mais cause moins de dégâts."
+
+[KFWeap_Pistol_M6D]
+ItemName="M6D Magnum"
+ItemCategory="Arme de poing"
+ItemDescription="•Chargé avec des balles semi perce-armure et hautement explosives et équipé d'une lunette de visée intelligente KFA-2 x2, le M6D est un pistolet légendaire connu pour son incroyable force-d'ârret. \n•"Je ne le laisse jamais chargé gamin, tu devras trouver des munitions au fûr et à mesure.""
+
+[KFWeap_AssaultRifle_MA37]
+ItemName="MA37 Assault Rifle"
+ItemCategory="Fusil d'assaut"
+ItemDescription="•Chargé avec des balles déchiquetantes, équipé d'une lunette de visée intelligente et d'un affichage de munitions, ce fusil est mortel dans de bonnes mains.\n•"Le MA37 est LE cheval de bataille pour nous biffins. Rien que de le tenir vous fait vous sentir comme la machine-anti-fils-de-pute de Dieu.""
+
+[KFWeap_Rifle_BR55]
+ItemName="BR55 Battle Rifle"
+ItemCategory="Fusil"
+ItemDescription="•Équipé d'une lunette de visée x2 et d'un affichage de munitions, le Fusil de Combat BR55 délivre les tirs en pleine tête et la mort par rafales de 3 balles. \n•"Quand rien d'autre ne fait le taff, le Fusil de Combat BR55 le fera.""
+
+[KFWeap_AssaultRifle_XBR55_SOCOM]
+ItemName="XBR55/SOCOM"
+ItemCategory="Fusil d'assaut"
+ItemDescription="•Un modèle expérimental du BR55 conçu pour les forces ODST, ce fusil peint en noir est moins puissant que son homologue mais possède un silencieux intégré, une vision nocturne, une visée laser, et le choix entre mode de tir automatique et rafale de deux coups. \n•"On y va les pieds d'abord, Chef!""
+
+[KFWeap_SMG_M7]
+ItemName="M7 SMG"
+ItemCategory="Pistolet mitrailleur"
+ItemDescription="•Légère, peu cher, et délivrant une cadence de tir élevée, la M7 est parfaite pour raccourcir les zeds. \n•"Le recul n'est pas mal mais la M7 est relativement légère. Pas déplaisante à utiliser, mais un peu compliquée à contrôler—tout est dans le contrôle du recul.""
+
+[KFWeap_RocketLauncher_M41]
+ItemName="M41 SPNKr"
+ItemCategory="Explosifs"
+ItemDescription="•Chargé avec des roquettes SSM de calibre 102mm, le M41 "Spanker" est le système de livraison parfait pour deux roquettes qui frappent fort.\n•"Savoir que vous pouvez appuyer sur la gâchette et que cela fera un grand bruit est réconfortant, mais si vous voulez des résultats. Utilisez un lance-roquette.""
+
+[KFWeap_Rifle_M392]
+ItemName="M392 DMR"
+ItemCategory="Fusil"
+ItemDescription="•Le DMR est une arme à grande portée et grande précision parfaite pour éclater la tête des zeds. Il est mortel à longue portée, mais une gâchette facile et une bonne visée assurent un résultat satisfaisant même à courte portée. \n•"Vous êtez seuls, Noble. Carter terminé.""
+
+[KFWeap_Rifle_SRS99_AM]
+ItemName="SRS99-AM Sniper Rifle"
+Item Category="Fusil"
+ItemDescription="•Aussi précis qu'un laser et chargé de balles perforantes à haute vélocité 14.5 x 114mm, le SRS99-AM, bien que cher, est un outil finement réglé pour la destruction de zed à longue portée. \n•"Balles perforantes à haute vélocité. De quoi dérouiller un Élite à plus de 2 kilomètres. Et elles ne sont pas données.""
